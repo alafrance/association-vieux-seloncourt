@@ -17,11 +17,12 @@
 
     <!--  Navbar Animation-->
     <script defer src='public/js/nav.js'></script>
-    <link rel="stylesheet" href="public/css/<?=$css?>.css">
+    <link rel="stylesheet" href="../public/css/<?=$css?>.css">
 </head>
 <body>
-    <?php include 'view/nav.php'?>
+    <?php include '../view/nav.php'?>
     <?= $content ?>
+    <?php include '../view/footer.php'; ?>
 
 </body>
 </html>

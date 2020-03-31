@@ -13,7 +13,7 @@ class UserDAO extends DAO{
         return $user;
     }
     public function getUsers(){
-       $sql = 'SELECT user.id, user.pseudo, user.dateCreated, role.name FROM user INNER JOIN role ON user.role_id = role.id ORDER BY user.id DESC';
+       $sql = 'SELECT user.id, user.pseudo, user.dateCreated, role.role_name FROM user INNER JOIN role ON user.role_id = role.id ORDER BY user.id DESC';
         $result = $this->createQuery($sql);
         $users = [];
         foreach ($result as $row){
@@ -24,8 +24,8 @@ class UserDAO extends DAO{
         return $users;
     }
     public function register(Parameter $post){
-        $sql = 'INSERT INTO user (name, password, dateCreated, role_id, email) VALUES(?, ?, NOW(), ?, ?) ';
-        $this->createQuery($sql, [$post->get('name'), password_hash($post->get('password'), PASSWORD_DEFAULT), 2, $post->get('email')]);
+        $sql = 'INSERT INTO user (name, email, password, role_id, dateCreated) VALUES(?, ?, ?, ?, NOW()) ';
+        $this->createQuery($sql, [$post->get('name'), $post->get('email'), password_hash($post->get('password'), PASSWORD_DEFAULT), 2]);
     }
     public function checkEmail(Parameter $post){
         $sql = 'SELECT COUNT(email) FROM user WHERE email= ? ';
@@ -36,7 +36,7 @@ class UserDAO extends DAO{
         }
     }
     public function login(Parameter $post){
-        $sql = 'SELECT user.id, user.role_id, user.password, role.name FROM user INNER JOIN role ON role.id = user.role_id WHERE email= ?';
+        $sql = 'SELECT user.id, user.role_id, user.password, user.name, role.role_name FROM user INNER JOIN role ON role.id = user.role_id WHERE user.email = ?';
         $data = $this->createQuery($sql, [$post->get('email')]);
         $request = $data->fetch();
         if ($request){
@@ -51,17 +51,18 @@ class UserDAO extends DAO{
                 'isPasswordValid' => false
             ];
         }
+        return $request;
     }
-    public function isPasswordValid($pseudo, $password){
-        $sql = 'SELECT password FROM user WHERE pseudo = ?';
-        $data = $this->createQuery($sql, [$pseudo]);
+    public function isPasswordValid($email, $password){
+        $sql = 'SELECT password FROM user WHERE email = ?';
+        $data = $this->createQuery($sql, [$email]);
         $request = $data->fetch();
         $isPasswordValid = password_verify($password, $request['password']);
         return $isPasswordValid;
     }
-    public function loginAuto($pseudo, $password){
-        $sql = 'SELECT user.id, user.role_id, user.password, role.name FROM user INNER JOIN role ON role.id = user.role_id WHERE pseudo= ?';
-        $data = $this->createQuery($sql, [$pseudo]);
+    public function loginAuto($email, $password){
+        $sql = 'SELECT user.id, user.role_id, user.password, role.role_name FROM user INNER JOIN role ON role.id = user.role_id WHERE user.email = ?';
+        $data = $this->createQuery($sql, [$email]);
         $request = $data->fetch();
         if ($request['password'] == $password){
             return [

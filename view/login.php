@@ -1,11 +1,11 @@
 <?php
-    $this->css = 'login';
-    $this->title = 'Page de connexion';
+$this->css = 'login';
+$this->title = 'Page de connexion';
 ?>
 
 <section class="login flex-center">
-<?= $this->session->showAlert('error_login', 'error');?>
-<?= $this->session->showAlert('need_login', 'error');?>
+    <?= $this->session->showAlert('error_login', 'error'); ?>
+    <?= $this->session->showAlert('need_login', 'error'); ?>
     <h1 class="center">Connecter vous :</h1>
     <form action="index.php?route=login" method="post">
 

@@ -10,7 +10,7 @@ use Config\Alexis\Parameter;
 
 class BackController extends Controller{
     private function checkLoggedIn(){
-        if (!($this->session->get('pseudo'))){
+        if (!($this->session->get('name'))){
             $this->session->set('need_login', 'Vous devez vous connecter pour accéder à cette page');
             header('Location: ../public/index.php?route=login');
         }else{

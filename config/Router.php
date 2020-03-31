@@ -21,7 +21,7 @@ class Router{
     public function run(){
         $route = $this->request->getGet()->get('route');
         try{
-            if (isset($route)){
+            if ($route != NULL){
                 switch($route){
                     case 'contact':
                         $this->frontController->contact();
@@ -37,6 +37,10 @@ class Router{
                         break;
                     case 'setting':
                         $this->backController->setting();
+                        break;
+                    case 'home':
+                        $this->frontController->home();
+                        break;
                     default:
                         $this->errorController->errorNotFound();
                         break;

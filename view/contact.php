@@ -6,28 +6,28 @@
     <h1 class="center">Membre Association</h1>
     <div class="membre">
         <figure>
-            <img src="public/img/profile.png" alt="Portrait président Association">
+            <img src="../public/img/profile.png" alt="Portrait président Association">
             <figcaption>
                 <h2>Président</h2>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.<br>Placeat non dolore exercitationem illo rem quod dignissimos cupiditate,<br> labore atque id nam facere! Quis reiciendis<br> rerum, aspernatur quod quaerat harum in.</p>
             </figcaption>
         </figure>
         <figure>
-            <img src="public/img/profile.png" alt="Portrait Secrétaire Association">
+            <img src="../public/img/profile.png" alt="Portrait Secrétaire Association">
             <figcaption>
                 <h2>Secrétaire</h2>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.<br>Placeat non dolore exercitationem illo rem quod dignissimos cupiditate,<br> labore atque id nam facere! Quis reiciendis<br> rerum, aspernatur quod quaerat harum in.</p>
             </figcaption>
         </figure>
         <figure>
-            <img src="public/img/profile.png" alt="Portrait Trésoriere Association">
+            <img src="../public/img/profile.png" alt="Portrait Trésoriere Association">
             <figcaption>
                 <h2>Trésoriere</h2>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.<br>Placeat non dolore exercitationem illo rem quod dignissimos cupiditate,<br> labore atque id nam facere! Quis reiciendis<br> rerum, aspernatur quod quaerat harum in.</p>
             </figcaption>
         </figure>
         <figure>
-            <img src="public/img/profile.png" alt="Portrait no sabe Association">
+            <img src="../public/img/profile.png" alt="Portrait no sabe Association">
             <figcaption>
                 <h2>No sabe quien es</h2>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.<br>Placeat non dolore exercitationem illo rem quod dignissimos cupiditate,<br> labore atque id nam facere! Quis reiciendis<br> rerum, aspernatur quod quaerat harum in.</p>

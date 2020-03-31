@@ -18,8 +18,8 @@ class Constraint{
         }
     }
     public function regexPassword($value){
-        if (!(preg_match('#[A-Z]+#', $value) && preg_match('#[0-9]+#', $value) && preg_match('#.{8,}#', $value))){
-            return '<p class="alert alert-danger center">Le mot de passe doit comporter au moins 8 caractères, et un caractère spécial et une majuscule</p>'; 
+        if (!(preg_match('#[A-Z]+#', $value) && preg_match('#.{8,}#', $value))){
+            return '<p class="alert alert-danger center">Le mot de passe doit comporter au moins 8 caractères et une majuscule</p>'; 
         }
     }
     public function regexEmail($value){

@@ -15,7 +15,7 @@ class FrontController extends Controller{
     }
     public function login(Parameter $post){
         if ($post->get('submit')){
-            $result = $this->userDAO->login($post);
+            $result  = $this->userDAO->login($post);
         if ($result && $result['isPasswordValid']){
                 if ($post->get('auto')){
                     $this->cookie->set('pseudo', $post->get('pseudo'));
@@ -23,13 +23,13 @@ class FrontController extends Controller{
                 }
                 $this->session->set('login', 'Vous êtes connecté');
                 $this->session->set('id', $result['result']['id']);
-                $this->session->set('role', $result['result']['name']);
-                $this->session->set('name', $post->get('name'));
+                $this->session->set('role', $result['result']['role_name']);
+                $this->session->set('name', $result['result']['name']);
                 $this->session->set('email', $post->get('email'));
-                header('Location: index.php?route=profile');
+                header('Location: index.php');
             }
             else{
-                $this->session->set('error_login', 'Le pseudo ou le mot de passe est incorrecte');
+                $this->session->set('error_login', 'Le pseudo ou le mot de passe est incorrect');
                return $this->view->render('login', [
                     'post' => $post
                    ]);
@@ -37,6 +37,7 @@ class FrontController extends Controller{
         }else{
             return $this->view->render('login');
         }
+        
     }
     public function register(Parameter $post){
         if ($post->get('submit')){
@@ -51,7 +52,7 @@ class FrontController extends Controller{
                 $this->userDAO->register($post);
                 $this->session->set('register', 'Votre inscription a bien été effectué');
                 $this->login($post);
-                header('Location: index.php');
+                header('Location: index.php?route=profile');
             }
             return $this->view->render('register', [
                 'post' => $post,
