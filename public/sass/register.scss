@@ -1,0 +1,10 @@
+@import './nav.scss';
+@import './général.scss';
+
+.register{
+    height: 90vh;
+    form{
+        display: flex;
+        flex-direction: column;
+    }
+}

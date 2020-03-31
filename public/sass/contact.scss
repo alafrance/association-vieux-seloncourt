@@ -1,0 +1,66 @@
+@import './nav.scss';
+@import './général.scss';
+
+section:first-of-type{
+    margin-top: 50px;
+    h1{
+        margin-bottom: 40px;
+    }
+}
+.membre{
+    display: flex;
+    figure{
+        width: 25%;
+        img{
+            border: 1px solid black;
+            margin-bottom: 10px;
+        }
+        h2{
+            position: relative;
+            margin-top: 10px;
+
+        }
+        h2::after{
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: 0px;
+            width: 100px;
+            height: 2px;
+            background: black;
+        }
+    }
+    figure:first-of-type{
+        margin-left: 15px;
+    }
+}
+
+// Contact
+
+.contact{
+    display: flex;
+    justify-content: space-around;
+    .info{
+        padding-top: 15px;
+        border: 1px solid black;
+        position: relative;
+        h2{
+            position: absolute;
+            top: -10px;
+            left: 0;
+            font-size: 1rem;
+            background-color: white;
+            margin-left: 15px;
+        }
+    }
+    iframe{
+        height: 600px;
+        width: 700px;
+        border: 0;
+    }
+    form{
+        display: flex;
+        flex-direction: column;
+
+    }
+}
