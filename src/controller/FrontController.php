@@ -26,7 +26,7 @@ class FrontController extends Controller{
                 $this->session->set('role', $result['result']['role_name']);
                 $this->session->set('name', $result['result']['name']);
                 $this->session->set('email', $post->get('email'));
-                header('Location: index.php');
+                header('Location: index.php?route=profile');
             }
             else{
                 $this->session->set('error_login', 'Le pseudo ou le mot de passe est incorrect');
@@ -37,7 +37,6 @@ class FrontController extends Controller{
         }else{
             return $this->view->render('login');
         }
-        
     }
     public function register(Parameter $post){
         if ($post->get('submit')){

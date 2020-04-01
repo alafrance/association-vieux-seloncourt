@@ -1,7 +1,7 @@
 <?php
 namespace App\src\DAO;
 use App\src\model\Article;
-use App\config\Parameter;
+use Config\Alexis\Parameter;
 class ArticleDAO extends DAO{
     private function buildObject($row)
     {
@@ -47,7 +47,7 @@ class ArticleDAO extends DAO{
             'articleId' => $articleId
         ]);
     }
-      public function deleteArticle($articleId)
+    public function deleteArticle($articleId)
     {
         $sql = 'DELETE FROM comment WHERE article_id = ?';
         $this->createQuery($sql, [$articleId]);

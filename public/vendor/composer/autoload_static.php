@@ -20,35 +20,35 @@ class ComposerStaticInitff34c05cc43a9c1bfd86b34b0c58bdd7
     public static $prefixDirsPsr4 = array (
         'Config\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/config',
+            0 => __DIR__ . '/../..' . '/../config',
         ),
         'App\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/src',
+            0 => __DIR__ . '/../..' . '/../src',
         ),
     );
 
     public static $classMap = array (
-        'App\\src\\DAO\\ArticleDAO' => __DIR__ . '/../..' . '/src/DAO/ArticleDAO.php',
-        'App\\src\\DAO\\CommentDAO' => __DIR__ . '/../..' . '/src/DAO/CommentDAO.php',
-        'App\\src\\DAO\\DAO' => __DIR__ . '/../..' . '/src/DAO/DAO.php',
-        'App\\src\\DAO\\UserDAO' => __DIR__ . '/../..' . '/src/DAO/UserDAO.php',
-        'App\\src\\constraint\\Constraint' => __DIR__ . '/../..' . '/src/constraint/Constraint.php',
-        'App\\src\\constraint\\UserValidation' => __DIR__ . '/../..' . '/src/constraint/UserValidation.php',
-        'App\\src\\constraint\\Validation' => __DIR__ . '/../..' . '/src/constraint/Validation.php',
-        'App\\src\\controller\\BackController' => __DIR__ . '/../..' . '/src/controller/BackController.php',
-        'App\\src\\controller\\Controller' => __DIR__ . '/../..' . '/src/controller/Controller.php',
-        'App\\src\\controller\\ErrorController' => __DIR__ . '/../..' . '/src/controller/ErrorController.php',
-        'App\\src\\controller\\FrontController' => __DIR__ . '/../..' . '/src/controller/FrontController.php',
-        'App\\src\\model\\Article' => __DIR__ . '/../..' . '/src/model/Article.php',
-        'App\\src\\model\\Comment' => __DIR__ . '/../..' . '/src/model/Comment.php',
-        'App\\src\\model\\User' => __DIR__ . '/../..' . '/src/model/User.php',
-        'App\\src\\model\\View' => __DIR__ . '/../..' . '/src/model/View.php',
-        'Config\\Alexis\\Cookie' => __DIR__ . '/../..' . '/config/Cookie.php',
-        'Config\\Alexis\\Parameter' => __DIR__ . '/../..' . '/config/Parameter.php',
-        'Config\\Alexis\\Request' => __DIR__ . '/../..' . '/config/Request.php',
-        'Config\\Alexis\\Router' => __DIR__ . '/../..' . '/config/Router.php',
-        'Config\\Alexis\\Session' => __DIR__ . '/../..' . '/config/Session.php',
+        'App\\src\\DAO\\ArticleDAO' => __DIR__ . '/../..' . '/../src/DAO/ArticleDAO.php',
+        'App\\src\\DAO\\CommentDAO' => __DIR__ . '/../..' . '/../src/DAO/CommentDAO.php',
+        'App\\src\\DAO\\DAO' => __DIR__ . '/../..' . '/../src/DAO/DAO.php',
+        'App\\src\\DAO\\UserDAO' => __DIR__ . '/../..' . '/../src/DAO/UserDAO.php',
+        'App\\src\\constraint\\Constraint' => __DIR__ . '/../..' . '/../src/constraint/Constraint.php',
+        'App\\src\\constraint\\UserValidation' => __DIR__ . '/../..' . '/../src/constraint/UserValidation.php',
+        'App\\src\\constraint\\Validation' => __DIR__ . '/../..' . '/../src/constraint/Validation.php',
+        'App\\src\\controller\\BackController' => __DIR__ . '/../..' . '/../src/controller/BackController.php',
+        'App\\src\\controller\\Controller' => __DIR__ . '/../..' . '/../src/controller/Controller.php',
+        'App\\src\\controller\\ErrorController' => __DIR__ . '/../..' . '/../src/controller/ErrorController.php',
+        'App\\src\\controller\\FrontController' => __DIR__ . '/../..' . '/../src/controller/FrontController.php',
+        'App\\src\\model\\Article' => __DIR__ . '/../..' . '/../src/model/Article.php',
+        'App\\src\\model\\Comment' => __DIR__ . '/../..' . '/../src/model/Comment.php',
+        'App\\src\\model\\User' => __DIR__ . '/../..' . '/../src/model/User.php',
+        'App\\src\\model\\View' => __DIR__ . '/../..' . '/../src/model/View.php',
+        'Config\\Alexis\\Cookie' => __DIR__ . '/../..' . '/../config/Cookie.php',
+        'Config\\Alexis\\Parameter' => __DIR__ . '/../..' . '/../config/Parameter.php',
+        'Config\\Alexis\\Request' => __DIR__ . '/../..' . '/../config/Request.php',
+        'Config\\Alexis\\Router' => __DIR__ . '/../..' . '/../config/Router.php',
+        'Config\\Alexis\\Session' => __DIR__ . '/../..' . '/../config/Session.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

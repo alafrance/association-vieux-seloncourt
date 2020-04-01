@@ -60,6 +60,16 @@ class UserDAO extends DAO{
         $isPasswordValid = password_verify($password, $request['password']);
         return $isPasswordValid;
     }
+    public function isExistEmail($email){
+        $sql = 'SELECT email FROM user WHERE email = ?';
+        $data = $this->createQuery($sql, [$email]);
+        $request = $data->fetch();
+        if ($request != NULL){
+            return false;
+        }
+        return true;
+
+    }
     public function loginAuto($email, $password){
         $sql = 'SELECT user.id, user.role_id, user.password, role.role_name FROM user INNER JOIN role ON role.id = user.role_id WHERE user.email = ?';
         $data = $this->createQuery($sql, [$email]);
@@ -81,13 +91,30 @@ class UserDAO extends DAO{
         $sql = 'UPDATE user SET password = ? WHERE pseudo = ?';
         $this->createQuery($sql, [password_hash($post->get('password'), PASSWORD_DEFAULT), $pseudo]);
     }
-    public function deleteAccount($pseudo){
-        $sql = 'DELETE FROM user WHERE pseudo = ?';
-        $this->createQuery($sql, [$pseudo]);
-   }
-   public function deleteUser($userId){
+   public function deleteAccount($userId){
        $sql = 'DELETE FROM user WHERE id = ?';
        $this->createQuery($sql, [$userId]);
    }
+   public function modifyPassword($post, $id){
+    $sql = "UPDATE user SET password = :password WHERE id = :id ";
+    $this->createQuery($sql, [
+        'password' => password_hash($post->get('newPassword'), PASSWORD_DEFAULT),
+        'id' => $id
+        ]);
+    }
+    public function modifyName($post, $id){
+        $sql = "UPDATE user SET name = :name WHERE id = :id ";
+        $this->createQuery($sql, [
+            'name' => $post->get('name'),
+            'id' => $id
+        ]);
+    }
+    public function modifyEmail($post, $id){
+        $sql = "UPDATE user SET email = :email WHERE id = :id ";
+        $this->createQuery($sql, [
+            'email' => $post->get('email'),
+            'id' => $id
+        ]);
+    }
 }
 

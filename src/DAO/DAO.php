@@ -7,7 +7,7 @@ abstract class DAO{
     const DB_NAME = 'dbname=seloncourt';
     const DB_CHARSET = 'charset=utf8';
     const DB_USER = 'root';
-    const DB_PASS = '';
+    const DB_PASS = 'root';
     private $db;
 
     private function checkDbConnect()

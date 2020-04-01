@@ -41,6 +41,15 @@ class Router{
                     case 'home':
                         $this->frontController->home();
                         break;
+                    case 'logout':
+                        $this->backController->logout();
+                        break;
+                    case 'modifyParameter':
+                        $this->backController->modifyParameter($this->request->getPost(), $this->request->getGet()->get('param'));
+                        break;
+                    case 'deleteAccount':
+                        $this->backController->deleteAccount($this->request->getPost());
+                        break;
                     default:
                         $this->errorController->errorNotFound();
                         break;

@@ -2,6 +2,7 @@
 $this->css = 'home';
 $this->title = 'Accueil';
 ?>
+<?= $this->session->show('logout');?>
 <header class="slider flex-center">
     <h1>Les amis du vieux seloncourt</h1>
     <p>Association sur la sauvegarde du patrimoine historique et culturel de seloncourt </a>

@@ -24,7 +24,7 @@ class Constraint{
     }
     public function regexEmail($value){
         if (!(preg_match('#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#', $value))){
-            return '<p class="alert alert-danger center">L\'email n\'est pas valide';
+            return '<p class="alert alert-danger center">L\'email n\'est pas valide</p>';
         }
     }
 

@@ -27,7 +27,7 @@ class UserValidation extends Validation {
             $error = $this->checkEmail($name, $value);
             $this->addError($name, $error);
         }
-        else if ($name === 'password') {
+        else if ($name === 'password' || $name = 'newPassword') {
             $error = $this->checkPassword($name, $value);
             $this->addError($name, $error);
         }

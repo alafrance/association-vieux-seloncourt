@@ -2,6 +2,7 @@
 $this->css = 'profile';
 $this->title = "Page profil";
 ?>
+<?= $this->session->show('modify');?>
 <section>
     <h1>Bienvenue sur le profil de <?= $this->session->get('name'); ?></h1>
     <a href="index.php?route=setting">Accéder à ses paramètres</a>
@@ -13,5 +14,5 @@ $this->title = "Page profil";
         <li>Mot de passe : ********</li>
     </ul>
     <p>Pour changer ses informations, accéder à votre <a href="index.php?route=setting">paramètre</a></p>
-    <a href="#">Se déconnecter</a>
+    <a href="index.php?route=logout">Se déconnecter</a>
 </section>
