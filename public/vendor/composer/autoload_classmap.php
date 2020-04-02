@@ -18,6 +18,7 @@ return array(
     'App\\src\\controller\\ErrorController' => $baseDir . '/../src/controller/ErrorController.php',
     'App\\src\\controller\\FrontController' => $baseDir . '/../src/controller/FrontController.php',
     'App\\src\\model\\Article' => $baseDir . '/../src/model/Article.php',
+    'App\\src\\model\\Category' => $baseDir . '/../src/model/Category.php',
     'App\\src\\model\\Comment' => $baseDir . '/../src/model/Comment.php',
     'App\\src\\model\\User' => $baseDir . '/../src/model/User.php',
     'App\\src\\model\\View' => $baseDir . '/../src/model/View.php',

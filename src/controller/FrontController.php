@@ -15,20 +15,30 @@ class FrontController extends Controller{
     }
     public function articles(){
         $articles = $this->articleDAO->getArticles();
+        $categories = $this->articleDAO->getCategories();
         return $this->view->render('articles', [
-            'articles' => $articles
+           'articles' => $articles,
+            'categories' => $categories,
+        ]);
+    }
+    public function articlesCategory($categoryId){
+        $articles = $this->articleDAO->getArticlesFromCategory($categoryId);
+        $category = $this->articleDAO->getCategory($categoryId);
+        return $this->view->render('category', [
+            'articles' => $articles,
+            'category' => $category
         ]);
     }
     public function article($id){
         $article = $this->articleDAO->getArticle($id);
-        return $this->view->render('articles', [
+        return $this->view->render('article', [
             'article' => $article
         ]);
     }
     public function login(Parameter $post){
         if ($post->get('submit')){
             $result  = $this->userDAO->login($post);
-        if ($result && $result['isPasswordValid']){
+            if ($result && $result['isPasswordValid']){
                 if ($post->get('auto')){
                     $this->cookie->set('pseudo', $post->get('pseudo'));
                     $this->cookie->set('password', $result['result']['password']);

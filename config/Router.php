@@ -56,6 +56,9 @@ class Router{
                     case 'article':
                         $this->frontController->article($this->request->getGet()->get('id'));
                         break;
+                    case 'category':
+                        $this->frontController->articlesCategory($this->request->getGet()->get('id'));
+                        break;
                     case 'addArticle':
                         $this->backController->addArticle($this->request->getPost());
                         break;

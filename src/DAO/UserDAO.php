@@ -37,7 +37,7 @@ class UserDAO extends DAO{
         }
     }
     public function login(Parameter $post){
-        $sql = 'SELECT user.id, user.role_id, user.password, user.name, role.role_name FROM user INNER JOIN role ON role.id = user.role_id WHERE user.email = ?';
+        $sql = 'SELECT user.id, user.name, user.password, role.role_name FROM user INNER JOIN role ON role.id = user.role_id WHERE user.email = ?';
         $data = $this->createQuery($sql, [$post->get('email')]);
         $request = $data->fetch();
         if ($request){

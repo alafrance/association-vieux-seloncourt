@@ -41,6 +41,7 @@ class ComposerStaticInitff34c05cc43a9c1bfd86b34b0c58bdd7
         'App\\src\\controller\\ErrorController' => __DIR__ . '/../..' . '/../src/controller/ErrorController.php',
         'App\\src\\controller\\FrontController' => __DIR__ . '/../..' . '/../src/controller/FrontController.php',
         'App\\src\\model\\Article' => __DIR__ . '/../..' . '/../src/model/Article.php',
+        'App\\src\\model\\Category' => __DIR__ . '/../..' . '/../src/model/Category.php',
         'App\\src\\model\\Comment' => __DIR__ . '/../..' . '/../src/model/Comment.php',
         'App\\src\\model\\User' => __DIR__ . '/../..' . '/../src/model/User.php',
         'App\\src\\model\\View' => __DIR__ . '/../..' . '/../src/model/View.php',
