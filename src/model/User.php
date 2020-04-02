@@ -4,7 +4,8 @@ namespace App\src\model;
 
 class User{
     private $id;
-    private $pseudo;
+    private $name;
+    private $email;
     private $password;
     private $dateCreated;
     private $role;
@@ -16,12 +17,19 @@ class User{
         $this->id = $id;
     }
 
-    public function getPseudo(){
-        return $this->pseudo;
+    public function getName(){
+        return $this->name;
     }
 
-    public function setPseudo($pseudo){
-         $this->pseudo = $pseudo;
+    public function setName($name){
+         $this->name = $name;
+    }
+    public function getEmail(){
+        return $this->email;
+    }
+
+    public function setEmail($email){
+        $this->email = $email;
     }
 
     public function getPassword(){

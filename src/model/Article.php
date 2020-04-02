@@ -2,23 +2,29 @@
 namespace App\src\model;
 class Article{
     private $id;
-    private $author_id;
+    private $author;
     private $title;
     private $content;
+    private $category;
     private $numberChapter;
     private $date;
-    private $image;
     public function getId(){
         return $this->id;
     }
     public function setId($id) {
         $this->id = $id;
     }
-    public function getAuthor(){
-        return $this->author_id;
+    public function getCategory(){
+        return $this->category;
     }
-    public function setAuthor($author_id) {
-        $this->author_id = $author_id;
+    public function setCategory($category) {
+        $this->category = $category;
+    }
+    public function getAuthor(){
+        return $this->author;
+    }
+    public function setAuthor($author) {
+        $this->author = $author;
     }
     public function getTitle(){
         return $this->title;
@@ -43,12 +49,6 @@ class Article{
     }
     public function setDate($date) {
         $this->date = $date;
-    }
-    public function getImage(){
-        return $this->image;
-    }
-    public function setImage($image) {
-        $this->image = $image;
     }
 }
 

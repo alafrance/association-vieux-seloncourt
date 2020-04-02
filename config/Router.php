@@ -50,10 +50,32 @@ class Router{
                     case 'deleteAccount':
                         $this->backController->deleteAccount($this->request->getPost());
                         break;
+                    case 'articles':
+                        $this->frontController->articles();
+                        break;
+                    case 'article':
+                        $this->frontController->article($this->request->getGet()->get('id'));
+                        break;
+                    case 'addArticle':
+                        $this->backController->addArticle($this->request->getPost());
+                        break;
+                    case 'editArticle':
+                        $this->backController->editArticle($this->request->getPost(), $this->request->getGet()->get('id'));
+                        break;
+                    case 'deleteArticle':
+                        $this->backController->deleteArticle($this->request->getGet()->get('id'));
+                        break;
+                    case 'unflagComment':
+                        $this->backController->unflagComment($this->request->getGet()->get('commentId'));
+                        break;
+                    case 'deleteComment':
+                        $this->backController->deleteComment($this->request->getGet()->get('commentId'));
+                        break;
                     default:
                         $this->errorController->errorNotFound();
                         break;
                 }
+                
             }else{
                 $this->frontController->home();
             }

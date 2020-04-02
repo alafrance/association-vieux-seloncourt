@@ -26,9 +26,25 @@ class BackController extends Controller{
             return true;
         }
     }
+    private function checkAuthor(){
+        $this->checkLoggedIn();
+        if (!($this->session->get('role') == 'author')){
+            $this->session->set('not_author', 'Vous n\'avez pas le droit d\'accéder à cette page');
+            header('Location: ../public/index.php?route=profile');
+        }else{
+            return true;
+        }
+    }
     public function profile(){
         if ($this->checkLoggedIn()){
-            return $this->view->render('profile');
+            $articles = $this->articleDAO->getArticles();
+            $comments = $this->commentDAO->getFlagComments();
+            $users = $this->userDAO->getUsers();
+            return $this->view->render('profile', [
+                'articles' => $articles,
+                'comments' => $comments,
+                'users' => $users
+            ]);
         }
     }
     public function setting(){
@@ -115,5 +131,26 @@ class BackController extends Controller{
             'param' => 'deleteAccount'
         ]);
     }
+    public function addArticle(Parameter $post){
+            return $this->view->render('administration/addArticle', [], 'article');
+    }
+    public function editArticle(Parameter $post){
+        if ($this->checkAdmin()){
+            return $this->view->render('administration/editArticle', [], 'article');
+        }
+    }
+    public function deleteArticle(Parameter $post){
+        if ($this->checkAdmin()){
+            return $this->view->render('administration/deleteArticle', [], 'article');
+        }
+    }
+    public function unflagComment($id){
+        if ($this->checkAdmin()){
+            return 0;
+        }
+    }
+    public function deleteComment($id){
+        return 0;
 
+    }
 }

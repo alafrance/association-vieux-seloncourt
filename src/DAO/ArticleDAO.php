@@ -9,13 +9,16 @@ class ArticleDAO extends DAO{
         $article->setId($row['id']);
         $article->setTitle($row['title']);
         $article->setContent($row['content']);
+        $article->setAuthor($row['name']);
+        $article->setCategory($row['category_name']);
         $article->setDate($row['date']);
-        $article->setAuthor($row['author_id']);
-        $article->setImage($row['image']);
         return $article;
     }
     public function getArticles(){
-        $sql = 'SELECT * FROM article ORDER BY numberChapter';
+        $sql = 'SELECT article.id, article.title, article.content, user.name, category.category_name date FROM article
+        INNER JOIN category ON article.category_id = category.id
+        INNER JOIN user ON article.author_id = user.id;
+        ORDER BY date';
         $request = $this->createQuery($sql);
         $articles = [];
         foreach ($request as $row){
@@ -24,9 +27,13 @@ class ArticleDAO extends DAO{
         }
         $request->closeCursor();
         return $articles;
-        }
+    }
     public function getArticle($id){
-        $sql = 'SELECT * FROM article WHERE id = ?';
+        $sql = 'SELECT id, title, content, category,user.name, category.category_name date FROM article
+        INNER JOIN category ON article.category_id = category.id
+        INNER JOIN user ON article.author_id = user.id;
+        ORDER BY date
+        WHERE id = ?';
         $request = $this->createQuery($sql, [$id]);
         $article = $request->fetch();
         $request->closeCursor();

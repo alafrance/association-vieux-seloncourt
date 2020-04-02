@@ -7,13 +7,14 @@ class UserDAO extends DAO{
     private function buildObject($row){
         $user = new User();
         $user->setId($row['id']);
-        $user->setPseudo($row['pseudo']);
+        $user->setName($row['name']);
+        $user->setEmail($row['email']);
+        $user->setRole($row['role_name']);
         $user->setDateCreated($row['dateCreated']);
-        $user->setRole($row['name']);
         return $user;
     }
     public function getUsers(){
-       $sql = 'SELECT user.id, user.pseudo, user.dateCreated, role.role_name FROM user INNER JOIN role ON user.role_id = role.id ORDER BY user.id DESC';
+       $sql = 'SELECT user.id, user.name, user.email, user.dateCreated, role.role_name FROM user INNER JOIN role ON user.role_id = role.id ORDER BY user.id DESC';
         $result = $this->createQuery($sql);
         $users = [];
         foreach ($result as $row){

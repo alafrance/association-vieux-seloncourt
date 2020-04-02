@@ -13,6 +13,18 @@ class FrontController extends Controller{
     public function contact(){
         return $this->view->render('contact');
     }
+    public function articles(){
+        $articles = $this->articleDAO->getArticles();
+        return $this->view->render('articles', [
+            'articles' => $articles
+        ]);
+    }
+    public function article($id){
+        $article = $this->articleDAO->getArticle($id);
+        return $this->view->render('articles', [
+            'article' => $article
+        ]);
+    }
     public function login(Parameter $post){
         if ($post->get('submit')){
             $result  = $this->userDAO->login($post);
