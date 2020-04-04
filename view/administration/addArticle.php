@@ -1,6 +1,6 @@
 <?php
 $this->title = "Nouvel article";
-$this->css = "base";
+$this->css = "administration";
 ?>
 <section>
 <?php

@@ -66,7 +66,7 @@ class Router{
                         $this->backController->editArticle($this->request->getPost(), $this->request->getGet()->get('id'));
                         break;
                     case 'deleteArticle':
-                        $this->backController->deleteArticle($this->request->getGet()->get('id'));
+                        $this->backController->deleteArticle($this->request->getPost(), $this->request->getGet()->get('id'));
                         break;
                     case 'unflagComment':
                         $this->backController->unflagComment($this->request->getGet()->get('commentId'));
@@ -78,7 +78,6 @@ class Router{
                         $this->errorController->errorNotFound();
                         break;
                 }
-                
             }else{
                 $this->frontController->home();
             }

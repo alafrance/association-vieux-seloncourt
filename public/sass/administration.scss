@@ -1,0 +1,14 @@
+@import 'base.scss';
+
+.titleAndChapter{
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 50px;
+}
+div.tox.tox-tinymce{
+    margin-top: 10px;
+}
+.imgPreview{
+    width: 500px;
+    height: auto;
+}

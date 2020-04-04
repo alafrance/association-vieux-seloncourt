@@ -1,6 +1,6 @@
 <?php
 $this->title = "Supprimer  un article";
-$this->css = "base";
+$this->css = "administration";
 ?>
 <section>
         <form action="index.php?route=deleteArticle" method="post">

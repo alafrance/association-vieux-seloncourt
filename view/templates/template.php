@@ -16,7 +16,7 @@
     <script src="https://kit.fontawesome.com/ddc2bafeff.js" crossorigin="anonymous"></script>
 
     <!--  Navbar Animation-->
-    <script defer src='public/js/nav.js'></script>
+    <script defer src='js/nav.js'></script>
     <link rel="stylesheet" href="../public/css/<?=$css?>.css">
 </head>
 <body>

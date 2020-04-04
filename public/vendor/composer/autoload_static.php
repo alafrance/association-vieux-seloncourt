@@ -33,6 +33,7 @@ class ComposerStaticInitff34c05cc43a9c1bfd86b34b0c58bdd7
         'App\\src\\DAO\\CommentDAO' => __DIR__ . '/../..' . '/../src/DAO/CommentDAO.php',
         'App\\src\\DAO\\DAO' => __DIR__ . '/../..' . '/../src/DAO/DAO.php',
         'App\\src\\DAO\\UserDAO' => __DIR__ . '/../..' . '/../src/DAO/UserDAO.php',
+        'App\\src\\constraint\\ArticleValidation' => __DIR__ . '/../..' . '/../src/constraint/ArticleValidation.php',
         'App\\src\\constraint\\Constraint' => __DIR__ . '/../..' . '/../src/constraint/Constraint.php',
         'App\\src\\constraint\\UserValidation' => __DIR__ . '/../..' . '/../src/constraint/UserValidation.php',
         'App\\src\\constraint\\Validation' => __DIR__ . '/../..' . '/../src/constraint/Validation.php',

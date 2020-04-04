@@ -27,5 +27,29 @@ class Constraint{
             return '<p class="alert alert-danger center">L\'email n\'est pas valide</p>';
         }
     }
+    public function notBlankImage($name){
+        if (!isset($_FILES[$name])){
+            return '<p class="alert alert-danger center">Aucune image a été saisi</p>';
+        }
+    }
+    public function notErrorImage($name){
+        if ($_FILES[$name]['error'] != 0){
+            return '<p class="alert alert-danger center">Erreur envoi fichier</p>';
+
+        }
+    }
+    public function extensionAutorize($name){
+        $infosfichier = pathinfo($_FILES[$name]['name']);
+        $extension_upload = $infosfichier['extension'];
+        $extensions_autorisees = array('jpg', 'jpeg', 'gif', 'png');
+        if (!in_array($extension_upload, $extensions_autorisees)){
+             return '<p class="alert alert-danger center">Cette extension n\'est pas autorisé</p>';
+        }
+    }
+    public function sizeImage($name){
+        if ($_FILES[$name]['size'] >= 1000000){
+            return '<p class="alert alert-danger center">L\'image est trop grande. Veuillez réessayer. </p>';
+        }
+    }
 
 }

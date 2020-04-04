@@ -18,33 +18,38 @@ class BackController extends Controller{
         }
     }
     private function checkAdmin(){
-        $this->checkLoggedIn();
         if (!($this->session->get('role') == 'admin')){
             $this->session->set('not_admin', 'Vous n\'avez pas le droit d\'accéder à cette page');
-            header('Location: ../public/index.php?route=profile');
         }else{
             return true;
         }
     }
     private function checkAuthor(){
-        $this->checkLoggedIn();
         if (!($this->session->get('role') == 'author')){
             $this->session->set('not_author', 'Vous n\'avez pas le droit d\'accéder à cette page');
-            header('Location: ../public/index.php?route=profile');
         }else{
             return true;
         }
     }
     public function profile(){
         if ($this->checkLoggedIn()){
-            $articles = $this->articleDAO->getArticles();
-            $comments = $this->commentDAO->getFlagComments();
-            $users = $this->userDAO->getUsers();
-            return $this->view->render('profile', [
-                'articles' => $articles,
-                'comments' => $comments,
-                'users' => $users
-            ]);
+            if ($this->checkAdmin()){
+                $articles = $this->articleDAO->getArticles();
+                $comments = $this->commentDAO->getFlagComments();
+                $users = $this->userDAO->getUsers();
+                return $this->view->render('profile', [
+                    'articles' => $articles,
+                    'comments' => $comments,
+                    'users' => $users
+                ]);
+            }
+            if ($this->checkAuthor()){
+                $articles = $this->articleDAO->getYoursArticles($this->session->get('id'));
+                return $this->view->render('profile', [
+                    'articles' => $articles
+                ]);
+            }
+            return $this->view->render('profile');
         }
     }
     public function setting(){
@@ -132,15 +137,48 @@ class BackController extends Controller{
         ]);
     }
     public function addArticle(Parameter $post){
-            return $this->view->render('administration/addArticle', [], 'article');
-    }
-    public function editArticle(Parameter $post){
-        if ($this->checkAdmin()){
-            return $this->view->render('administration/editArticle', [], 'article');
+        if ($this->checkAuthor()){
+            $categories = $this->articleDAO->getCategories();
+            if ($post->get('submit')){
+                $errors = $this->validation->validate($post, 'Article');
+                if (!$errors){
+                    $image_name = $this->articleDAO->nameDispo() . '.' . preg_split('#/#', $_FILES['image']['type'], -1, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE)[1] ;
+                    move_uploaded_file($_FILES['image']['tmp_name'], 'img/articles/' . $image_name);
+                    $this->articleDAO->addImage($image_name);
+                    $this->articleDAO->addArticle($post, $this->session->get('id'), $this->articleDAO->lastIdImage());
+                    $this->session->set('add_article', 'Le nouvel article a bien été ajouté');
+                    header('Location: ../public/index.php?route=profile');
+                }
+                return $this->view->render('administration/addArticle', [
+                    'categories' => $categories,
+                    'errors' => $errors
+                ], 'article');
+            }
+            return $this->view->render('administration/addArticle', [
+                'categories' => $categories,
+            ], 'article');
         }
     }
-    public function deleteArticle(Parameter $post){
-        if ($this->checkAdmin()){
+    public function editArticle(Parameter $post){
+        if ($this->checkAdmin() || $this->checkAuthor()){
+            if ($post->get('submit')){
+
+            }
+            $categories = $this->articleDAO->getCategories();
+            return $this->view->render('administration/editArticle', [
+                'categories' => $categories
+            ], 'article');
+        }
+    }
+    public function deleteArticle(Parameter $post, $idArticle){
+        if ($post->get('submit')){
+            if($post->get('deleteAccount') == 'yes'){
+                $this->articleDAO->deleteArticle($idArticle);
+                $this->session->set('delete_article', 'L\'article a bien été supprimé');
+            }
+            header('Location: index.php?route=profile');
+        }
+        if ($this->checkAuthor()){
             return $this->view->render('administration/deleteArticle', [], 'article');
         }
     }
@@ -151,6 +189,9 @@ class BackController extends Controller{
     }
     public function deleteComment($id){
         return 0;
+
+    }
+    public function upload_image($name){
 
     }
 }

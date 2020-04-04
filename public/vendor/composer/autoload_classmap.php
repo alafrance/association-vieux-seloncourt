@@ -10,6 +10,7 @@ return array(
     'App\\src\\DAO\\CommentDAO' => $baseDir . '/../src/DAO/CommentDAO.php',
     'App\\src\\DAO\\DAO' => $baseDir . '/../src/DAO/DAO.php',
     'App\\src\\DAO\\UserDAO' => $baseDir . '/../src/DAO/UserDAO.php',
+    'App\\src\\constraint\\ArticleValidation' => $baseDir . '/../src/constraint/ArticleValidation.php',
     'App\\src\\constraint\\Constraint' => $baseDir . '/../src/constraint/Constraint.php',
     'App\\src\\constraint\\UserValidation' => $baseDir . '/../src/constraint/UserValidation.php',
     'App\\src\\constraint\\Validation' => $baseDir . '/../src/constraint/Validation.php',

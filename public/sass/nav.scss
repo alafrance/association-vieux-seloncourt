@@ -1,7 +1,8 @@
 nav{
-    height: 10vh;
+    height: 120px;
     background-color: transparent;
     z-index: 999;
+    margin-bottom: 60px;
     ul{
         height: 100%;
         display: flex;
@@ -13,6 +14,9 @@ nav{
             width: 150px;
             height: auto;
         }
+    }
+    li.text{
+        padding-top: 10px;
     }
 }
 .link{

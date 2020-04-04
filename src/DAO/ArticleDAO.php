@@ -4,7 +4,7 @@ use App\src\model\Article;
 use App\src\model\Category;
 use Config\Alexis\Parameter;
 class ArticleDAO extends DAO{
-    private function buildObject($row){
+    private function buildArticle($row){
         $article = new Article();
         $article->setId($row['id']);
         $article->setTitle($row['title']);
@@ -30,7 +30,21 @@ class ArticleDAO extends DAO{
         $articles = [];
         foreach ($request as $row){
             $id = $row['id'];
-            $articles[$id] = $this->buildObject($row);
+            $articles[$id] = $this->buildArticle($row);
+        }
+        $request->closeCursor();
+        return $articles;
+    }
+    public function getYoursArticles($idAuthor){
+        $sql = 'SELECT article.id, article.title, article.content, article.date, user.name, category.category_name, date FROM article
+        INNER JOIN category ON article.category_id = category.id
+        INNER JOIN user ON article.author_id = user.id;
+        ORDER BY date WHERE article.author_id = ?';
+        $request = $this->createQuery($sql, [$idAuthor]);
+        $articles = [];
+        foreach ($request as $row){
+            $id = $row['id'];
+            $articles[$id] = $this->buildArticle($row);
         }
         $request->closeCursor();
         return $articles;
@@ -44,12 +58,18 @@ class ArticleDAO extends DAO{
         $request = $this->createQuery($sql, [$id]);
         $article = $request->fetch();
         $request->closeCursor();
-        return  $this->buildObject($article);
+        return  $this->buildArticle($article);
     }
-    public function addArticle(Parameter $post, $image)
+    public function addArticle(Parameter $post, $idAuthor, $idImage)
     {
-        $sql = 'INSERT INTO article (title, content, numberChapter, date, image) VALUES (?, ?, ?, NOW(), ?)';
-        $this->createQuery($sql, [$post->get('title'), $post->get('content'), $post->get('numberChapter'), $image]);
+        $sql = 'INSERT INTO article (title, content, category_id, author_id, image_id, date) VALUES(?, ?, ?, ? ,? , NOW())';
+        $this->createQuery($sql, [
+            $post->get('title'),
+            $post->get('content'),
+            intval($post->get('category')),
+            intval($idAuthor),
+            intval($idImage)
+            ]);
     }
 
     public function editArticle(Parameter $post, $articleId)
@@ -88,17 +108,33 @@ class ArticleDAO extends DAO{
     public function getArticlesFromCategory($categoryId){
         $sql = 'SELECT article.id, article.title, article.content, article.date, user.name, category.category_name, date FROM article
         INNER JOIN category ON article.category_id = category.id
-        INNER JOIN user ON article.author_id = user.id;
-        ORDER BY date
-        WHERE category.id = ?';
+        INNER JOIN user ON article.author_id = user.id
+        WHERE article.category_id = ?';
         $request = $this->createQuery($sql, [$categoryId]);
         $articles = [];
         foreach($request as $data){
             $id = $data['id'];
-            $articles[$id] = $this->buildObject($data);
+            $articles[$id] = $this->buildArticle($data);
         }
         $request->closeCursor();
         return $articles;
+
+    }
+    public function nameDispo(){
+        $sql = 'SELECT COUNT(id) AS count FROM image';
+        $request = $this->createQuery($sql);
+        $data = $request->fetch();
+        return $data['count'] + 1;
+    }
+    public function addImage($image_name){
+        $sql = 'INSERT INTO image (name) VALUES (?)';
+        $this->createQuery($sql, [$image_name]);
+    }
+    public function lastIdImage(){
+        $sql = 'SELECT MAX(id) AS max FROM image';
+        $request = $this->createQuery($sql);
+        $data = $request->fetch();
+        return $data['max'];
     }
 }
 

@@ -2,6 +2,11 @@
 $this->css = 'base';
 $this->title = $category;
 ?>
+
+<?php
+echo '<h1>Catégorie : '. $category . '</h1>'
+?>
+
 <section>
     <?php foreach($articles as $article){?>
         <article>
