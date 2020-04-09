@@ -1,6 +1,6 @@
 <?php
 
-namespace App\src\model;
+namespace Config\Alexis;
 use Config\Alexis\Request;
 
 class View{

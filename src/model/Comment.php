@@ -20,11 +20,11 @@ class Comment {
     public function setContent($id) {
         $this->content = $id;
     }
-     public function getPseudo(){
-        return $this->pseudo;
+     public function getName(){
+        return $this->name;
     }
-    public function setPseudo($pseudo) {
-        $this->pseudo = $pseudo;
+    public function setName($name) {
+        $this->name = $name;
     }
     public function getArticle_id(){
         return $this->article_id;

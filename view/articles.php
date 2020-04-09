@@ -6,13 +6,9 @@
 <?php foreach ($articles as $article){ ?>
     <article>
         <h2><?= htmlspecialchars($article->getTitle());?></h2>
-        <p><?= substr(strip_tags($article->getContent()), 0, 100);?></p>
-        <a href="index.php?route=article&id=<?=$article->getId(); ?>">Lire plus</a>
-        <p>Crée :<br>
-         le : <?= htmlspecialchars($article->getDate());?><br>
-         par : <?= htmlspecialchars($article->getAuthor());?>
-        </p>
         <p>Catégorie : <?= $article->getCategory();?></p>
+        <img src='img/articles/<?= $article->getImage();?>' alt= 'Image correspondant à $article->getTitle()'>
+        <a href="index.php?route=article&id=<?=$article->getId(); ?>">Lire plus</a>
 
     </article>
 <?php } ?>

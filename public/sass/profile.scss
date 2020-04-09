@@ -1,2 +1,24 @@
 @import './nav.scss';
 @import './général.scss';
+td{
+    border: 1px solid black;
+}
+table{
+    border-collapse: collapse;
+}
+section,.logout, footer{
+    margin-left: 50px;
+}
+.actions{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+td{
+    text-align: center;
+    padding: 10px;
+}
+td p{
+    margin-bottom: 0;
+}

@@ -12,3 +12,10 @@ div.tox.tox-tinymce{
     width: 500px;
     height: auto;
 }
+form.changeImg{
+    display: flex;
+    flex-direction: column;
+}
+input[type=submit]{
+    width: 100px;
+}

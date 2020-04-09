@@ -1,6 +1,7 @@
 <?php
 namespace App\src\DAO;
 
+use App\src\model\Right;
 use Config\Alexis\Parameter;
 use App\src\model\User;
 class UserDAO extends DAO{
@@ -13,6 +14,12 @@ class UserDAO extends DAO{
         $user->setDateCreated($row['dateCreated']);
         return $user;
     }
+    private function buildRight($row){
+        $right = new Right();
+        $right->setId($row['id']);
+        $right->setName($row['role_name']);
+        return $right;
+    }
     public function getUsers(){
        $sql = 'SELECT user.id, user.name, user.email, user.dateCreated, role.role_name FROM user INNER JOIN role ON user.role_id = role.id ORDER BY user.id DESC';
         $result = $this->createQuery($sql);
@@ -24,6 +31,14 @@ class UserDAO extends DAO{
         $result->closeCursor();
         return $users;
     }
+    public function getUser($userId){
+        $sql = 'SELECT user.id, user.name, user.email, user.dateCreated, role.role_name FROM user INNER JOIN role ON user.role_id = role.id WHERE user.id = ?';
+        $request = $this->createQuery($sql, [$userId]);
+        $data = $request->fetch();
+        $user = $this->buildObject($data);
+        $request->closeCursor();
+        return $user;
+     }
     public function register(Parameter $post){
         $sql = 'INSERT INTO user (name, email, password, role_id, dateCreated) VALUES(?, ?, ?, ?, NOW()) ';
         $this->createQuery($sql, [$post->get('name'), $post->get('email'), password_hash($post->get('password'), PASSWORD_DEFAULT), 2]);
@@ -37,7 +52,7 @@ class UserDAO extends DAO{
         }
     }
     public function login(Parameter $post){
-        $sql = 'SELECT user.id, user.name, user.password, role.role_name FROM user INNER JOIN role ON role.id = user.role_id WHERE user.email = ?';
+        $sql = 'SELECT user.id, user.role_id, user.password, user.name, role.role_name FROM user INNER JOIN role ON role.id = user.role_id WHERE user.email = ?';
         $data = $this->createQuery($sql, [$post->get('email')]);
         $request = $data->fetch();
         if ($request){
@@ -116,6 +131,10 @@ class UserDAO extends DAO{
             'email' => $post->get('email'),
             'id' => $id
         ]);
+    }
+    public function changeRight($rightId, $userId){
+        $sql = 'UPDATE user SET role_id = ? WHERE id = ?';
+        $this->createQuery($sql, [intval($rightId), intval($userId)]);
     }
 }
 

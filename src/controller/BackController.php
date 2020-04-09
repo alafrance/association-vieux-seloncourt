@@ -4,15 +4,19 @@ namespace App\src\controller;
 namespace App\src\controller;
 use App\src\DAO\ArticleDAO;
 use App\src\DAO\CommentDAO;
-use App\src\model\View;
+use Config\Alexis\View;
 use Config\Alexis\Parameter;
 
 
 class BackController extends Controller{
+
+    /* ------------------------ */
+    /* ----- VERIF DROITS ----- */
+    /* ------------------------ */
+
     private function checkLoggedIn(){
         if (!($this->session->get('name'))){
             $this->session->set('need_login', 'Vous devez vous connecter pour accéder à cette page');
-            header('Location: ../public/index.php?route=login');
         }else{
             return true;
         }
@@ -31,15 +35,22 @@ class BackController extends Controller{
             return true;
         }
     }
+
+    /* ------------------------ */
+    /* -------- PAGES  -------- */
+    /* ------------------------ */
+
     public function profile(){
         if ($this->checkLoggedIn()){
             if ($this->checkAdmin()){
                 $articles = $this->articleDAO->getArticles();
                 $comments = $this->commentDAO->getFlagComments();
+                $categories = $this->articleDAO->getCategories();
                 $users = $this->userDAO->getUsers();
                 return $this->view->render('profile', [
                     'articles' => $articles,
                     'comments' => $comments,
+                    'categories' => $categories,
                     'users' => $users
                 ]);
             }
@@ -62,64 +73,76 @@ class BackController extends Controller{
             $this->session->stop();
             $this->session->start();
             $this->session->set('logout', 'À bientôt');
-            header('Location: ../public/index.php');
+            header('Location: index.php');
 //            $this->cookie->remove('pseudo');
 //            $this->cookie->remove('password');
         }
     }
-    public function modifyParameter(Parameter $post, $param){
-        if ($this->checkLoggedIn()){
-            //Formulaire envoyé
+    public function updatePassword(Parameter $post){
+        if ($this->checkAdmin()){
             if ($post->get('submit')){
-                // Gestion erreur
                 $errors = $this->validation->validate($post, 'User');
-
-                // Si envoie de mot de passe
-                if (!($post->get('newPassword') && $post->get('newPassword2') && $post->get('oldPassword'))){
-                    // Erreur possible mot de passe confirmation
-                    if ($post->get('newPassword') != $post->get('newPassword2')){
-                        $errors['passwordEgal'] = '<p class="alert alert-danger center">Les deux mots de passe ne correspondent pas</p>';
-                    }
-                    // Erreur Ancien mot de passe
-                    if (!$this->userDAO->isPasswordValid($this->session->get('email'), $post->get('oldPassword'))){
-                        $errors['passwordIsValid'] = '<p class="alert alert-danger center">L\'ancien mot de passe est faux</p>';
-                    }
+                if ($post->get('newPassword') != $post->get('newPassword2')){
+                    $errors['passwordEgal'] = '<p class="alert alert-danger center">Les deux mots de passe ne correspondent pas</p>';
                 }
-
-                if (!($post->get('email'))){
-                    // Erreur Email déja existant
-                    if (!$this->userDAO->isExistEmail($post->get('email'))){
-                        $errors['alreadyExist'] = '<p class="alert alert-danger center">Ce mail est déja pris</p>';
-                    }
+                if (!$this->userDAO->isPasswordValid($this->session->get('email'), $post->get('oldPassword'))){
+                    $errors['passwordIsValid'] = '<p class="alert alert-danger center">L\'ancien mot de passe est faux</p>';
                 }
-
-                // Aucune erreur
-                if (!$errors){
-                    switch($param){
-                        case 'name':
-                            $this->userDAO->modifyName($post, $this->session->get('id'));
-                            $this->session->set('name', $post->get('name'));
-                            break;
-                        case 'password':
-                            $this->userDAO->modifyPassword($post, $this->session->get('id'));
-                            break;
-                        case 'email':
-                            $this->userDAO->modifyEmail($post, $this->session->get('id'));
-                            $this->session->set('email', $post->get('email'));
-                            break;
-                    }
-                    $this->session->set('modify', 'Votre modification a bien été enregistré');
-                    header('Location: ../public/index.php?route=profile');
+                if (!($errors)){
+                    $this->userDAO->modifyPassword($post, $this->session->get('id'));
+                    $this->session->set('edit_password', 'Votre mot de passe a été modifié');
+                    header('Location: index.php?route=profile');
                 }
-                return $this->view->render('settings/update', [
+                return $this->view->render('settings/updatePassword', [
                     'errors' => $errors,
-                    'post' => $post,
-                    'param' => $param
+                    'post' => $post
                 ]);
             }
-            // Affichage de page classique
-            return $this->view->render('settings/update', [
-                'param' => $param
+            return $this->view->render('settings/updatePassword', [
+                'post' => $post
+            ]);
+        }
+    }
+    public function updateName(Parameter $post){
+        if ($this->checkAdmin()){
+            if ($post->get('submit')){
+                $errors = $this->validation->validate($post, 'User');
+                if (!($errors)){
+                    $this->userDAO->modifyName($post, $this->session->get('id'));
+                    $this->session->set('name', $post->get('name'));
+                    $this->session->set('edit_name', 'Votre nom a été modifié');
+                    header('Location: index.php?route=profile');
+                }
+                return $this->view->render('settings/updatePassword', [
+                    'errors' => $errors,
+                    'post' => $post
+                ]);
+            }
+            return $this->view->render('settings/updateName', [
+                'post' => $post
+            ]);
+        }
+    }
+    public function updateEmail(Parameter $post){
+        if ($this->checkAdmin()){
+            if ($post->get('submit')){
+                $errors = $this->validation->validate($post, 'User');
+                if (!$this->userDAO->isExistEmail($post->get('email'))){
+                    $errors['alreadyExist'] = '<p class="alert alert-danger center">Ce mail est déja pris</p>';
+                }
+                if (!($errors)){
+                    $this->userDAO->modifyEmail($post, $this->session->get('id'));
+                    $this->session->set('email', $post->get('email'));
+                    $this->session->set('edit_email', 'Votre email a été modifié');
+                    header('Location: index.php?route=profile');
+                }
+                return $this->view->render('settings/updatePassword', [
+                    'errors' => $errors,
+                    'post' => $post
+                ]);
+            }
+            return $this->view->render('settings/updateEmail', [
+                'post' => $post
             ]);
         }
     }
@@ -141,6 +164,9 @@ class BackController extends Controller{
             $categories = $this->articleDAO->getCategories();
             if ($post->get('submit')){
                 $errors = $this->validation->validate($post, 'Article');
+                if($this->validation->validate('image', 'Image')){
+                    $errors['image'] = $this->validation->validate('image', 'Image');
+                }
                 if (!$errors){
                     $image_name = $this->articleDAO->nameDispo() . '.' . preg_split('#/#', $_FILES['image']['type'], -1, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE)[1] ;
                     move_uploaded_file($_FILES['image']['tmp_name'], 'img/articles/' . $image_name);
@@ -159,39 +185,176 @@ class BackController extends Controller{
             ], 'article');
         }
     }
-    public function editArticle(Parameter $post){
-        if ($this->checkAdmin() || $this->checkAuthor()){
+    public function addExposition(Parameter $post){
+        if ($this->checkAuthor() || $this->checkAdmin()){
             if ($post->get('submit')){
-
+                $errors = $this->validation->validate($post, 'Article');
+                if($this->validation->validate('image', 'Image')){
+                    $errors['image'] = $this->validation->validate('image', 'Image');
+                }
+                if (!$errors){
+                    $image_name = $this->articleDAO->nameDispo() . '.' . preg_split('#/#', $_FILES['image']['type'], -1, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE)[1] ;
+                    move_uploaded_file($_FILES['image']['tmp_name'], 'img/articles/' . $image_name);
+                    $this->articleDAO->addImage($image_name);
+                    $this->articleDAO->addExposition($post, $this->session->get('id'), $this->articleDAO->lastIdImage());
+                    $this->session->set('add_article', 'Le nouvel article a bien été ajouté');
+                    header('Location: ../public/index.php?route=profile');
+                }
+                return $this->view->render('administration/addArticle', [
+                    'errors' => $errors
+                ], 'article');
             }
-            $categories = $this->articleDAO->getCategories();
-            return $this->view->render('administration/editArticle', [
-                'categories' => $categories
+            return $this->view->render('administration/addExposition');
+        }
+    }
+    public function addAssembly(Parameter $post){
+        if ($this->checkAuthor() || $this->checkAdmin()){
+            if ($post->get('submit')){
+                $errors = $this->validation->validate($post, 'Assembly');
+                if (!$errors){
+                    $time = $post->get('hours') . ':' . $post->get('minutes');
+                    $this->articleDAO->addAssembly($post, $time);
+                    $this->session->set('add_assembly', 'L\'assemblée générale a bien été modifié');
+                    header('Location: index.php?route=profile');
+                }
+                return $this->view->render('administration/addAssembly', [
+                    'post' => $post,
+                    'errors' => $errors
+                ], 'article');
+            }
+            return $this->view->render('administration/addAssembly', [], 'article');
+        }
+    }
+    public function deleteAssembly(Parameter $post){
+        if ($this->checkAuthor() || $this->checkAdmin()){
+            if ($post->get('submit')){
+                if($post->get('deleteAccount') == 'yes'){
+                    $this->articleDAO->deleteAssembly();
+                    $this->session->set('delete_assembly', 'Les informations de l\'Assemblée Générale ont bien été supprimés');
+                }
+                header('Location: index.php?route=profile');
+            }
+            return $this->view->render('administration/deleteAssembly');
+        }
+    }
+
+    public function editArticle(Parameter $post, $articleId){
+        if ($this->checkLoggedIn()){
+            if ($this->checkAuthor() || $this->checkAdmin()){
+                if ($post->get('submit')){
+                    $errors = $this->validation->validate($post, 'Article');
+                    var_dump($errors);
+                    if (!$errors){
+                        $this->articleDAO->editArticle($post, $articleId);
+                        $this->session->set('edit_article', 'L\'article a bien été mise à jour');
+                        header('Location: ../public/index.php?route=profile');
+                    }
+                }
+                $categories = $this->articleDAO->getCategories();
+                $article = $this->articleDAO->getArticle($articleId);
+                $categoryId = $this->articleDAO->getCategoryId($article->getCategory());
+                return $this->view->render('administration/editArticle', [
+                    'categories' => $categories,
+                    'categoryId' => $categoryId,
+                    'article' => $article,
+                    'id' => $articleId
+                ], 'article');
+            }
+        }
+    }
+    public function editImageArticle(Parameter $post, $articleId){
+        if ($this->checkAuthor() || $this->checkAdmin()){
+            $article = $this->articleDAO->getArticle($articleId);
+            if ($post->get('submit')){
+                $errors = $this->validation->validate('image', 'Image');
+                if (!$errors){
+                    $image_nameAll = $article->getImage();
+                    $image_name = preg_split('#\.#', $image_nameAll, -1, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE)[0] . '.' . preg_split('#/#', $_FILES['image']['type'], -1, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE)[1];
+                    move_uploaded_file($_FILES['image']['tmp_name'], 'img/articles/' . $image_name);
+                    $this->session->set('edit_image_article', 'L\'image a bien été modifié');
+                    header('Location: ../public/index.php?route=profile');
+                }
+                return $this->view->render('administration/editImageArticle', [
+                    'articleId' => $articleId,
+                    'article' => $article,
+                    'errors' => $errors
+                ], 'article');
+            }
+            return $this->view->render('administration/editImageArticle', [
+                'articleId' => $articleId,
+                'article' => $article
             ], 'article');
         }
     }
     public function deleteArticle(Parameter $post, $idArticle){
-        if ($post->get('submit')){
-            if($post->get('deleteAccount') == 'yes'){
-                $this->articleDAO->deleteArticle($idArticle);
-                $this->session->set('delete_article', 'L\'article a bien été supprimé');
+        if ($this->checkAuthor() || $this->checkAdmin()){
+            if ($post->get('submit')){
+                if($post->get('deleteAccount') == 'yes'){
+                    $article = $this->articleDAO->getArticle($idArticle);
+                    unlink('img/articles/' . $article->getImage());
+                    $this->articleDAO->deleteArticle($idArticle);
+                    $this->session->set('delete_article', 'L\'article a bien été supprimé');
+                }
+                header('Location: index.php?route=profile');
             }
+            return $this->view->render('administration/deleteArticle', ['idArticle' => $idArticle], 'article');
+        }
+    }
+    public function changeRight(Parameter $post, $userId){
+        if ($this->checkAdmin()){
+            if ($post->get('submit') && $post->get('right')){
+                $this->userDAO->changeRight($post->get('right'), $userId);
+                $this->session->set('change_right', 'Les droits ont été modifiés.');
+                header('Location: index.php?route=profile');
+            }
+            $user = $this->userDAO->getUser($userId);
+            return $this->view->render('administration/changeRight', [
+                'user' => $user,
+                'userId' => $userId
+            ]);
+        }
+    }
+    public function addCategory(Parameter $post){
+        if ($post->get('submit') && $post->get('category')){
+            $this->articleDAO->addCategory($post);
+            $this->session->set('add_category', 'La catégorie' . $post->get('category') . 'a été ajouté');
+        }
+        header('Location: index.php?route=profile');
+    }
+    public function unflagComment($commentId){
+        if ($this->checkAdmin()){
+            $this->commentDAO->unflagComment($commentId);
+            $this->session->set('unflag_comment', 'Le commentaire a bien été désignalé');
             header('Location: index.php?route=profile');
         }
-        if ($this->checkAuthor()){
-            return $this->view->render('administration/deleteArticle', [], 'article');
-        }
     }
-    public function unflagComment($id){
+    public function deleteComment($commentId){
         if ($this->checkAdmin()){
-            return 0;
+            $this->commentDAO->deleteComment($commentId);
+            $this->session->set('delete_article', 'Le commentaire a été supprimé');
+            header('Location: index.php?route=profile');
+
         }
     }
-    public function deleteComment($id){
-        return 0;
-
-    }
-    public function upload_image($name){
-
+    public function addComment($post, $articleId){
+        if ($this->checkLoggedIn()){
+            if ($post->get('submit')){
+                $errors = $this->validation->validate($post, 'Comment');
+                if (!$errors){
+                    $this->commentDAO->addComment($post, $articleId, $this->session->get('name'));
+                    $this->session->set('add_comment', 'Le nouveau commentaire a bien été ajouté');
+                    header('Location: ../public/index.php?route=article&id=' .  $articleId);
+                }
+                $article = $this->articleDAO->getArticle($articleId);
+                $comments = $this->commentDAO->getCommentsFromArticle($articleId);
+                return $this->view->render('article', [
+                    'article' => $article,
+                    'comments' => $comments,
+                    'post' => $post,
+                    'errors' => $errors,
+                    'articleId' => $articleId
+                ]);
+            }
+        }
     }
 }

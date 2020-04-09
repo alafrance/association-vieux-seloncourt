@@ -28,7 +28,7 @@ class Constraint{
         }
     }
     public function notBlankImage($name){
-        if (!isset($_FILES[$name])){
+        if (isset($_FILES[$name]['error']) && $_FILES[$name]['error'] == '4' ){
             return '<p class="alert alert-danger center">Aucune image a été saisi</p>';
         }
     }
@@ -51,5 +51,19 @@ class Constraint{
             return '<p class="alert alert-danger center">L\'image est trop grande. Veuillez réessayer. </p>';
         }
     }
-
+    public function isNumber($name, $value){
+        if (!is_numeric($value)){
+            return '<p class="alert alert-danger center">Le champ ' . $name . ' n\'est pas un chiffre</p>';
+        }
+    }
+    public function isHours($name, $value){
+        if (intval($value) < 0 || intval($value) > 24){
+            return '<p class="alert alert-danger center">Le champ ' . $name . ' n\'est pas une heure valide</p>';
+        }
+    }
+    public function isMinutes($name, $value){
+        if (intval($value) < 0 || intval($value) > 60){
+            return '<p class="alert alert-danger center">Le champ ' . $name . ' n\'est pas une minute valide</p>';
+        }
+    }
 }

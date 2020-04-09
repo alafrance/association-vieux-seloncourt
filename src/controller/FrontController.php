@@ -3,7 +3,7 @@
 namespace App\src\controller;
 use App\src\DAO\ArticleDAO;
 use App\src\DAO\CommentDAO;
-use App\src\model\View;
+use Config\Alexis\View;
 use Config\Alexis\Parameter;
 
 class FrontController extends Controller{
@@ -31,8 +31,11 @@ class FrontController extends Controller{
     }
     public function article($id){
         $article = $this->articleDAO->getArticle($id);
+        $comments = $this->commentDAO->getCommentsFromArticle($id);
         return $this->view->render('article', [
-            'article' => $article
+          'article' => $article,
+          'comments' => $comments,
+          'articleId' => $id
         ]);
     }
     public function login(Parameter $post){
@@ -81,5 +84,10 @@ class FrontController extends Controller{
             ]);
         }
         return $this->view->render('register');
+    }
+    public function flagComment($commentId){
+        $this->commentDAO->flagComment($commentId);
+        $this->session->set('flag_comment', 'Le commentaire a bien été signalé');
+        header("Location: ../public/index.php");
     }
 }

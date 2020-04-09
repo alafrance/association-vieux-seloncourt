@@ -2,11 +2,21 @@
 $this->css = 'profile';
 $this->title = "Page profil";
 $role = $this->session->get('role');
-$i = 1;
 ?>
+
 <?= $this->session->show('modify'); ?>
 <?= $this->session->show('add_article'); ?>
+<?= $this->session->show('add_assembly'); ?>
+<?= $this->session->show('edit_article'); ?>
+<?= $this->session->show('edit_name'); ?>
+<?= $this->session->show('edit_email'); ?>
+<?= $this->session->show('edit_password'); ?>
 <?= $this->session->show('delete_article'); ?>
+<?= $this->session->show('delete_assembly'); ?>
+<?= $this->session->show('change_right'); ?>
+
+
+
 <!-- Page de profil commune -->
 <section>
     <h1>Bienvenue sur le profil de <?= $this->session->get('name'); ?></h1>
@@ -31,4 +41,5 @@ $i = 1;
     if($role === 'admin'){
         require 'administration/admin.php';
     }
-
+?>
+<a href="index.php?route=logout" class="logout">Se déconnecter</a>

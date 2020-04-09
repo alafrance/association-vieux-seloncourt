@@ -6,6 +6,7 @@ class Article{
     private $title;
     private $content;
     private $category;
+    private $image;
     private $numberChapter;
     private $date;
     public function getId(){
@@ -13,12 +14,6 @@ class Article{
     }
     public function setId($id) {
         $this->id = $id;
-    }
-    public function getCategory(){
-        return $this->category;
-    }
-    public function setCategory($category) {
-        $this->category = $category;
     }
     public function getAuthor(){
         return $this->author;
@@ -37,6 +32,18 @@ class Article{
     }
     public function setContent($content) {
         $this->content = $content;
+    }
+    public function getCategory(){
+        return $this->category;
+    }
+    public function setCategory($category) {
+        $this->category = $category;
+    }
+    public function getImage(){
+        return $this->image;
+    }
+    public function setImage($image) {
+        $this->image = $image;
     }
     public function getNumberChapter(){
         return $this->numberChapter;

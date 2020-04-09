@@ -33,10 +33,22 @@ class Router{
                         $this->frontController->register($this->request->getPost());
                         break;
                     case 'profile':
-                        $this->backController->profile();
+                        $this->backController->profile($this->request->getPost());
                         break;
                     case 'setting':
                         $this->backController->setting();
+                        break;
+                    case 'updatePassword':
+                        $this->backController->updatePassword($this->request->getPost());
+                        break;
+                    case 'updateName':
+                        $this->backController->updateName($this->request->getPost());
+                        break;
+                    case 'updateEmail':
+                        $this->backController->updateEmail($this->request->getPost());
+                        break;
+                    case 'deleteAccount':
+                        $this->backController->deleteAccount($this->request->getPost());
                         break;
                     case 'home':
                         $this->frontController->home();
@@ -47,9 +59,7 @@ class Router{
                     case 'modifyParameter':
                         $this->backController->modifyParameter($this->request->getPost(), $this->request->getGet()->get('param'));
                         break;
-                    case 'deleteAccount':
-                        $this->backController->deleteAccount($this->request->getPost());
-                        break;
+                    
                     case 'articles':
                         $this->frontController->articles();
                         break;
@@ -62,17 +72,41 @@ class Router{
                     case 'addArticle':
                         $this->backController->addArticle($this->request->getPost());
                         break;
+                    case 'addAssembly':
+                        $this->backController->addAssembly($this->request->getPost());
+                        break;
+                    case 'deleteAssembly':
+                        $this->backController->deleteAssembly($this->request->getPost());
+                        break;
+                    case 'addExposition':
+                        $this->backController->addExposition($this->request->getPost());
+                        break;
                     case 'editArticle':
                         $this->backController->editArticle($this->request->getPost(), $this->request->getGet()->get('id'));
                         break;
+                    case 'editImageArticle':
+                        $this->backController->editImageArticle($this->request->getPost(), $this->request->getGet()->get('id'));
+                        break;
                     case 'deleteArticle':
                         $this->backController->deleteArticle($this->request->getPost(), $this->request->getGet()->get('id'));
+                        break;
+                    case 'addComment':
+                        $this->backController->addComment($this->request->getPost(), $this->request->getGet()->get('articleId'));
+                        break;
+                    case 'addCategory':
+                        $this->backController->addCategory($this->request->getPost());
+                        break;
+                    case 'flagComment':
+                        $this->frontController->flagComment($this->request->getGet()->get('commentId'));
                         break;
                     case 'unflagComment':
                         $this->backController->unflagComment($this->request->getGet()->get('commentId'));
                         break;
                     case 'deleteComment':
                         $this->backController->deleteComment($this->request->getGet()->get('commentId'));
+                        break;
+                    case 'right':
+                        $this->backController->changeRight($this->request->getPost(), $this->request->getGet()->get('userId'));
                         break;
                     default:
                         $this->errorController->errorNotFound();
@@ -82,7 +116,8 @@ class Router{
                 $this->frontController->home();
             }
         }catch(Exception $e){
-            $this->errorController->errorServer();
+            echo $e->getMessage();
+            //$this->errorController->errorServer();
         }
     }
 }

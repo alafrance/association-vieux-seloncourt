@@ -13,5 +13,20 @@ class Validation {
             $errors = $articleValidation->check($data);
             return $errors;
         }
+        else if($name === 'Image'){
+            $imageValidation = new ImageValidation();
+            $errors = $imageValidation->checkImage($data);
+            return $errors;
+        }
+        else if($name === 'Assembly'){
+            $assemblyValidation = new AssemblyValidation();
+            $errors = $assemblyValidation->check($data);
+            return $errors;
+        }
+        else if($name === 'Comment'){
+            $CommentValidation = new CommentValidation();
+            $errors = $CommentValidation->check($data);
+            return $errors;
+        }
     }
 }
