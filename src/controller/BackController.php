@@ -36,9 +36,9 @@ class BackController extends Controller{
         }
     }
 
-    /* ------------------------ */
-    /* -------- PAGES  -------- */
-    /* ------------------------ */
+    /* ------------------------- */
+    /* -------- Profil  -------- */
+    /* ------------------------- */
 
     public function profile(){
         if ($this->checkLoggedIn()){
@@ -159,6 +159,9 @@ class BackController extends Controller{
             'param' => 'deleteAccount'
         ]);
     }
+     /* ------------------------- */
+    /* -------- ARTICLES  -------- */
+    /* ------------------------- */
     public function addArticle(Parameter $post){
         if ($this->checkAuthor()){
             $categories = $this->articleDAO->getCategories();
@@ -185,58 +188,7 @@ class BackController extends Controller{
             ], 'article');
         }
     }
-    public function addExposition(Parameter $post){
-        if ($this->checkAuthor() || $this->checkAdmin()){
-            if ($post->get('submit')){
-                $errors = $this->validation->validate($post, 'Article');
-                if($this->validation->validate('image', 'Image')){
-                    $errors['image'] = $this->validation->validate('image', 'Image');
-                }
-                if (!$errors){
-                    $image_name = $this->articleDAO->nameDispo() . '.' . preg_split('#/#', $_FILES['image']['type'], -1, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE)[1] ;
-                    move_uploaded_file($_FILES['image']['tmp_name'], 'img/articles/' . $image_name);
-                    $this->articleDAO->addImage($image_name);
-                    $this->articleDAO->addExposition($post, $this->session->get('id'), $this->articleDAO->lastIdImage());
-                    $this->session->set('add_article', 'Le nouvel article a bien été ajouté');
-                    header('Location: ../public/index.php?route=profile');
-                }
-                return $this->view->render('administration/addArticle', [
-                    'errors' => $errors
-                ], 'article');
-            }
-            return $this->view->render('administration/addExposition');
-        }
-    }
-    public function addAssembly(Parameter $post){
-        if ($this->checkAuthor() || $this->checkAdmin()){
-            if ($post->get('submit')){
-                $errors = $this->validation->validate($post, 'Assembly');
-                if (!$errors){
-                    $time = $post->get('hours') . ':' . $post->get('minutes');
-                    $this->articleDAO->addAssembly($post, $time);
-                    $this->session->set('add_assembly', 'L\'assemblée générale a bien été modifié');
-                    header('Location: index.php?route=profile');
-                }
-                return $this->view->render('administration/addAssembly', [
-                    'post' => $post,
-                    'errors' => $errors
-                ], 'article');
-            }
-            return $this->view->render('administration/addAssembly', [], 'article');
-        }
-    }
-    public function deleteAssembly(Parameter $post){
-        if ($this->checkAuthor() || $this->checkAdmin()){
-            if ($post->get('submit')){
-                if($post->get('deleteAccount') == 'yes'){
-                    $this->articleDAO->deleteAssembly();
-                    $this->session->set('delete_assembly', 'Les informations de l\'Assemblée Générale ont bien été supprimés');
-                }
-                header('Location: index.php?route=profile');
-            }
-            return $this->view->render('administration/deleteAssembly');
-        }
-    }
+    
 
     public function editArticle(Parameter $post, $articleId){
         if ($this->checkLoggedIn()){
@@ -300,27 +252,9 @@ class BackController extends Controller{
             return $this->view->render('administration/deleteArticle', ['idArticle' => $idArticle], 'article');
         }
     }
-    public function changeRight(Parameter $post, $userId){
-        if ($this->checkAdmin()){
-            if ($post->get('submit') && $post->get('right')){
-                $this->userDAO->changeRight($post->get('right'), $userId);
-                $this->session->set('change_right', 'Les droits ont été modifiés.');
-                header('Location: index.php?route=profile');
-            }
-            $user = $this->userDAO->getUser($userId);
-            return $this->view->render('administration/changeRight', [
-                'user' => $user,
-                'userId' => $userId
-            ]);
-        }
-    }
-    public function addCategory(Parameter $post){
-        if ($post->get('submit') && $post->get('category')){
-            $this->articleDAO->addCategory($post);
-            $this->session->set('add_category', 'La catégorie' . $post->get('category') . 'a été ajouté');
-        }
-        header('Location: index.php?route=profile');
-    }
+    /* ------------------------- */
+    /* -------- COMMENT  -------- */
+    /* ------------------------- */
     public function unflagComment($commentId){
         if ($this->checkAdmin()){
             $this->commentDAO->unflagComment($commentId);
@@ -357,4 +291,91 @@ class BackController extends Controller{
             }
         }
     }
+    /* ------------------------- */
+    /* -------- EXPOSITION  -------- */
+    /* ------------------------- */
+    public function addExposition(Parameter $post){
+        if ($this->checkAuthor() || $this->checkAdmin()){
+            if ($post->get('submit')){
+                $errors = $this->validation->validate($post, 'Article');
+                if($this->validation->validate('image', 'Image')){
+                    $errors['image'] = $this->validation->validate('image', 'Image');
+                }
+                if (!$errors){
+                    $image_name = $this->articleDAO->nameDispo() . '.' . preg_split('#/#', $_FILES['image']['type'], -1, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE)[1] ;
+                    move_uploaded_file($_FILES['image']['tmp_name'], 'img/articles/' . $image_name);
+                    $this->articleDAO->addImage($image_name);
+                    $this->articleDAO->addExposition($post, $this->session->get('id'), $this->articleDAO->lastIdImage());
+                    $this->session->set('add_article', 'Le nouvel article a bien été ajouté');
+                    header('Location: ../public/index.php?route=profile');
+                }
+                return $this->view->render('administration/addArticle', [
+                    'errors' => $errors
+                ], 'article');
+            }
+            return $this->view->render('administration/addExposition');
+        }
+    }
+    /* ------------------------- */
+    /* -------- ASSEMBLY  -------- */
+    /* ------------------------- */
+    public function addAssembly(Parameter $post){
+        if ($this->checkAuthor() || $this->checkAdmin()){
+            if ($post->get('submit')){
+                $errors = $this->validation->validate($post, 'Assembly');
+                if (!$errors){
+                    $time = $post->get('hours') . ':' . $post->get('minutes');
+                    $this->articleDAO->addAssembly($post, $time);
+                    $this->session->set('add_assembly', 'L\'assemblée générale a bien été modifié');
+                    header('Location: index.php?route=profile');
+                }
+                return $this->view->render('administration/addAssembly', [
+                    'post' => $post,
+                    'errors' => $errors
+                ], 'article');
+            }
+            return $this->view->render('administration/addAssembly', [], 'article');
+        }
+    }
+    public function deleteAssembly(Parameter $post){
+        if ($this->checkAuthor() || $this->checkAdmin()){
+            if ($post->get('submit')){
+                if($post->get('deleteAccount') == 'yes'){
+                    $this->articleDAO->deleteAssembly();
+                    $this->session->set('delete_assembly', 'Les informations de l\'Assemblée Générale ont bien été supprimés');
+                }
+                header('Location: index.php?route=profile');
+            }
+            return $this->view->render('administration/deleteAssembly');
+        }
+    }
+    /* ------------------------- */
+    /* -------- DROITS  -------- */
+    /* ------------------------- */
+    public function changeRight(Parameter $post, $userId){
+        if ($this->checkAdmin()){
+            if ($post->get('submit') && $post->get('right')){
+                $this->userDAO->changeRight($post->get('right'), $userId);
+                $this->session->set('change_right', 'Les droits ont été modifiés.');
+                header('Location: index.php?route=profile');
+            }
+            $user = $this->userDAO->getUser($userId);
+            return $this->view->render('administration/changeRight', [
+                'user' => $user,
+                'userId' => $userId
+            ]);
+        }
+    }
+    /* ------------------------- */
+    /* -------- CATEGORY  -------- */
+    /* ------------------------- */
+    public function addCategory(Parameter $post){
+        if ($post->get('submit') && $post->get('category')){
+            $this->articleDAO->addCategory($post);
+            $this->session->set('add_category', 'La catégorie' . $post->get('category') . 'a été ajouté');
+        }
+        header('Location: index.php?route=profile');
+    }
+
+    
 }

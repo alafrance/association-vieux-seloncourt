@@ -8,7 +8,15 @@ use Config\Alexis\Parameter;
 
 class FrontController extends Controller{
     public function home(){
-        return $this->view->render('home');
+        $assembly = $this->articleDAO->getAssembly();
+        $articles = $this->articleDAO->getArticles();
+        $articles = array_chunk($articles, 3)[0];
+        $exposition = $this->articleDAO->getLastExposition();
+        return $this->view->render('home', [
+            'assembly' => $assembly,
+            'articles' => $articles,
+            'exposition' => $exposition
+        ]);
     }
     public function contact(){
         return $this->view->render('contact');

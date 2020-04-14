@@ -2,6 +2,7 @@
 namespace App\src\DAO;
 use App\src\model\Article;
 use App\src\model\Category;
+use App\src\model\Assembly;
 use Config\Alexis\Parameter;
 class ArticleDAO extends DAO{
 
@@ -28,6 +29,15 @@ class ArticleDAO extends DAO{
         return $category;
     }
 
+    public function buildAssembly($data){
+        $assembly = new Assembly();
+        $assembly->setId($data['id']);
+        $assembly->setPlace($data['place']);
+        $assembly->setTime($data['time']);
+        $assembly->setContent($data['content']);
+        $assembly->setDate($data['date']);
+        return $assembly;
+    }
     /* -------------------------------- */
     /* ----- RECUPERATION ARTICLE ----- */
     /* -------------------------------- */
@@ -52,7 +62,7 @@ class ArticleDAO extends DAO{
         INNER JOIN category ON article.category_id = category.id
         INNER JOIN user ON article.author_id = user.id
         INNER JOIN image ON image.id = article.image_id
-        WHERE article.author_id = ?  ORDER BY date";
+        WHERE article.author_id = ?  ORDER BY date DESC";
         $request = $this->createQuery($sql, [$idAuthor]);
         $articles = [];
         foreach ($request as $row){
@@ -215,6 +225,25 @@ class ArticleDAO extends DAO{
     public function deleteAssembly(){
         $sql = 'DELETE FROM assembly';
         $this->createQuery($sql);
+    }
+    public function getAssembly(){
+        $sql = "SELECT * FROM assembly";
+        $request = $this->createQuery($sql);
+        $data = $request->fetch();
+        $assembly = $this->buildAssembly($data);
+        return $assembly;
+    }
+    public function getLastExposition(){
+        $sql = 'SELECT article.id, article.title, article.content, article.date, user.name, category.category_name, image_name FROM article
+        INNER JOIN category ON article.category_id = category.id
+        INNER JOIN user ON article.author_id = user.id
+        INNER JOIN image ON image.id = article.image_id
+        WHERE category_id = 1
+        ORDER BY date DESC';
+        $request = $this->createQuery($sql);
+        $data = $request->fetch();
+        $recentExposition = $this->buildArticle($data);
+        return $recentExposition;
     }
 }
 

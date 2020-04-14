@@ -1,23 +1,123 @@
 @import './nav.scss';
 @import './général.scss';
+// GENERAL
 
-// HEADER 
+h1{
+    font-size: 6rem;
+    margin-bottom: 100px;
+}
 
+// HEADER
+    // Button
+a.button{
+    display:inline-block;
+    padding:0.5em 3em;
+    border:0.16em solid #FFFFFF;
+    margin:0 0.3em 0.3em 0;
+    box-sizing: border-box;
+    text-decoration:none;
+    text-transform:uppercase;
+    font-weight:400;
+    color:#FFFFFF;
+    text-align:center;
+    transition: all 0.15s;
+}
+    // General
 .slider{
-    height: 90vh;
     width: 100%;
+    img{
+        width: 100%;
+        margin-bottom: 50px;
+        position: relative;
+        z-index: 1;
+        filter: brightness(80%);
+    }
+    div.top{
+        position: absolute;
+        z-index: 2;
+        width: 100%;
+        text-align: center;
+        height: 100vh;
+        top: 0%;
+        color: white;
+        h1{
+            font-size: 7rem;
+        }
+        p{
+            font-size: 4rem;
+        }
+        a.button{
+            margin-top: 50px;
+            font-size: 1.6em;
+        }
+        a.button.first{
+            margin-right: 200px;
+        }
+        a{
+            text-decoration: none;
+            font-family: 'Old Standard TT', serif;
+        }
+    }
 }
 
 // DESCRIPTIF
 
 .description{
+    width: 100%;
+    height: 100vh;
     text-align: center;
     margin-bottom: 50px;
     p{
         width: 80%;
     }
 }
+section:first-of-type{
+    margin-top: 0;
+}
 
+// ARTICLES
+section.articles{
+    div.row{
+        margin-left: 50px;
+    }
+    article{
+        h2, img, p{
+            width: 700px;
+        }
+        h2{
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.3rem;
+        }
+        a#linkArticle{
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+            color: white;
+            text-decoration: none;
+        }
+        img{
+            position: relative;
+            height: 600px;
+        }
+        button{
+            width: 150px;
+        }
+    }
+}
+
+// EXPOSITION
+
+section.exposition{
+    width: 100%;
+    height: 100vh;
+}
+h1.titleExposition{
+    margin-bottom: 20px;
+}
+p.introExposition{
+    margin-bottom: 50px;
+}
 // CONTACT
 
 .contact{

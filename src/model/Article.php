@@ -45,12 +45,6 @@ class Article{
     public function setImage($image) {
         $this->image = $image;
     }
-    public function getNumberChapter(){
-        return $this->numberChapter;
-    }
-    public function setNumberChapter($numberChapter) {
-        $this->numberChapter = $numberChapter;
-    }
     public function getDate(){
         return $this->date;
     }

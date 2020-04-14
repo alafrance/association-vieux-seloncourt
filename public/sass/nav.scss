@@ -1,28 +1,59 @@
 nav{
-    height: 120px;
     background-color: transparent;
     z-index: 999;
-    margin-bottom: 60px;
+    position: fixed;
+    width: 100%;
+    top: 0px;
+    left: 0px;
     ul{
         height: 100%;
         display: flex;
-        justify-content: space-around;
+        justify-content: space-between;
         align-items: center;
         list-style-type: none;
+        div{
+            display: flex;
+            justify-content: space-around;
+        }
+        li{
+            margin-right: 25px;
+            padding-top: 10px;
+
+        }
         img{
-            padding-top: 50px;
-            width: 150px;
+            padding: 5px;
+            width:125px;
             height: auto;
         }
     }
-    li.text{
-        padding-top: 10px;
-    }
 }
-.link{
-    color: black;
+ul div {
+box-shadow: 0 0 0 8px black inset,
+0 0 0 16px white inset,
+0 0 0 24px black inset,
+0 0 0 30px white inset;
+border-radius: 32px;
+padding: 30px;
+background-color: black;
+
+}
+ul div::before {
+content: “”;
+display: inline-block;
+width: 2px;
+height: 2px;
+box-shadow: 0 0 0 6px black,
+0 0 0 10px white,
+0 0 0 16px black;
+border-radius: 1px;
+margin: 0 18px 1em 0;
+}
+a.link{
+    color: white;
+    font-size: 25px;
     width: 100%;
     height: 100%;
+
 }
 // Que en dev
 .fade:not(.show) {
