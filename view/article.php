@@ -1,18 +1,18 @@
 <?php
-$this->css = "base";
+$this->css = "article";
 $this->title = $article->getTitle();
 ?>
 
-<section>
+<section class="container center">
     <h1><?= $article->getTitle(); ?></h1>
-    <img src='img/articles/<?= $article->getImage();?>' alt= 'Image correspondant à $article->getTitle()'>
+    <img src='img/articles/<?= $article->getImage();?>' alt= 'Image correspondant à $article->getTitle()' class="col-xl-9 col-lg-9">
     <p><?= $article->getContent();?></p>
     <p><?= $article->getAuthor();?></p>
     <p> Crée le <?= $article->getDate();?></p>
     <p>Catégorie : <?= $article->getCategory();?></p>
 </section>
 
-<section>
+<section class="conntainer center"> 
     <h1>Commentaires</h1>
     <?php if(isset($_SESSION['name'])) {?>
         <h2>Ajouter un commentaire :</h2>

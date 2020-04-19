@@ -1,0 +1,54 @@
+// DESCRIPTIF
+
+section.description{
+    margin-top: 50px;
+    margin-bottom: 50px;
+    img {
+        border: 8px outset #E6EAEF;
+        box-shadow: 8px 8px 8px rgba(0, 0, 0, .8);
+        margin-bottom: 15px;
+    }
+    img:hover {
+        border: 8px inset #E6EAEF;
+        box-shadow: 8px 8px 8px rgba(0, 0, 0, .8) inset;
+    }
+    figcaption{
+        font-style: italic;
+        display: inline-block;
+        margin: 6px;
+        font-size: inherit;
+        line-height: 1.42;
+        padding: 1.2em 1.6em;
+        font-weight: normal;
+        border-width: 3px;
+        border-style: solid;
+        background: transparent;
+        border-radius: 0.4em;
+        user-select: none;
+        vertical-align: bottom;
+        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s, background-color 0.3s;
+        border-radius: 0.5em 0.6em/0.6em 1em 3em 1em;
+        color: #E6EAEF;
+        border-color: #E6EAEF;
+        box-shadow: 6px 0 0 0 #E6EAEF, 6px 6px 0 0 #E6EAEF, 0 6px 0 0 #E6EAEF;
+    }
+    figcaption:hover {
+        box-shadow: 8px 0 0 0 #E6EAEF, 8px 8px 0 0 #E6EAEF, 0 8px 0 0 #E6EAEF;
+    }
+    figcaption:active {
+        background-color: #E6EAEF;
+        color: #E6EAEF;
+        box-shadow: 2px 0 0 0 #E6EAEF, 2px 2px 0 0 #E6EAEF, 0 2px 0 0 #E6EAEF;
+    }
+    p{
+        width: 80%;
+    }
+    div.footer{
+        margin-top: 50px;
+        p{
+            width: 100%;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+    }
+}

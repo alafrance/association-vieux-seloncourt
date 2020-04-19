@@ -1,0 +1,39 @@
+// HEADER
+header.slider{
+    width: 100%;
+    -webkit-box-shadow: 0px 10px 41px -1px rgba(255,255,255,0.99);
+    -moz-box-shadow: 0px 10px 41px -1px rgba(255,255,255,0.99);
+    box-shadow: 0px 10px 41px -1px rgba(255,255,255,0.99);
+    img{
+        width: 100%;
+        position: relative;
+        z-index: 1;
+        filter: brightness(80%);
+    }
+    div.top{
+        position: absolute;
+        z-index: 2;
+        width: 100%;
+        text-align: center;
+        height: 100vh;
+        top: 0%;
+        color: white;
+        h1{
+            font-size: 7rem;
+        }
+        p{
+            font-size: 4rem;
+        }
+        a.button{
+            margin-top: 50px;
+            font-size: 1.6em;
+        }
+        a.button.first{
+            margin-right: 200px;
+        }
+        a{
+            text-decoration: none;
+            font-family: 'Old Standard TT', serif;
+        }
+    }
+}

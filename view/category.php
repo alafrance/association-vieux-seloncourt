@@ -1,5 +1,5 @@
 <?php
-$this->css = 'base';
+$this->css = 'articles';
 $this->title = $category;
 ?>
 

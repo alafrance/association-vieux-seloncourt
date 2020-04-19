@@ -1,0 +1,27 @@
+@import '../general/général.scss';
+@import '../general/nav.scss';
+@import '../general/buttons.scss';
+
+@import './slider.scss';
+@import './description.scss';
+@import './article.scss';
+@import './exposition.scss';
+@import './contact.scss';
+@import './assembly.scss';
+// GENERAL
+
+h1{
+    font-size: 6rem;
+    margin-bottom: 100px;
+}
+p{
+    font-family: 'Baloo Tammudu 2', cursive;
+}
+p.explication{
+    font-size: 2rem;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+
+

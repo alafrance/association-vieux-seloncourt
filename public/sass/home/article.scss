@@ -1,0 +1,42 @@
+// ARTICLES
+section.articles{
+    margin-top: 50px;
+    div.row{
+        margin-left: 50px;
+    }
+    article{
+        h2, img, p{
+            width: 700px;
+        }
+        h2{
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.3rem;
+            margin-top: 30px;
+            text-align: center;
+        }
+        a.button.dark{
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        a.linkArticle{
+            color: #c0c0c0;
+        }
+        img{
+            position: relative;
+            height: 600px;
+        }
+        div{
+            width: 700px;
+            text-align: center;
+        }
+        div.title{
+            margin-bottom: 10px;
+            height: 110px;
+        }
+        div.content{
+            margin-top: 30px;
+            font-weight: bold;
+        }
+    }
+}
+
