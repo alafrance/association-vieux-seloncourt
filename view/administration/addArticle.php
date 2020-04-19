@@ -15,8 +15,8 @@ $this->css = "administration";
             <div class="inputAndLabel">
                 <label for="category">Catégorie de l'article</label><br>
 
-                <select name="category" id="category">
-                    <option value="">Choisissez une catégorie</option>
+                <select name="category" id="category" multiple>
+                    <option value="" disabled selected>Choisissez une catégorie</option>
                     <?php foreach($categories as $category){ ?>
                         <option value="<?= $category->getId();?>"><?= $category->getName();?></option>
                     <?php }?>

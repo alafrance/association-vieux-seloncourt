@@ -7,12 +7,12 @@ $this->title = $article->getTitle();
     <h1><?= $article->getTitle(); ?></h1>
     <img src='img/articles/<?= $article->getImage();?>' alt= 'Image correspondant à $article->getTitle()' class="col-xl-9 col-lg-9">
     <p><?= $article->getContent();?></p>
-    <p><?= $article->getAuthor();?></p>
-    <p> Crée le <?= $article->getDate();?></p>
+    <hr>
+    <p class="italic info"><?= $article->getAuthor();?>, Crée le <?= $article->getDate();?> </p>
     <p>Catégorie : <?= $article->getCategory();?></p>
 </section>
 
-<section class="conntainer center"> 
+<section class="container center">
     <h1>Commentaires</h1>
     <?php if(isset($_SESSION['name'])) {?>
         <h2>Ajouter un commentaire :</h2>
@@ -34,6 +34,6 @@ $this->title = $article->getTitle();
         <?php } ?>
         </p>
     <?php } if (empty($comments)){ ?>
-            <p>Aucun commentaire. Soyer le premier à écrire !</p>
+            <p>Aucun commentaire. Soyer le premier à écrire ! Pour cela, inscrivez vous : <a href="index.php?route=register">S'inscrire</a></p>
     <?php }?>
 </section>

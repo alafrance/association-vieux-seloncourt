@@ -18,19 +18,30 @@
         <div class="form flex-center col-xl-6">
             <h2>Ou contacte nous directement ici</h2>
             <form action='index.php?route=contactMail' method='post' class="formulaire">
-                <label for="prenom">Votre prénom</label>
-                <input type="text" name="prenom" id="prenom">
 
-                <label for="nom">Votre nom</label>
-                <input type="text" name="nom" id="nom">
+                <div class="input-field">
+                    <input type="text" name="prenom" id="prenom" class="validate">
+                    <label for="prenom">Votre prénom</label>
+                </div>
 
-                <label for="email">Votre mail</label>
-                <input type="email" name="email" id="email">
+                <div class="input-field">
+                    <input type="text" name="nom" id="nom">
+                    <label for="nom">Votre nom</label>
+                </div>
 
-                <label for="message">Ton message</label>
-                <textarea name="message" id="message"></textarea>
+                <div class="input-field">
+                    <input type="email" name="email" id="email">
+                    <label for="email">Votre mail</label>
+                </div>
 
-                <input type="submit" name="submit" value="Envoyer">
+                <div class="input-field">
+                    <textarea name="message" id="message" class="materialize-textarea"></textarea>
+                    <label for="message">Ton message</label>
+                </div>
+
+                <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                    <i class="material-icons right">send</i>
+                </button>
             </form>
         </div>
     </div>

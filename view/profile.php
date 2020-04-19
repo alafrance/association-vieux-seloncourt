@@ -4,23 +4,24 @@ $this->title = "Page profil";
 $role = $this->session->get('role');
 ?>
 
-<?= $this->session->show('modify'); ?>
-<?= $this->session->show('add_article'); ?>
-<?= $this->session->show('add_assembly'); ?>
-<?= $this->session->show('edit_article'); ?>
-<?= $this->session->show('edit_name'); ?>
-<?= $this->session->show('edit_email'); ?>
-<?= $this->session->show('edit_password'); ?>
-<?= $this->session->show('delete_article'); ?>
-<?= $this->session->show('delete_assembly'); ?>
-<?= $this->session->show('change_right'); ?>
+
 
 
 
 <!-- Page de profil commune -->
-<section>
-    <h1>Bienvenue sur le profil de <?= $this->session->get('name'); ?></h1>
-    <p>Voici vos informations :</p>
+<section class="center">
+    <?= $this->session->show('modify'); ?>
+    <?= $this->session->show('add_article'); ?>
+    <?= $this->session->show('add_assembly'); ?>
+    <?= $this->session->show('edit_article'); ?>
+    <?= $this->session->show('edit_name'); ?>
+    <?= $this->session->show('edit_email'); ?>
+    <?= $this->session->show('edit_password'); ?>
+    <?= $this->session->show('delete_article'); ?>
+    <?= $this->session->show('delete_assembly'); ?>
+    <?= $this->session->show('change_right'); ?>
+    <h1 class="center title">Bienvenue sur votre page de profil</h1>
+    <p>Vous pouvez voir ici vos informations :</p>
     <ul>
         <li>Nom : <?= $this->session->get("name") ?></li>
         <li>Email : <?= $this->session->get("email") ?></li>
@@ -28,6 +29,9 @@ $role = $this->session->get('role');
         <li>Mot de passe : ********</li>
     </ul>
     <p>Pour changer ses informations, accéder à votre <a href="index.php?route=setting">paramètre</a></p>
+    <?php if ($role != 'author' && $role != 'admin'){?>
+    <p>Grâce à votre inscription, vous pouvez ajouter des commentaires !</p>
+    <?php }?>
 </section>
 
 <!-- Page de profil auteur -->
@@ -42,4 +46,3 @@ $role = $this->session->get('role');
         require 'administration/admin.php';
     }
 ?>
-<a href="index.php?route=logout" class="logout">Se déconnecter</a>

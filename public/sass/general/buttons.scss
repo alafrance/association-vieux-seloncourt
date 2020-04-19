@@ -7,13 +7,17 @@
   font-weight:400;
   text-align:center;
 }
+
+$color_light: #FFFFFF;
 .light{
-  border:0.16em solid #FFFFFF;
-  color:#FFFFFF;
+  border:0.16em solid $color_light;
+  color:$color_light;
 }
+
+$color_dark: black;
 .dark{
-  border:0.16em solid #c0c0c0;
-  color:#c0c0c0;
+  border:0.16em solid $color_dark;
+  color:$color_dark;
 }
 
  .btn {
@@ -72,4 +76,119 @@
   }
    .btn-light:active {
     background-color: #dae0e7;
+  }
+
+  .iota .btn {
+    display: inline-block;
+    margin: 6px;
+    font-size: inherit;
+    line-height: 1.42;
+    padding: 0.6em 1.6em;
+    font-weight: normal;
+    border-width: 2px;
+    border-style: solid;
+    background: transparent;
+    border-radius: 1.46em;
+    cursor: pointer;
+    font-family: "Booster Next FY", "Avenir Next", Avenir, sans-serif;
+    user-select: none;
+    vertical-align: bottom;
+    position: relative;
+    border-style: solid;
+    overflow: hidden;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  .iota .btn.btn-disabled {
+    cursor: not-allowed;
+    opacity: 0.8;
+  }
+  .iota .btn.btn-disabled:active {
+    opacity: 0.6;
+  }
+  .iota .btn:hover:after {
+    transform: scaleX(1);
+    opacity: 1;
+    transition: transform 0.3s, opacity 0.3s;
+  }
+  .iota .btn:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    border-radius: 1.46em;
+    transform: scaleX(0.7);
+    opacity: 0;
+    transition: transform 0.8s, opacity 0.3s;
+  }
+  .iota .btn-primary {
+    color: #52C11F;
+    border-color: #52C11F;
+  }
+  .iota .btn-primary:hover {
+    color: #E6EAEF;
+    background-color: #52C11F;
+  }
+  .iota .btn-primary:active {
+    background-color: #4cb41d;
+  }
+  .iota .btn-primary:active:after {
+    background-color: #4cb41d;
+  }
+  .iota .btn-primary:after {
+    background-color: #52C11F;
+  }
+  .iota .btn-secondary {
+    color: #0B44EF;
+    border-color: #0B44EF;
+  }
+  .iota .btn-secondary:hover {
+    color: #E6EAEF;
+    background-color: #0B44EF;
+  }
+  .iota .btn-secondary:active {
+    background-color: #0a40e0;
+  }
+  .iota .btn-secondary:active:after {
+    background-color: #0a40e0;
+  }
+  .iota .btn-secondary:after {
+    background-color: #0B44EF;
+  }
+  .iota .btn-tertiary {
+    color: #FF006A;
+    border-color: #FF006A;
+  }
+  .iota .btn-tertiary:hover {
+    color: #E6EAEF;
+    background-color: #FF006A;
+  }
+  .iota .btn-tertiary:active {
+    background-color: #f00064;
+  }
+  .iota .btn-tertiary:active:after {
+    background-color: #f00064;
+  }
+  .iota .btn-tertiary:after {
+    background-color: #FF006A;
+  }
+  .iota .btn-tetrary {
+    color: #991BE2;
+    border-color: #991BE2;
+  }
+  .iota .btn-tetrary:hover {
+    color: #E6EAEF;
+    background-color: #991BE2;
+  }
+  .iota .btn-tetrary:active {
+    background-color: #9019d4;
+  }
+  .iota .btn-tetrary:active:after {
+    background-color: #9019d4;
+  }
+  .iota .btn-tetrary:after {
+    background-color: #991BE2;
   }

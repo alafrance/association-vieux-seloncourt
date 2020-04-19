@@ -1,12 +1,12 @@
 // ARTICLES
 section.articles{
     margin-top: 50px;
-    div.row{
-        margin-left: 50px;
-    }
+    //div.row{
+        //margin-left: 50px;
+    //}
     article{
-        h2, img, p{
-            width: 700px;
+        h2, img, p, div.content, div.title{
+            width: 100%;
         }
         h2{
             font-family: 'Dancing Script', cursive;
@@ -30,7 +30,7 @@ section.articles{
             text-align: center;
         }
         div.title{
-            margin-bottom: 10px;
+            margin-bottom: 22px;
             height: 110px;
         }
         div.content{

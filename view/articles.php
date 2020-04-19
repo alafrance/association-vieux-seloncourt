@@ -4,6 +4,7 @@
 ?>
 
 <section class="container">
+    <h1 class="center underline">Tous les articles</h1>
     <div class="row">
         <div class="col-xl-9 col-lg-9 articles">
             <?php foreach ($articles as $article){ ?>

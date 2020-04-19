@@ -1,8 +1,11 @@
-.navbar-light{
-
-  opacity: 0.9;
+nav{
+  padding: 0px;
+  background: transparent;
+  z-index: 999;
+  position: absolute;
+  top: 0px;
+  left: 0px;
   .navbar-brand {
-    color: black;
     font-size: 25px;
     text-transform: uppercase;
     font-weight: bold;
@@ -12,7 +15,7 @@
     text-align: center;
   }
   .navbar-nav .nav-link{
-    color: black;
+    color: white;
     font-size: 1.5rem;
     margin-right: 20px;
     font-family: 'Acme', sans-serif;

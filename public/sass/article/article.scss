@@ -1,2 +1,16 @@
 @import '../general/général.scss';
 @import '../general/nav.scss';
+@import url('https://fonts.googleapis.com/css2?family=Assistant&display=swap');
+
+p{
+    font-family: 'Assistant', sans-serif;
+    font-size: 1.2rem;
+}
+p.info{
+    font-size: 1.5rem;
+}
+h1{
+    text-transform: uppercase;
+    text-decoration: underline;
+    margin-bottom: 40px;
+}

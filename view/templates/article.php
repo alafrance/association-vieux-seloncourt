@@ -15,6 +15,13 @@
     <!--  Navbar Animation-->
     <script defer src='js/nav.js'></script>
     <link rel="stylesheet" href="../public/css/<?=$css?>.css">
+
+    <!-- Materialize -->
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="materialize-src/sass/materialize.css">
+
+        <!-- Compiled and minified JavaScript -->
+        <script src="materialize-src/js/bin/materialize.js"></script>
 </head>
 <body>
     <?php include '../view/nav.php'?>

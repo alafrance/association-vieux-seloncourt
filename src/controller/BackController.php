@@ -163,7 +163,7 @@ class BackController extends Controller{
     /* -------- ARTICLES  -------- */
     /* ------------------------- */
     public function addArticle(Parameter $post){
-        if ($this->checkAuthor()){
+        if ($this->checkAuthor() || $this->checkAdmin()){
             $categories = $this->articleDAO->getCategories();
             if ($post->get('submit')){
                 $errors = $this->validation->validate($post, 'Article');

@@ -18,11 +18,11 @@ $this->title = 'Accueil';
 <section class="description container-fluid center" id="description">
     <h1 class="underline">Notre mission</h1>
     <div class="row">
-        <figure class="col-xl-5">
-            <img src="img/home/espace_kieffer-black.jpg" class="">
+        <figure class="col-xl-5 col-lg-6 col-md-6 ">
+            <img src="img/home/espace_kieffer_2_black.jpg" class="">
             <figcaption>Nos locaux à Seloncourt</figcaption>
         </figure>
-        <div class="col-xl-7 flex-center">
+        <div class="col-xl-7 col-lg-6 col-md-6 flex-center">
             <p>
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Excepturi, obcaecati maxime minima minus porro aliquid, sed doloremque omnis neque cumque sit, iste commodi ipsa doloribus vitae accusantium deleniti esse ipsum!
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Excepturi, obcaecati maxime minima minus porro aliquid, sed doloremque omnis neque cumque sit, iste commodi ipsa doloribus vitae accusantium deleniti esse ipsum!
@@ -35,7 +35,7 @@ $this->title = 'Accueil';
     </div>
     <div class="footer">
         <p>Pour en savoir plus sur nous,</p>
-        <a href="index.php?route=articles" class="button light">cliquer ici pour accéder à tous nos articles et expositions</a>
+        <a href="index.php?route=articles" class="button dark">cliquer ici pour accéder à tous nos articles et expositions</a>
     </div>
 </section>
 
@@ -43,7 +43,7 @@ $this->title = 'Accueil';
 <?php if ($exposition->getImage() != NULL && $exposition->getTitle() != NULL && $exposition->getContent() != NULL){?>
 <section class="exposition flex-center container-fluid">
     <h1 class="underline center">Derniere Exposition : <?= $exposition->getTitle()?></h1>
-    <p class="content center "><?= substr(strip_tags($exposition->getContent()), 0, 600) ?>...</p>
+    <p class="content center "><?= substr(strip_tags($exposition->getContent(), '<br>'), 0, 600) ?>...</p>
     <img src="img/articles/<?= $exposition->getImage()?>" alt="Image dernière exposition" class="col-xl-8 center">
     <a href="index.php?route=article&id=<?= $exposition->getId();?>" class="btn btn-gray">Voir l'exposition en entier</a>
 </section>
@@ -56,7 +56,7 @@ $this->title = 'Accueil';
 <?php
     foreach($articles as $article){
 ?>
-            <article class="col-xl-4 col-sm-6 col-lg-4 col-md-6">
+            <article class="col-xl-4 col-sm-12 col-lg-4 col-md-12">
                 <div class="title">
                     <h2 class="underline"><?= $article->getTitle();?></h2>
                 </div>
