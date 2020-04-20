@@ -1,19 +1,17 @@
 @import '../general/nav.scss';
 @import '../general/général.scss';
-@import url('https://fonts.googleapis.com/css2?family=Assistant&family=Roboto+Condensed:ital,wght@0,300;1,300&display=swap');section{
+@import url('https://fonts.googleapis.com/css2?family=Assistant&family=Roboto+Condensed:ital,wght@0,300;1,300&display=swap');
+section{
     margin-bottom: 100px;
 }
 h1{ 
     margin-bottom: 40px;
-    font-family: 'Roboto Condensed', sans-serif;
 }
 h2{
     margin-bottom: 30px;
-    font-family: 'Roboto Condensed', sans-serif;
     font-style: italic;
 }
 p{
-    font-family: 'Assistant', sans-serif;
     font-size: 1.5rem;
 }
 td{

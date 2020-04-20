@@ -9,10 +9,22 @@
     <div class="row">
         <div class="info center col-xl-6">
             <address class="flex-center">
-                <p>Adresse<br> Espace de sauvegarde Charles Kieffer, 6 rue d'Audincourt</p>
-                <p>Télephone<br>  03 81 34 71 87</p>
-                <p>Email<br> francois.hegwein@sfr.fr</p>
-                <p>Horaire Ouverture<br> Mercredi de 14h et 17h et à la demande</p>
+                <p>
+                    <i class="fas fa-search-location"></i> Adresse<br>
+                    <span>Espace de sauvegarde Charles Kieffer, 6 rue d'Audincourt</span>
+                </p>
+                <p>
+                    <i class="fas fa-phone"></i> Télephone<br>
+                    <span>03 81 34 71 87</span>
+                </p>
+                <p>
+                    <i class="fas fa-envelope"></i> Email<br>
+                    <span>francois.hegwein@sfr.fr</span>
+                </p>
+                <p>
+                    <i class="fas fa-clock"></i> Horaire Ouverture<br>
+                    <span>Mercredi de 14h et 17h et à la demande</span>
+                </p>
             </address>
         </div>
         <div class="form flex-center col-xl-6">
@@ -39,8 +51,8 @@
                     <label for="message">Ton message</label>
                 </div>
 
-                <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-                    <i class="material-icons right">send</i>
+                <button class="btn waves-effect waves-light" type="submit" name="action">
+                    Envoyer <i class="fas fa-paper-plane"></i></i>
                 </button>
             </form>
         </div>

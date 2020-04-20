@@ -1,24 +1,42 @@
 @import 'general/général.scss';
 @import 'general/nav.scss';
 h1{
+    font-size: 5rem;
+    color: #A57548;
+
+}
+h2{
+    font-family: 'Assistant', sans-serif;
+    font-size: 2.5rem;
+    color: #A57548;
 
 }
 .contact{
     height: 75vh;
     .row{
         height: 100%;
-        .info{
-            address{
-                margin-left: 50px;
-                width: 100%;
-                height: 100%;
+    }
+    .formulaire{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .info{
+        address{
+            margin-left: 50px;
+            width: 100%;
+            height: 100%;
+            p{
+                font-size: 1.7rem;
+                font-family: 'Roboto Condensed', sans-serif;
+                color: #A57548;
+                span{
+                    font-size: 1.3rem;
+                    font-family: 'Assistant', sans-serif;
+                    color: black;
+                }
             }
-        }
-        .formulaire{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
         }
     }
 }
