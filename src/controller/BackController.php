@@ -171,7 +171,7 @@ class BackController extends Controller{
                     $errors['image'] = $this->validation->validate('image', 'Image');
                 }
                 if (!$errors){
-                    $image_name = $this->articleDAO->nameDispo() . '.' . preg_split('#/#', $_FILES['image']['type'], -1, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE)[1] ;
+                    $image_name = $this->articleDAO->lastIdImage() + 1 . '.' . preg_split('#/#', $_FILES['image']['type'], -1, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE)[1] ;
                     move_uploaded_file($_FILES['image']['tmp_name'], 'img/articles/' . $image_name);
                     $this->articleDAO->addImage($image_name);
                     $this->articleDAO->addArticle($post, $this->session->get('id'), $this->articleDAO->lastIdImage());
@@ -188,14 +188,12 @@ class BackController extends Controller{
             ], 'article');
         }
     }
-    
 
     public function editArticle(Parameter $post, $articleId){
         if ($this->checkLoggedIn()){
             if ($this->checkAuthor() || $this->checkAdmin()){
                 if ($post->get('submit')){
                     $errors = $this->validation->validate($post, 'Article');
-                    var_dump($errors);
                     if (!$errors){
                         $this->articleDAO->editArticle($post, $articleId);
                         $this->session->set('edit_article', 'L\'article a bien été mise à jour');
@@ -302,7 +300,7 @@ class BackController extends Controller{
                     $errors['image'] = $this->validation->validate('image', 'Image');
                 }
                 if (!$errors){
-                    $image_name = $this->articleDAO->nameDispo() . '.' . preg_split('#/#', $_FILES['image']['type'], -1, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE)[1] ;
+                    $image_name = $this->articleDAO->lastIdImage() + 1 . '.' . preg_split('#/#', $_FILES['image']['type'], -1, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE)[1] ;
                     move_uploaded_file($_FILES['image']['tmp_name'], 'img/articles/' . $image_name);
                     $this->articleDAO->addImage($image_name);
                     $this->articleDAO->addExposition($post, $this->session->get('id'), $this->articleDAO->lastIdImage());
@@ -317,36 +315,43 @@ class BackController extends Controller{
         }
     }
     /* ------------------------- */
-    /* -------- ASSEMBLY  -------- */
+    /* -------- DATE  -------- */
     /* ------------------------- */
-    public function addAssembly(Parameter $post){
-        if ($this->checkAuthor() || $this->checkAdmin()){
+    public function addDate(Parameter $post){
+        if ($this->checkAdmin()){
             if ($post->get('submit')){
-                $errors = $this->validation->validate($post, 'Assembly');
+                $errors = $this->validation->validate($post, 'Date');
                 if (!$errors){
-                    $time = $post->get('hours') . ':' . $post->get('minutes');
-                    $this->articleDAO->addAssembly($post, $time);
-                    $this->session->set('add_assembly', 'L\'assemblée générale a bien été modifié');
+                    $date = explode('-',$post->get('date'));
+                    $year = explode(' ', $date[2])[0];
+                    $month = $date[1];
+                    $day = $date[0];
+                    $time = explode(' ', $date[2])[1];
+                    $date = $year . '-' . $month . '-' . $day . ' ' . $time . ':00';
+                    $this->articleDAO->addDate($post, $date);
+                    $this->session->set('add_date', 'La date a été ajouté à la page d\'accueil');
                     header('Location: index.php?route=profile');
                 }
-                return $this->view->render('administration/addAssembly', [
+                return $this->view->render('administration/addDate', [
                     'post' => $post,
-                    'errors' => $errors
+                    'errors' => $errors,
+                    'date' => $date
                 ], 'article');
             }
-            return $this->view->render('administration/addAssembly', [], 'article');
+
+            return $this->view->render('administration/addDate', [], 'article');
         }
     }
-    public function deleteAssembly(Parameter $post){
-        if ($this->checkAuthor() || $this->checkAdmin()){
+    public function deleteDate(Parameter $post){
+        if ($this->checkAdmin()){
             if ($post->get('submit')){
                 if($post->get('deleteAccount') == 'yes'){
-                    $this->articleDAO->deleteAssembly();
-                    $this->session->set('delete_assembly', 'Les informations de l\'Assemblée Générale ont bien été supprimés');
+                    $this->articleDAO->deleteDate();
+                    $this->session->set('delete_date', 'La date a été supprimé de la page d\'accueil');
                 }
                 header('Location: index.php?route=profile');
             }
-            return $this->view->render('administration/deleteAssembly');
+            return $this->view->render('administration/deleteDate');
         }
     }
     /* ------------------------- */

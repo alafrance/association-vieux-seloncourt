@@ -9,23 +9,35 @@
     <script defer src='js/tiny.js'></script>
     <script defer src='js/fr_FR.js'></script>
 
+    <!-- Jquery -->
+    <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 
-    <!--  Navbar Animation-->
-    <script defer src='js/nav.js'></script>
+    <!-- Materialize -->
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="../config/materialize/sass/materialize.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="../config/materialize/js/bin/materialize.js"></script>
+    <script src="js/select.js"></script>
+
+    <!-- Date Picker -->
+    <link rel="stylesheet" type="text/css" href="../config/datepicker/src/DateTimePicker.css" />
+    <script type="text/javascript" src="../config/datepicker/src/DateTimePicker.js"></script>
+    <script src="../config/datepicker/dist/i18n/DateTimePicker-i18n.js"></script>
+    <script src="../public/js/date.js"></script>
+
+    <!-- Style -->
     <link rel="stylesheet" href="../public/css/<?=$css?>.css">
 
-    <!-- Materialize -->
-        <!-- Compiled and minified CSS -->
-        <link rel="stylesheet" href="materialize-src/sass/materialize.css">
 
-        <!-- Compiled and minified JavaScript -->
-        <script src="materialize-src/js/bin/materialize.js"></script>
 </head>
 <body>
     <?php include '../view/nav.php'?>
-    <?= $content ?>
+    <main>
+        <?= $content ?>
+    </main>
     <?php include '../view/footer.php'; ?>
 
 </body>

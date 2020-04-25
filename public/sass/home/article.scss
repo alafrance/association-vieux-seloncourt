@@ -23,7 +23,7 @@ section.articles{
         }
         img{
             position: relative;
-            height: 600px;
+            height: 700px;
         }
         div{
             width: 700px;
@@ -36,6 +36,16 @@ section.articles{
         div.content{
             margin-top: 30px;
             font-weight: bold;
+        }
+    }
+    div.footer{
+        margin-top: 50px;
+        text-align: center;
+        p{
+            width: 100%;
+            text-align: center;
+            font-size: 1.5rem;
+            color: black;
         }
     }
 }

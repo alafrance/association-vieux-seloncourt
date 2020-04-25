@@ -1,96 +1,60 @@
 @import '../general/nav.scss';
 @import '../general/général.scss';
 @import url('https://fonts.googleapis.com/css2?family=Assistant&family=Roboto+Condensed:ital,wght@0,300;1,300&display=swap');
-section{
-    margin-bottom: 100px;
+section.allsize{
+    min-height: 65vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
-h1{ 
-    margin-bottom: 40px;
+h1{
+    margin-bottom: 25px;
+    font-size: 3.5rem;
+    font-weight: normal;
+    font-family: 'Assistant', sans-serif;
 }
+
 h2{
-    margin-bottom: 30px;
+    font-size: 2.5rem;
+    margin-bottom: 1em;
     font-style: italic;
 }
 p{
     font-size: 1.5rem;
 }
-td{
-    font-size: 1rem;
-}
-h1.title{
-    margin-top: 10px;
-    font-size: 4rem;
-}
-
-//Administrateur
-    //Articles
-h1.titleArticle {
-    font-size: 3rem;
-    margin-bottom: 10px;
-}
-p.admin{
-    margin-bottom: 40px;
-}
-h2.titleButton{
-    margin-top: 30px;
-    margin-bottom: 30px;
-}
-h2.titleTableArticle{
-    margin-top: 30px;
-    margin-bottom: 30px;
-}
-div.linkArticle .buttons{
-    display: flex;
-    justify-content: space-around;
-}
 
 
-// Auteur
-
-h2.titleAllArticleAuthor{
-    margin-top: 30px;
-    margin-bottom: 30px;
-}
-div.iota.buttons.author{
-    margin-top: 50px;
-    margin-bottom: 50px;
-}
-table.author{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 30px;
-}
-// Auteur et administateur
-
-td{
-    border: 1px solid black;
-}
-td.category{
-    border: 0;
-}
-table{
-    border-collapse: collapse;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-.actions{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-td{
-    text-align: center;
-    padding: 10px;
-}
-td.action{
-    display: flex;
-    flex-direction: column;
-}
-td p{
-    margin-bottom: 0;
+// profile information
+section.profileInformation{
+    h1.title{
+        font-size: 5em;
+    }
+    div.informationsWithText{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        ul.informations{
+            li{
+                margin-bottom: 25px;
+                font-size: 1.4rem;
+                font-family: 'Assistant', sans-serif;
+            }
+            li a{
+                &:hover{
+                    color: lightgray;
+                }
+                color: gray;
+                text-decoration: none;
+                i{
+                    margin-left: 10px;
+                }
+            }
+            i{
+                color: gray;
+                margin-right: 10px;
+            }
+        }
+    }
 }

@@ -29,7 +29,7 @@ $this->title = $article->getTitle();
         <p><?= $comment->getContent(); ?></p>
         <p>Ecrit le : <?= $comment->getDate(); ?></p>
         <p><?php
-            if (isset($_SESSION['name'])){ ?>
+            if (isset($_SESSION['name']) && $_SESSION['role'] == 'author' && $_SESSION['role'] == 'admin'){ ?>
             <a href="index.php?route=flagComment&commentId=<?= $comment->getId();?>">Signaler le commentaire</a>
         <?php } ?>
         </p>

@@ -56,10 +56,6 @@ class Router{
                     case 'logout':
                         $this->backController->logout();
                         break;
-                    case 'modifyParameter':
-                        $this->backController->modifyParameter($this->request->getPost(), $this->request->getGet()->get('param'));
-                        break;
-                    
                     case 'articles':
                         $this->frontController->articles();
                         break;
@@ -72,11 +68,11 @@ class Router{
                     case 'addArticle':
                         $this->backController->addArticle($this->request->getPost());
                         break;
-                    case 'addAssembly':
-                        $this->backController->addAssembly($this->request->getPost());
+                    case 'addDate':
+                        $this->backController->addDate($this->request->getPost());
                         break;
-                    case 'deleteAssembly':
-                        $this->backController->deleteAssembly($this->request->getPost());
+                    case 'deleteDate':
+                        $this->backController->deleteDate($this->request->getPost());
                         break;
                     case 'addExposition':
                         $this->backController->addExposition($this->request->getPost());

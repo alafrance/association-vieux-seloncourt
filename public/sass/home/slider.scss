@@ -4,12 +4,41 @@ header.slider{
     -webkit-box-shadow: 0px 10px 41px -1px rgba(255,255,255,0.99);
     -moz-box-shadow: 0px 10px 41px -1px rgba(255,255,255,0.99);
     box-shadow: 0px 10px 41px -1px rgba(255,255,255,0.99);
-    img{
+    img.fond{
         width: 100%;
         position: relative;
         z-index: 1;
         filter: brightness(80%);
     }
+    nav{
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 0;
+        width: 100%;
+        img.logo{
+            
+            margin-left: 20px;
+            margin-top: 10px;
+            width: 170px;
+            height: auto;
+        }
+        ul{
+            display: flex;
+            margin-bottom: 50px;
+            li a{
+                margin-right: 30px;
+                font-size: 1.7rem;
+                color: white;
+                text-decoration: none;
+                font-family: 'Acme', sans-serif;
+                &:hover{
+                    color: gray;
+                }
+            }
+        }
+    }
+    
     div.top{
         position: absolute;
         z-index: 2;
@@ -27,6 +56,9 @@ header.slider{
         a.button{
             margin-top: 50px;
             font-size: 1.6em;
+            &:hover{
+                color: wheat;
+            }
         }
         a.button.first{
             margin-right: 200px;

@@ -1,11 +1,8 @@
-
+<hr class="sep article" data-symbol="Articles :">
 <!-- Articles -->
-<section>
-        <div class="center">
-            <h1 class="titleArticle">Articles :</h1>
-            <p class="admin">En tant qu'administrateur vous avez tout les droits ! Alors vous pouvez :  </p>
-        </div>
+<section class="container">
         <div class="linkArticle iota">
+
 
             <div>
                 <h2 class="center">Ajouter :</h2>
@@ -18,33 +15,29 @@
             <hr>
 
             <div>
-                <h2 class="center">Gérer l'assemblée générale :</h2>
+                <h2 class="center">Date importante sur la page d'Accueil</h2>
                 <div class="buttons">
-                    <a href="index.php?route=addAssembly" class="btn btn-secondary">Modifier l'Assemblée Génerale</a>
-                    <a href="index.php?route=deleteAssembly" class="btn btn-tertiary">Supprimer l'Assemblée Génerale de l'Accueil</a>
+                    <a href="index.php?route=addDate" class="btn btn-secondary">Ajouter ou modifier une date</a>
+                    <a href="index.php?route=deleteDate" class="btn btn-tertiary">Supprimer la date</a>
                 </div>
             </div>
 
             <hr>
-
-            <div>
-                <h2 class="center titleButton">Gérer le vide grenier :</h2>
-                <div class="buttons">
-                    <a href="index.php?route=addAssembly" class="btn btn-secondary">Modifier le vide grenier</a>
-                    <a href="index.php?route=deleteAssembly" class="btn btn-tertiary">Supprimer le vide Grenier de l'Accueil</a>
-                </div>
-            </div>
         </div>
-
-        <h2 class="titleTableArticle center">Vous pouvez voir ici tous les articles qui ont déja été écrit:</h2>
-        <table>
-            <tr>
-                <td>Titre</td>
-                <td>Contenu</td>
-                <td>Ecrit le</td>
-                <td>Ecrit par :</td>
-                <td>Action</td>
-            </tr>
+</section>
+<section>
+        <h2 class="titleTableArticle center">Tous les articles :</h2>
+        <table data-toggle="table" data-pagination="true" data-search="true" data-locale="fr-FR">
+            <thead>
+				<tr>
+					<th>Titre</th>
+					<th>Contenu</th>
+					<th>Ecrit le</th>
+					<th>Ecrit par :</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
             <?php foreach ($articles as $article) { ?>
                 <tr>
                     <td><?= $article->getTitle() ?></td>
@@ -59,48 +52,57 @@
                     </td>
                 </tr>
             <?php }
-            ?>
+			?>
+			</tbody>
         </table>
 </section>
 
 <!-- Catégorie -->
+<hr class="sep category" data-symbol="Catégories :">
 
-<section class="center category">
-        <h1 class="center">Et ici, toutes les catégories :</h1>
-        <table >
+<section class="center category container">
+        <div class="row iota">
             <?php foreach($categories as $category){?>
-                <tr>
-                    <td class="category">
-                        <?= $category->getName(); ?>
-                    </td>
-                </tr>
-            <?php } ?>
-        </table>
-        <h2>Vous pouvez ajouter une catégorie d'article si vous le désirez : </h2>
-        <form action='index.php?route=addCategory' method="post">
-                <input type="text" name="category">
-                <input type="submit" name="submit" value="Ajouter">
+                <?php if($category->getId() == 1){?>
+                    <p class="col-8"><?= $category->getName(); ?></p>
+                    <p class="col-4">Impossible de le supprimer</p>
+
+                <?php }else{ ?>
+
+                <p class="col-8"><?= $category->getName(); ?></p>
+                <p class="col-4"><a href="#" class="btn btn-tertiary supCategory">Supprimer</a></p>
+                <?php }
+            } ?>
+        </div>
+        <form action='index.php?route=addCategory' method="post" class="iota row">
+            <div class="col-8">
+                <input type="text" name="category" id="category" class="category">
+            </div>
+            <button class="btn btn-secondary col-4" type="submit" name="action">Ajouter</button>
         </form>
 
 </section>
 
 <!-- Commentaires signalés -->
+<hr class="sep commentary" data-symbol="Commentaire(s) :">
 
-<section class="center">
-    <h1>Commentaire(s) :</h1>
+<section class="center flex-center commentary">
     <?php
         if (empty($comments)) {
             echo '<p>' . 'Aucun commentaire signalé' . '</p>';
         } else {
     ?>
-    <h2>Voici tous les commentaires signalés</h2>
-    <table class="table">
+    <h2>Commentaires signalés :</h2>
+    <table data-toggle="table" data-pagination="true" data-search="true" data-locale="fr-FR">
+		<thead>
             <tr>
-                <td>Pseudo</td>
-                <td>Commentaire</td>
-                <td>Date</td>
-                <td>Actions</td>
-            </tr>
+                <th>Pseudo</th>
+                <th>Commentaire</th>
+                <th>Date</th>
+                <th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
             <?php
             foreach ($comments as $comment) {
             ?>
@@ -118,22 +120,26 @@
         <?php
             }
         }
-        ?>
+		?>
+		</tbody>
         </table>
 </section>
 
 <!-- Utilisateurs-->
+<hr class="sep user" data-symbol="Utilisateurs :">
 
 <section class="user">
-    <h1 class="center">Utilisateurs : </h1>
-    <table>
-        <tr>
-            <td>Nom</td>
-            <td>Email</td>
-            <td>Date de création</td>
-            <td>Rôle</td>
-            <td>Actions</td>
-        </tr>
+    <table data-toggle="table" data-pagination="true" data-search="true" >
+		<thead>
+			<tr>
+				<th>Nom</th>
+				<th>Email</th>
+				<th>Date de création</th>
+				<th>Rôle</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
         <?php
         foreach ($users as $user) {
         ?>
@@ -165,6 +171,7 @@
                 }
             }
             ?>
-            </tr>
+			</tr>
+		</tbody>
     </table>
 </section>

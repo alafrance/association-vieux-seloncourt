@@ -18,8 +18,8 @@ class Validation {
             $errors = $imageValidation->checkImage($data);
             return $errors;
         }
-        else if($name === 'Assembly'){
-            $assemblyValidation = new AssemblyValidation();
+        else if($name === 'Date'){
+            $assemblyValidation = new DateValidation();
             $errors = $assemblyValidation->check($data);
             return $errors;
         }

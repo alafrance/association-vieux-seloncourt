@@ -8,15 +8,15 @@ use Config\Alexis\Parameter;
 
 class FrontController extends Controller{
     public function home(){
-        $assembly = $this->articleDAO->getAssembly();
         $articles = $this->articleDAO->getArticles();
         $articles = array_chunk($articles, 3)[0];
         $exposition = $this->articleDAO->getLastExposition();
+        $date = $this->articleDAO->getDate();
         return $this->view->render('home', [
-            'assembly' => $assembly,
             'articles' => $articles,
+            'date' => $date,
             'exposition' => $exposition
-        ]);
+        ], "home");
     }
     public function contact(){
         return $this->view->render('contact');
@@ -32,9 +32,12 @@ class FrontController extends Controller{
     public function articlesCategory($categoryId){
         $articles = $this->articleDAO->getArticlesFromCategory($categoryId);
         $category = $this->articleDAO->getCategory($categoryId);
+        $categories = $this->articleDAO->getCategories();
+
         return $this->view->render('category', [
             'articles' => $articles,
-            'category' => $category
+            'category' => $category,
+            'categories' => $categories
         ]);
     }
     public function article($id){

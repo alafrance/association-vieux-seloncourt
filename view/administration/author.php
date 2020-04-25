@@ -1,14 +1,13 @@
-<section class="center">
-    <h1>Article :</h1>
+<hr id="four" data-symbol="Articles :">
+<section class="allsize">
     <div class="linkArticle">
-        <h2>Vous pouvez ajouter :</h2>
+        <h2 class="center">Vous pouvez ajouter :</h2>
         <div class="iota buttons author">
-            <a href="index.php?route=addArticle" class="btn btn-secondary">Ajouter un article</a>
-            <a href="index.php?route=addExposition" class="btn btn-secondary">Ajouter une exposition</a>
+            <a href="index.php?route=addArticle" class="btn btn-secondary">Un article</a>
+            <a href="index.php?route=addExposition" class="btn btn-secondary">Une exposition</a>
         </div>
     </div>
-   
-    <h2 class="titleAllArticleAuthor">Et voici tous les articles que vous avez déja écrit :</h2>
+    <h2 class="titleAllArticleAuthor">Vos articles</h2>
     <?php if($articles == NULL){?>
         <div>
             <p>Vous n'avez écrit encore aucun article ! Ecrivez en un : <a href="index.php?route=addArticle" class="btn btn-secondary">Ecrire un article</a></p>

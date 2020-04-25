@@ -7,8 +7,9 @@
 @import './article.scss';
 @import './exposition.scss';
 @import './contact.scss';
-@import './assembly.scss';
+@import './date.scss';
 // GENERAL
+
 
 h1{
     font-size: 6rem;
@@ -23,5 +24,8 @@ p.explication{
     text-align: center;
 }
 
-
+.navbar-light .navbar-nav .nav-link{
+    color: black;
+    font-size: 1.6rem;
+}
 

@@ -1,0 +1,19 @@
+@import './profile.scss';
+@import './admin_author.scss';
+// Auteur
+
+h2.titleAllArticleAuthor{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+div.iota.buttons.author{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+table.author{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+}

@@ -152,6 +152,9 @@ $color_dark: black;
   .iota .btn-secondary:active {
     background-color: #0a40e0;
   }
+  .iota a.btn-secondary:active {
+    background-color: #0a40e0;
+  }
   .iota .btn-secondary:active:after {
     background-color: #0a40e0;
   }
@@ -191,4 +194,7 @@ $color_dark: black;
   }
   .iota .btn-tetrary:after {
     background-color: #991BE2;
+  }
+  .btn-secondary:not(:disabled):not(.disabled).active, .btn-secondary:not(:disabled):not(.disabled):active, .show > .btn-secondary.dropdown-toggle{
+    background-color: #0a40e0;
   }

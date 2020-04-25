@@ -2,7 +2,7 @@
 namespace App\src\DAO;
 use App\src\model\Article;
 use App\src\model\Category;
-use App\src\model\Assembly;
+use App\src\model\Date;
 use Config\Alexis\Parameter;
 class ArticleDAO extends DAO{
 
@@ -29,11 +29,11 @@ class ArticleDAO extends DAO{
         return $category;
     }
 
-    public function buildAssembly($data){
-        $assembly = new Assembly();
+    public function buildDate($data){
+        $assembly = new Date();
         $assembly->setId($data['id']);
+        $assembly->setTitle($data['title']);
         $assembly->setPlace($data['place']);
-        $assembly->setTime($data['time']);
         $assembly->setContent($data['content']);
         $assembly->setDate($data['date']);
         return $assembly;
@@ -47,12 +47,29 @@ class ArticleDAO extends DAO{
         INNER JOIN category ON article.category_id = category.id
         INNER JOIN user ON article.author_id = user.id
         INNER JOIN image ON image.id = article.image_id
-        ORDER BY date';
+        ORDER BY date DESC';
         $request = $this->createQuery($sql);
         $articles = [];
         foreach ($request as $row){
             $id = $row['id'];
             $articles[$id] = $this->buildArticle($row);
+        }
+        $request->closeCursor();
+        return $articles;
+    }
+    public function getArticlesFromCategory($categoryId){
+        $sql = 'SELECT article.id, article.title, article.content, article.date, user.name, category.category_name, image_name FROM article
+        INNER JOIN category ON article.category_id = category.id
+        INNER JOIN user ON article.author_id = user.id
+        INNER JOIN image ON image.id = article.image_id
+        WHERE article.category_id = ?
+        ORDER BY date DESC';
+        $request = $this->createQuery($sql, [$categoryId]);
+        $articles = [];
+
+        foreach($request as $data){
+            $id = $data['id'];
+            $articles[$id] = $this->buildArticle($data);
         }
         $request->closeCursor();
         return $articles;
@@ -71,6 +88,18 @@ class ArticleDAO extends DAO{
         }
         $request->closeCursor();
         return $articles;
+    }
+    public function getLastExposition(){
+        $sql = 'SELECT article.id, article.title, article.content, article.date, user.name, category.category_name, image_name FROM article
+        INNER JOIN category ON article.category_id = category.id
+        INNER JOIN user ON article.author_id = user.id
+        INNER JOIN image ON image.id = article.image_id
+        WHERE category_id = 1
+        ORDER BY date DESC';
+        $request = $this->createQuery($sql);
+        $data = $request->fetch();
+        $recentExposition = $this->buildArticle($data);
+        return $recentExposition;
     }
     public function getArticle($id){
         $sql = 'SELECT article.id, article.title, article.content, article.date, user.name, category.category_name, image_name FROM article
@@ -168,34 +197,14 @@ class ArticleDAO extends DAO{
         $category = $request->fetch();
         return $category['id'];
     }
-    public function getArticlesFromCategory($categoryId){
-        $sql = 'SELECT article.id, article.title, article.content, article.date, user.name, category.category_name, date FROM article
-        INNER JOIN category ON article.category_id = category.id
-        INNER JOIN user ON article.author_id = user.id
-        WHERE article.category_id = ?';
-        $request = $this->createQuery($sql, [$categoryId]);
-        $articles = [];
-        foreach($request as $data){
-            $id = $data['id'];
-            $articles[$id] = $this->buildArticle($data);
-        }
-        $request->closeCursor();
-        return $articles;
-    }
     public function addCategory($post){
         $sql = 'INSERT INTO category(category_name, category_date) VALUES(?, NOW())';
         $this->createQuery($sql, [$post->get('category')]);
     }
 
     /* ------------------------------ */
-    /* ----- RECUPERATION IMAGE ----- */
+    /* ----------- IMAGE ------------ */
     /* ------------------------------ */
-    public function nameDispo(){
-        $sql = 'SELECT COUNT(id) AS count FROM image';
-        $request = $this->createQuery($sql);
-        $data = $request->fetch();
-        return $data['count'] + 1;
-    }
     public function addImage($image_name){
         $sql = 'INSERT INTO image (image_name) VALUES (?)';
         $this->createQuery($sql, [$image_name]);
@@ -208,42 +217,30 @@ class ArticleDAO extends DAO{
     }
 
     /* ------------------------------ */
-    /* ----- ASSEMBLEE GENERALE ----- */
+    /* ------------ DATE ------------ */
     /* ------------------------------ */
 
-    public function addAssembly($post, $time){
-        $sql = 'DELETE FROM assembly';
+    public function addDate($post, $date){
+        $sql = 'DELETE FROM date';
         $this->createQuery($sql);
-        $sql = 'INSERT INTO assembly(place,time,date,content) VALUES(?, ?, ?, ?)';
+        $sql = 'INSERT INTO date(title, place,date,content) VALUES(?, ?, ?, ?)';
         $this->createQuery($sql, [
+            $post->get('title'),
             $post->get('place'),
-            $time,
-            $post->get('date'),
+            $date,
             $post->get('content')
         ]);
     }
-    public function deleteAssembly(){
-        $sql = 'DELETE FROM assembly';
+    public function deleteDate(){
+        $sql = 'DELETE FROM date';
         $this->createQuery($sql);
     }
-    public function getAssembly(){
-        $sql = "SELECT * FROM assembly";
+    public function getDate(){
+        $sql = "SELECT id, title, content, place, DATE_FORMAT(date, '%d/%m/%Y, %k heures %i minutes') AS date FROM date";
         $request = $this->createQuery($sql);
         $data = $request->fetch();
-        $assembly = $this->buildAssembly($data);
-        return $assembly;
-    }
-    public function getLastExposition(){
-        $sql = 'SELECT article.id, article.title, article.content, article.date, user.name, category.category_name, image_name FROM article
-        INNER JOIN category ON article.category_id = category.id
-        INNER JOIN user ON article.author_id = user.id
-        INNER JOIN image ON image.id = article.image_id
-        WHERE category_id = 1
-        ORDER BY date DESC';
-        $request = $this->createQuery($sql);
-        $data = $request->fetch();
-        $recentExposition = $this->buildArticle($data);
-        return $recentExposition;
+        $date = $this->buildDate($data);
+        return $date;
     }
 }
 

@@ -31,6 +31,8 @@ class Session{
                 return '<p class="alert alert-success center">' . $key . '</p>';
             }else if($type === "error"){
                 return '<p class="alert alert-danger center">' . $key . '</p>';
+            }else if ($type == 'normal'){
+                return '<p class="alert alert-info center">' . $key . '</p>';
             }
         }
     }

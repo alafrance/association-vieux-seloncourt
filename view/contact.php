@@ -2,12 +2,25 @@
     $this->css = 'contact';
     $this->title = 'Contact'
 ?>
-
-<section>
+<section class="information center container">
+    <h1>Notre association</h1>
+    <p>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam tenetur et delectus quidem iure, harum quam tempora voluptatum quas facere doloribus atque. Nisi voluptatem, temporibus iusto incidunt placeat vero architecto.
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam tenetur et delectus quidem iure, harum quam tempora voluptatum quas facere doloribus atque. Nisi voluptatem, temporibus iusto incidunt placeat vero architecto.
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam tenetur et delectus quidem iure, harum quam tempora voluptatum quas facere doloribus atque. Nisi voluptatem, temporibus iusto incidunt placeat vero architecto.
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam tenetur et delectus quidem iure, harum quam tempora voluptatum quas facere doloribus atque. Nisi voluptatem, temporibus iusto incidunt placeat vero architecto.
+    </p>
+    <h2>Notre comité</h2>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda itaque totam cumque, nam aspernatur quos quis omnis harum natus recusandae nihil magni expedita quaerat porro, libero explicabo. Pariatur, reprehenderit consequatur.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda itaque totam cumque, nam aspernatur quos quis omnis harum natus recusandae nihil magni expedita quaerat porro, libero explicabo. Pariatur, reprehenderit consequatur.
+    </p>
+</section>
+<section class="contact">
     <h1 class="center">Contactez nous !</h1>
 <div class="container-fluid contact">
     <div class="row">
-        <div class="info center col-xl-6">
+        <div class="info center col-xl-6 col-lg-6 col-sm-12 col-md-12">
             <address class="flex-center">
                 <p>
                     <i class="fas fa-search-location"></i> Adresse<br>
@@ -15,11 +28,11 @@
                 </p>
                 <p>
                     <i class="fas fa-phone"></i> Télephone<br>
-                    <span>03 81 34 71 87</span>
+                    <span>06 80 54 53 91</span>
                 </p>
                 <p>
                     <i class="fas fa-envelope"></i> Email<br>
-                    <span>francois.hegwein@sfr.fr</span>
+                    <span>bonnot.nicole@bbox.fr</span>
                 </p>
                 <p>
                     <i class="fas fa-clock"></i> Horaire Ouverture<br>
@@ -27,8 +40,8 @@
                 </p>
             </address>
         </div>
-        <div class="form flex-center col-xl-6">
-            <h2>Ou contacte nous directement ici</h2>
+        <div class="form col-xl-6 col-lg-6 col-sm-12 col-md-12 flex-center">
+            <h2>Ou contacter nous directement ici</h2>
             <form action='index.php?route=contactMail' method='post' class="formulaire">
 
                 <div class="input-field">
@@ -48,7 +61,7 @@
 
                 <div class="input-field">
                     <textarea name="message" id="message" class="materialize-textarea"></textarea>
-                    <label for="message">Ton message</label>
+                    <label for="message">Votre message</label>
                 </div>
 
                 <button class="btn waves-effect waves-light" type="submit" name="action">

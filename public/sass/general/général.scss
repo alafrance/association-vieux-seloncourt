@@ -3,11 +3,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Assistant&family=Roboto+Condensed:ital,wght@0,300;1,300&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap');
 @import 'buttons.scss';
+@import './variables.scss';
 
+// Image date: Photo by Sergiu Vălenaș on Unsplash
 h1{
-    font-family: 'Dancing Script', cursive;
+    font-family: 'Fira Sans', sans-serif;
     font-weight: bold;
 }
 h2{
@@ -17,11 +19,38 @@ h2{
 p{
     font-family: 'Assistant', sans-serif;
 }
-
+hr.home{
+        width: 90%;
+        margin: 0 auto;
+        border: none;
+        border-bottom: 1px solid #666;
+        box-shadow: 0px 0px 0px 0px #f9f9f9;
+}
+a:hover{
+    text-decoration: none;
+    color: black;
+}
 body:not(nav){
     margin: 0px;
-    background-color: #f3f4f4;
+    background-color: $fond;
     color: black;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+main{
+    flex: 1 0 auto;
+}
+
+footer{
+    margin-top: 30px;
+}
+.alert.alert-info{
+    position: absolute;
+    z-index: 9999;
+    top: 12px;
+    right: 50%;
+    width: 200px;
 }
 // Classes passe partout
 .center{
@@ -41,6 +70,9 @@ body:not(nav){
 }
 .underline{
     text-decoration: underline;
+}
+.uppercase{
+    text-transform: uppercase;
 }
 footer{
     width: 100%;

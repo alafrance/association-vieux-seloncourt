@@ -1,20 +1,29 @@
 @import 'general/général.scss';
 @import 'general/nav.scss';
+h1, h2, p{
+    color: rgba(0,0,0,.7);
+}
 h1{
     font-size: 5rem;
-    color: #A57548;
+    font-family: 'Assistant', sans-serif;
 
 }
 h2{
     font-family: 'Assistant', sans-serif;
-    font-size: 2.5rem;
-    color: #A57548;
+}
 
+section.information{
+    h2{
+        font-size: 5rem;
+        font-weight: bold;
+    }
 }
 .contact{
-    height: 75vh;
     .row{
         height: 100%;
+        h2{
+            font-size: 2.5rem;
+        }
     }
     .formulaire{
         display: flex;
@@ -30,7 +39,6 @@ h2{
             p{
                 font-size: 1.7rem;
                 font-family: 'Roboto Condensed', sans-serif;
-                color: #A57548;
                 span{
                     font-size: 1.3rem;
                     font-family: 'Assistant', sans-serif;
