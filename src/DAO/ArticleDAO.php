@@ -43,7 +43,7 @@ class ArticleDAO extends DAO{
     /* -------------------------------- */
 
     public function getArticles(){
-        $sql = 'SELECT article.id, article.title, article.content, article.date, user.name, category.category_name, image_name FROM article
+        $sql = 'SELECT article.id, article.title, article.content,  DATE_FORMAT(article.date, "%d/%m/%Y") AS date, user.name, category.category_name, image_name FROM article
         INNER JOIN category ON article.category_id = category.id
         INNER JOIN user ON article.author_id = user.id
         INNER JOIN image ON image.id = article.image_id
@@ -58,7 +58,7 @@ class ArticleDAO extends DAO{
         return $articles;
     }
     public function getArticlesFromCategory($categoryId){
-        $sql = 'SELECT article.id, article.title, article.content, article.date, user.name, category.category_name, image_name FROM article
+        $sql = 'SELECT article.id, article.title, article.content, DATE_FORMAT(article.date, "%d/%m/%Y") AS date, user.name, category.category_name, image_name FROM article
         INNER JOIN category ON article.category_id = category.id
         INNER JOIN user ON article.author_id = user.id
         INNER JOIN image ON image.id = article.image_id
@@ -75,7 +75,7 @@ class ArticleDAO extends DAO{
         return $articles;
     }
     public function getYoursArticles(int $idAuthor){
-        $sql = "SELECT article.id, article.title, article.content, article.date,article.author_id, user.name, category.category_name, image_name FROM article
+        $sql = "SELECT article.id, article.title, article.content, DATE_FORMAT(article.date, '%d/%m/%Y') AS date,article.author_id, user.name, category.category_name, image_name FROM article
         INNER JOIN category ON article.category_id = category.id
         INNER JOIN user ON article.author_id = user.id
         INNER JOIN image ON image.id = article.image_id
@@ -90,7 +90,7 @@ class ArticleDAO extends DAO{
         return $articles;
     }
     public function getLastExposition(){
-        $sql = 'SELECT article.id, article.title, article.content, article.date, user.name, category.category_name, image_name FROM article
+        $sql = 'SELECT article.id, article.title, article.content, DATE_FORMAT(article.date, "%d/%m/%Y") AS date, user.name, category.category_name, image_name FROM article
         INNER JOIN category ON article.category_id = category.id
         INNER JOIN user ON article.author_id = user.id
         INNER JOIN image ON image.id = article.image_id
@@ -102,7 +102,7 @@ class ArticleDAO extends DAO{
         return $recentExposition;
     }
     public function getArticle($id){
-        $sql = 'SELECT article.id, article.title, article.content, article.date, user.name, category.category_name, image_name FROM article
+        $sql = 'SELECT article.id, article.title, article.content, DATE_FORMAT(article.date, "%d/%m/%Y") AS date, user.name, category.category_name, image_name FROM article
         INNER JOIN category ON category.id = article.category_id
         INNER JOIN user ON user.id = article.author_id
         INNER JOIN image ON image.id = article.image_id
@@ -200,6 +200,12 @@ class ArticleDAO extends DAO{
     public function addCategory($post){
         $sql = 'INSERT INTO category(category_name, category_date) VALUES(?, NOW())';
         $this->createQuery($sql, [$post->get('category')]);
+    }
+    public function deleteCategory($categoryId){
+        $sql = "DELETE FROM category WHERE id = ?";
+        $this->createQuery($sql, [$categoryId]);
+        $sql = "DELETE FROM article WHERE category_id = ?";
+        $this->createQuery($sql, [$categoryId]);
     }
 
     /* ------------------------------ */

@@ -113,7 +113,7 @@ class BackController extends Controller{
                     $this->session->set('edit_name', 'Votre nom a été modifié');
                     header('Location: index.php?route=profile');
                 }
-                return $this->view->render('settings/updatePassword', [
+                return $this->view->render('settings/updateName', [
                     'errors' => $errors,
                     'post' => $post
                 ]);
@@ -136,7 +136,7 @@ class BackController extends Controller{
                     $this->session->set('edit_email', 'Votre email a été modifié');
                     header('Location: index.php?route=profile');
                 }
-                return $this->view->render('settings/updatePassword', [
+                return $this->view->render('settings/updateEmail', [
                     'errors' => $errors,
                     'post' => $post
                 ]);
@@ -178,12 +178,12 @@ class BackController extends Controller{
                     $this->session->set('add_article', 'Le nouvel article a bien été ajouté');
                     header('Location: ../public/index.php?route=profile');
                 }
-                return $this->view->render('administration/addArticle', [
+                return $this->view->render('administration/add/addArticle', [
                     'categories' => $categories,
                     'errors' => $errors
                 ], 'article');
             }
-            return $this->view->render('administration/addArticle', [
+            return $this->view->render('administration/add/addArticle', [
                 'categories' => $categories,
             ], 'article');
         }
@@ -203,7 +203,7 @@ class BackController extends Controller{
                 $categories = $this->articleDAO->getCategories();
                 $article = $this->articleDAO->getArticle($articleId);
                 $categoryId = $this->articleDAO->getCategoryId($article->getCategory());
-                return $this->view->render('administration/editArticle', [
+                return $this->view->render('administration/edit/editArticle', [
                     'categories' => $categories,
                     'categoryId' => $categoryId,
                     'article' => $article,
@@ -224,13 +224,13 @@ class BackController extends Controller{
                     $this->session->set('edit_image_article', 'L\'image a bien été modifié');
                     header('Location: ../public/index.php?route=profile');
                 }
-                return $this->view->render('administration/editImageArticle', [
+                return $this->view->render('administration/esit/editImageArticle', [
                     'articleId' => $articleId,
                     'article' => $article,
                     'errors' => $errors
                 ], 'article');
             }
-            return $this->view->render('administration/editImageArticle', [
+            return $this->view->render('administration/edit/editImageArticle', [
                 'articleId' => $articleId,
                 'article' => $article
             ], 'article');
@@ -247,7 +247,7 @@ class BackController extends Controller{
                 }
                 header('Location: index.php?route=profile');
             }
-            return $this->view->render('administration/deleteArticle', ['idArticle' => $idArticle], 'article');
+            return $this->view->render('administration/delete/deleteArticle', ['idArticle' => $idArticle], 'article');
         }
     }
     /* ------------------------- */
@@ -290,7 +290,7 @@ class BackController extends Controller{
         }
     }
     /* ------------------------- */
-    /* -------- EXPOSITION  -------- */
+    /* ------ EXPOSITION  ------ */
     /* ------------------------- */
     public function addExposition(Parameter $post){
         if ($this->checkAuthor() || $this->checkAdmin()){
@@ -305,13 +305,11 @@ class BackController extends Controller{
                     $this->articleDAO->addImage($image_name);
                     $this->articleDAO->addExposition($post, $this->session->get('id'), $this->articleDAO->lastIdImage());
                     $this->session->set('add_article', 'Le nouvel article a bien été ajouté');
-                    header('Location: ../public/index.php?route=profile');
+                    header('Location: index.php?route=profile');
                 }
-                return $this->view->render('administration/addArticle', [
-                    'errors' => $errors
-                ], 'article');
+                return $this->view->render('administration/add/addExposition', ['errors' => $errors], 'article');
             }
-            return $this->view->render('administration/addExposition');
+            return $this->view->render('administration/add/addExposition', [], 'article');
         }
     }
     /* ------------------------- */
@@ -339,7 +337,7 @@ class BackController extends Controller{
                 ], 'article');
             }
 
-            return $this->view->render('administration/addDate', [], 'article');
+            return $this->view->render('administration/add/addDate', [], 'article');
         }
     }
     public function deleteDate(Parameter $post){
@@ -351,21 +349,41 @@ class BackController extends Controller{
                 }
                 header('Location: index.php?route=profile');
             }
-            return $this->view->render('administration/deleteDate');
+            return $this->view->render('administration/delete/deleteDate');
         }
     }
     /* ------------------------- */
     /* -------- DROITS  -------- */
     /* ------------------------- */
-    public function changeRight(Parameter $post, $userId){
+    public function changeAuthor(Parameter $post, $userId){
         if ($this->checkAdmin()){
-            if ($post->get('submit') && $post->get('right')){
-                $this->userDAO->changeRight($post->get('right'), $userId);
+            if ($post->get('changeRight') == 'no'){
+                header('Location: index.php?route=profile');
+            }
+            else if ($post->get('submit') && $post->get('changeRight') == 'yes'){
+                $this->userDAO->changeAuthor($userId);
                 $this->session->set('change_right', 'Les droits ont été modifiés.');
                 header('Location: index.php?route=profile');
             }
             $user = $this->userDAO->getUser($userId);
-            return $this->view->render('administration/changeRight', [
+            return $this->view->render('administration/change/changeAuthor', [
+                'user' => $user,
+                'userId' => $userId
+            ]);
+        }
+    }
+    public function changeUser(Parameter $post, $userId){
+        if ($this->checkAdmin()){
+            if ($post->get('changeRight') == 'no'){
+                header('Location: index.php?route=profile');
+            }
+            else if ($post->get('submit') && $post->get('changeRight') == 'yes'){
+                $this->userDAO->changeUser($userId);
+                $this->session->set('change_right', 'Les droits ont été modifiés.');
+                header('Location: index.php?route=profile');
+            }
+            $user = $this->userDAO->getUser($userId);
+            return $this->view->render('administration/change/changeUser', [
                 'user' => $user,
                 'userId' => $userId
             ]);
@@ -377,10 +395,25 @@ class BackController extends Controller{
     public function addCategory(Parameter $post){
         if ($post->get('submit') && $post->get('category')){
             $this->articleDAO->addCategory($post);
-            $this->session->set('add_category', 'La catégorie' . $post->get('category') . 'a été ajouté');
+            $this->session->set('add_category', 'La catégorie ' . $post->get('category') . ' a été ajouté');
         }
         header('Location: index.php?route=profile');
     }
-
-    
+    public function deleteCategory(Parameter $post, $categoryId){
+        if($post->get('deleteCategory') == 'no'){
+            header('Location: index.php?route=profile');
+        }
+        else if ($post->get("submit") && $post->get('deleteCategory') == 'yes'){
+            $articles = $this->articleDAO->getArticlesFromCategory($categoryId);
+            foreach($articles as $article){
+                unlink('img/articles/' . $article->getImage());
+            }
+            $this->articleDAO->deleteCategory($categoryId);
+            $this->session->set('delete_category', 'La catégorie a été supprimé et les articles correspondants');
+            header('Location: index.php?route=profile');
+        }
+        return $this->view->render('administration/delete/deleteCategory', [
+            'categoryId' => $categoryId
+        ]);
+    }
 }

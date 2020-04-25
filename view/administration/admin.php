@@ -70,7 +70,7 @@
                 <?php }else{ ?>
 
                 <p class="col-8"><?= $category->getName(); ?></p>
-                <p class="col-4"><a href="#" class="btn btn-tertiary supCategory">Supprimer</a></p>
+                <p class="col-4"><a href="index.php?route=deleteCategory&categoryId=<?= $category->getId();?>" class="btn btn-tertiary supCategory">Supprimer</a></p>
                 <?php }
             } ?>
         </div>
@@ -78,7 +78,7 @@
             <div class="col-8">
                 <input type="text" name="category" id="category" class="category">
             </div>
-            <button class="btn btn-secondary col-4" type="submit" name="action">Ajouter</button>
+            <button class="btn btn-secondary col-4" type="submit" name="submit" value="Ajouter">Ajouter</button>
         </form>
 
 </section>
@@ -159,10 +159,14 @@
                     }
                 ?></td>
                 <?php
-                if ($user->getRole() != 'admin' && $user->getRole() != 'author' && $user->getEmail() != $this->session->get('email') ) {
+                if ($user->getRole() != 'admin') {
                 ?>
                     <td class="action iota">
-                        <a href="index.php?route=right&userId=<?= $user->getId();?>" class="btn btn-secondary">Changer ses droits</a>
+                        <?php if($user->getRole() == 'subscriber'){?>
+                            <a href="index.php?route=rightAuthor&userId=<?= $user->getId();?>" class="btn btn-secondary">Changer en auteur</a>
+                        <?php }else{?>
+                            <a href="index.php?route=rightUser&userId=<?= $user->getId();?>" class="btn btn-secondary">Changer en utilisateur</a>
+                        <?php }?>
                         <a href="index.php?route=deleteUser&userId=<?= $user->getId();?>" class="btn btn-tertiary">Supprimer l'utilisateur</a>
                     </td>
             <?php

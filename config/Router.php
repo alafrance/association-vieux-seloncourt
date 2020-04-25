@@ -92,6 +92,9 @@ class Router{
                     case 'addCategory':
                         $this->backController->addCategory($this->request->getPost());
                         break;
+                    case 'deleteCategory':
+                        $this->backController->deleteCategory($this->request->getPost(), $this->request->getGet()->get('categoryId'));
+                        break;
                     case 'flagComment':
                         $this->frontController->flagComment($this->request->getGet()->get('commentId'));
                         break;
@@ -101,8 +104,11 @@ class Router{
                     case 'deleteComment':
                         $this->backController->deleteComment($this->request->getGet()->get('commentId'));
                         break;
-                    case 'right':
-                        $this->backController->changeRight($this->request->getPost(), $this->request->getGet()->get('userId'));
+                    case 'rightAuthor':
+                        $this->backController->changeAuthor($this->request->getPost(), $this->request->getGet()->get('userId'));
+                        break;
+                    case 'rightUser':
+                        $this->backController->changeUser($this->request->getPost(), $this->request->getGet()->get('userId'));
                         break;
                     default:
                         $this->errorController->errorNotFound();

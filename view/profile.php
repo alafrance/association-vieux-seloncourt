@@ -15,13 +15,15 @@ if ($role == 'admin'){
 <section class="allsize profileInformation">
     <?= $this->session->showAlert('modify', 'success'); ?>
     <?= $this->session->showAlert('add_article', 'success'); ?>
+    <?= $this->session->showAlert('add_category', 'success'); ?>
     <?= $this->session->showAlert('add_date', 'success'); ?>
     <?= $this->session->showAlert('edit_article', 'success'); ?>
     <?= $this->session->showAlert('edit_name', 'success'); ?>
     <?= $this->session->showAlert('edit_email', 'success'); ?>
     <?= $this->session->showAlert('edit_password', 'success'); ?>
-    <?= $this->session->showAlert('delete_article', 'success'); ?>
-    <?= $this->session->showAlert('delete_date', 'success'); ?>
+    <?= $this->session->showAlert('delete_article', 'error'); ?>
+    <?= $this->session->showAlert('delete_date', 'error'); ?>
+    <?= $this->session->showAlert('delete_category', 'error'); ?>
     <?= $this->session->showAlert('change_right', 'success'); ?>
     <?= $this->session->showAlert('edit_image_article', 'success'); ?>
     <h1 class="title">Bienvenue !</h1>

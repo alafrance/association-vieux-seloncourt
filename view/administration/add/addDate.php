@@ -4,7 +4,7 @@ $this->css = "admin";
 ?>
 <section>
     <h1 class="center">Vous pouvez ici ajouter une date à la page de l'accueil :</h1>    
-    <form method="post" action="../public/index.php?route=addDate" class="container" enctype="multipart/form-data">
+    <form method="post" action="../public/index.php?route=addDate" class="container flex-center" enctype="multipart/form-data">
             <div class="input-field">
                 <input type="text" name="title" id="title" class="validate" value="<?= isset($post) ? htmlspecialchars($post->get('title')): ''; ?>">
                 <label for="title">Titre de la date </label>

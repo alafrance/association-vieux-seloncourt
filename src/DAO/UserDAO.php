@@ -132,9 +132,13 @@ class UserDAO extends DAO{
             'id' => $id
         ]);
     }
-    public function changeRight($rightId, $userId){
-        $sql = 'UPDATE user SET role_id = ? WHERE id = ?';
-        $this->createQuery($sql, [intval($rightId), intval($userId)]);
+    public function changeAuthor($userId){
+        $sql = 'UPDATE user SET role_id = 3 WHERE id = ?';
+        $this->createQuery($sql, [intval($userId)]);
+    }
+    public function changeUser($userId){
+        $sql = 'UPDATE user SET role_id = 2 WHERE id = ?';
+        $this->createQuery($sql, [intval($userId)]);
     }
 }
 

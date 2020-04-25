@@ -27,7 +27,12 @@ class UserValidation extends Validation {
             $error = $this->checkEmail($name, $value);
             $this->addError($name, $error);
         }
-        else if ($name === 'password' || $name = 'newPassword') {
+
+        else if ($name === 'password' ) {
+            $error = $this->checkPassword($name, $value);
+            $this->addError($name, $error);
+        }
+        else if ($name === 'newPassword' ) {
             $error = $this->checkPassword($name, $value);
             $this->addError($name, $error);
         }
@@ -58,7 +63,7 @@ class UserValidation extends Validation {
             return $this->constraint->notBlank('email', $value);
         }
         if($this->constraint->maxLength($name, $value, 255)) {
-            return $this->constraint->maxLength('mot de passe', $value, 255);
+            return $this->constraint->maxLength('email', $value, 255);
         }
         if ($this->constraint->regexEmail($value)){
             return $this->constraint->regexEmail($value);
