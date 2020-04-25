@@ -16,16 +16,14 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 
     <!-- Materialize -->
-    <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="../config/materialize/sass/materialize.css">
-    <!-- Compiled and minified JavaScript -->
     <script src="../config/materialize/js/bin/materialize.js"></script>
     <script src="js/select.js"></script>
 
     <!-- Date Picker -->
     <link rel="stylesheet" type="text/css" href="../config/datepicker/src/DateTimePicker.css" />
     <script type="text/javascript" src="../config/datepicker/src/DateTimePicker.js"></script>
-    <script src="../config/datepicker/dist/i18n/DateTimePicker-i18n.js"></script>
+    <script src="../config/datepicker/dist/i18n/DateTimePicker-i18n-fr.js"></script>
     <script src="../public/js/date.js"></script>
 
     <!-- Style -->
