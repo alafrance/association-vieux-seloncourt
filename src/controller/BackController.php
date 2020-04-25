@@ -79,7 +79,7 @@ class BackController extends Controller{
         }
     }
     public function updatePassword(Parameter $post){
-        if ($this->checkAdmin()){
+        if ($this->checkLoggedIn()){
             if ($post->get('submit')){
                 $errors = $this->validation->validate($post, 'User');
                 if ($post->get('newPassword') != $post->get('newPassword2')){
@@ -104,7 +104,7 @@ class BackController extends Controller{
         }
     }
     public function updateName(Parameter $post){
-        if ($this->checkAdmin()){
+        if ($this->checkLoggedIn()){
             if ($post->get('submit')){
                 $errors = $this->validation->validate($post, 'User');
                 if (!($errors)){
@@ -124,7 +124,7 @@ class BackController extends Controller{
         }
     }
     public function updateEmail(Parameter $post){
-        if ($this->checkAdmin()){
+        if ($this->checkLoggedIn()){
             if ($post->get('submit')){
                 $errors = $this->validation->validate($post, 'User');
                 if (!$this->userDAO->isExistEmail($post->get('email'))){
@@ -147,17 +147,19 @@ class BackController extends Controller{
         }
     }
     public function deleteAccount(Parameter $post){
-        if ($post->get('submit')){
-            if ($post->get('deleteAccount') === 'yes'){
-                $this->userDAO->deleteAccount($this->session->get('id'));
-                $this->logout();
-            }else{
-                header('Location: index.php?route=profile');
+        if ($this->checkLoggedIn()){
+            if ($post->get('submit')){
+                if ($post->get('deleteAccount') === 'yes'){
+                    $this->userDAO->deleteAccount($this->session->get('id'));
+                    $this->logout();
+                }else{
+                    header('Location: index.php?route=profile');
+                }
             }
+            return $this->view->render('settings/update', [
+                'param' => 'deleteAccount'
+            ]);
         }
-        return $this->view->render('settings/update', [
-            'param' => 'deleteAccount'
-        ]);
     }
      /* ------------------------- */
     /* -------- ARTICLES  -------- */
@@ -190,26 +192,24 @@ class BackController extends Controller{
     }
 
     public function editArticle(Parameter $post, $articleId){
-        if ($this->checkLoggedIn()){
-            if ($this->checkAuthor() || $this->checkAdmin()){
-                if ($post->get('submit')){
-                    $errors = $this->validation->validate($post, 'Article');
-                    if (!$errors){
-                        $this->articleDAO->editArticle($post, $articleId);
-                        $this->session->set('edit_article', 'L\'article a bien été mise à jour');
-                        header('Location: ../public/index.php?route=profile');
-                    }
+        if ($this->checkAuthor() || $this->checkAdmin()){
+            if ($post->get('submit')){
+                $errors = $this->validation->validate($post, 'Article');
+                if (!$errors){
+                    $this->articleDAO->editArticle($post, $articleId);
+                    $this->session->set('edit_article', 'L\'article a bien été mise à jour');
+                    header('Location: ../public/index.php?route=profile');
                 }
-                $categories = $this->articleDAO->getCategories();
-                $article = $this->articleDAO->getArticle($articleId);
-                $categoryId = $this->articleDAO->getCategoryId($article->getCategory());
-                return $this->view->render('administration/edit/editArticle', [
-                    'categories' => $categories,
-                    'categoryId' => $categoryId,
-                    'article' => $article,
-                    'id' => $articleId
-                ], 'article');
             }
+            $categories = $this->articleDAO->getCategories();
+            $article = $this->articleDAO->getArticle($articleId);
+            $categoryId = $this->articleDAO->getCategoryId($article->getCategory());
+            return $this->view->render('administration/edit/editArticle', [
+                'categories' => $categories,
+                'categoryId' => $categoryId,
+                'article' => $article,
+                'id' => $articleId
+            ], 'article');
         }
     }
     public function editImageArticle(Parameter $post, $articleId){
@@ -265,7 +265,6 @@ class BackController extends Controller{
             $this->commentDAO->deleteComment($commentId);
             $this->session->set('delete_article', 'Le commentaire a été supprimé');
             header('Location: index.php?route=profile');
-
         }
     }
     public function addComment($post, $articleId){
@@ -393,27 +392,31 @@ class BackController extends Controller{
     /* -------- CATEGORY  -------- */
     /* ------------------------- */
     public function addCategory(Parameter $post){
-        if ($post->get('submit') && $post->get('category')){
-            $this->articleDAO->addCategory($post);
-            $this->session->set('add_category', 'La catégorie ' . $post->get('category') . ' a été ajouté');
+        if ($this->checkAdmin()){
+            if ($post->get('submit') && $post->get('category')){
+                $this->articleDAO->addCategory($post);
+                $this->session->set('add_category', 'La catégorie ' . $post->get('category') . ' a été ajouté');
+            }
+            header('Location: index.php?route=profile');
         }
-        header('Location: index.php?route=profile');
     }
     public function deleteCategory(Parameter $post, $categoryId){
-        if($post->get('deleteCategory') == 'no'){
-            header('Location: index.php?route=profile');
-        }
-        else if ($post->get("submit") && $post->get('deleteCategory') == 'yes'){
-            $articles = $this->articleDAO->getArticlesFromCategory($categoryId);
-            foreach($articles as $article){
-                unlink('img/articles/' . $article->getImage());
+        if ($this->checkAdmin()){
+            if($post->get('deleteCategory') == 'no'){
+                header('Location: index.php?route=profile');
             }
-            $this->articleDAO->deleteCategory($categoryId);
-            $this->session->set('delete_category', 'La catégorie a été supprimé et les articles correspondants');
-            header('Location: index.php?route=profile');
+            else if ($post->get("submit") && $post->get('deleteCategory') == 'yes'){
+                $articles = $this->articleDAO->getArticlesFromCategory($categoryId);
+                foreach($articles as $article){
+                    unlink('img/articles/' . $article->getImage());
+                }
+                $this->articleDAO->deleteCategory($categoryId);
+                $this->session->set('delete_category', 'La catégorie a été supprimé et les articles correspondants');
+                header('Location: index.php?route=profile');
+            }
+            return $this->view->render('administration/delete/deleteCategory', [
+                'categoryId' => $categoryId
+            ]);
         }
-        return $this->view->render('administration/delete/deleteCategory', [
-            'categoryId' => $categoryId
-        ]);
     }
 }

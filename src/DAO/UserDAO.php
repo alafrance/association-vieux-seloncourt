@@ -14,12 +14,6 @@ class UserDAO extends DAO{
         $user->setDateCreated($row['dateCreated']);
         return $user;
     }
-    private function buildRight($row){
-        $right = new Right();
-        $right->setId($row['id']);
-        $right->setName($row['role_name']);
-        return $right;
-    }
     public function getUsers(){
        $sql = 'SELECT user.id, user.name, user.email, user.dateCreated, role.role_name FROM user INNER JOIN role ON user.role_id = role.id ORDER BY user.id DESC';
         $result = $this->createQuery($sql);
@@ -41,7 +35,7 @@ class UserDAO extends DAO{
      }
     public function register(Parameter $post){
         $sql = 'INSERT INTO user (name, email, password, role_id, dateCreated) VALUES(?, ?, ?, ?, NOW()) ';
-        $this->createQuery($sql, [$post->get('name'), $post->get('email'), password_hash($post->get('password'), PASSWORD_DEFAULT), 2]);
+        $this->createQuery($sql, [ htmlspecialchars($post->get('name')),  htmlspecialchars($post->get('email')), password_hash($post->get('password'), PASSWORD_DEFAULT), 2]);
     }
     public function checkEmail(Parameter $post){
         $sql = 'SELECT COUNT(email) FROM user WHERE email= ? ';
@@ -121,14 +115,14 @@ class UserDAO extends DAO{
     public function modifyName($post, $id){
         $sql = "UPDATE user SET name = :name WHERE id = :id ";
         $this->createQuery($sql, [
-            'name' => $post->get('name'),
+            'name' => htmlspecialchars($post->get('name')),
             'id' => $id
         ]);
     }
     public function modifyEmail($post, $id){
         $sql = "UPDATE user SET email = :email WHERE id = :id ";
         $this->createQuery($sql, [
-            'email' => $post->get('email'),
+            'email' => htmlspecialchars($post->get('email')),
             'id' => $id
         ]);
     }

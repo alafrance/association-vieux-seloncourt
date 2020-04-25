@@ -43,7 +43,7 @@ class CommentDAO extends DAO{
 
     public function addComment($post, $articleId, $name){
         $sql = 'INSERT INTO comment(name, content, date, flag, article_id) VALUES(?,?,NOW(), ?, ?)';
-        $this->createQuery($sql, [$name, $post->get('content'), 0,  $articleId]);
+        $this->createQuery($sql, [$name, htmlspecialchars($post->get('content')), 0,  $articleId]);
     }
     public function deleteComment($commentId){
         $sql = 'DELETE FROM comment WHERE id= ?';

@@ -126,7 +126,7 @@ class ArticleDAO extends DAO{
             intval($post->get('category')),
             intval($idAuthor),
             intval($idImage)
-            ]);
+        ]);
     }
     public function addExposition(Parameter $post, $idAuthor, $idImage)
     {
