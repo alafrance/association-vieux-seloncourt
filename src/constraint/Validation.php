@@ -28,5 +28,10 @@ class Validation {
             $errors = $CommentValidation->check($data);
             return $errors;
         }
+        else if($name === 'Mail'){
+            $mailValidation = new MailValidation();
+            $errors = $mailValidation->check($data);
+            return $errors;
+        }
     }
 }

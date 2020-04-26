@@ -24,12 +24,13 @@ if ($role == 'admin'){
     <?= $this->session->showAlert('delete_article', 'error'); ?>
     <?= $this->session->showAlert('delete_date', 'error'); ?>
     <?= $this->session->showAlert('delete_category', 'error'); ?>
+    <?= $this->session->showAlert('delete_user', 'error'); ?>
     <?= $this->session->showAlert('change_right', 'success'); ?>
     <?= $this->session->showAlert('edit_image_article', 'success'); ?>
-    <h1 class="title">Bienvenue !</h1>
+    <h1 class="title">Bienvenue!</h1>
     <div class="informationsWithText">
-        <p>Vous pouvez voir ici vos informations :</p>
-        <ul class="informations">
+        <p>Vous pouvez voir ici vos informations:</p>
+        <ul class="informations flex-center">
             <li><i class="fas fa-user"></i>Nom : <?= $this->session->get("name") ?></li>
             <li><i class="fas fa-envelope"></i>Email : <?= $this->session->get("email") ?></li>
             <li><i class="fas fa-key"></i>Mot de passe : ********</li>

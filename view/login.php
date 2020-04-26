@@ -1,22 +1,31 @@
 <?php
-$this->css = 'login';
+$this->css = 'littlePage';
 $this->title = 'Page de connexion';
 ?>
 
 <section class="login flex-center">
     <?= $this->session->showAlert('error_login', 'error'); ?>
     <?= $this->session->showAlert('need_login', 'error'); ?>
-    <h1 class="center">Connecter vous :</h1>
-    <form action="index.php?route=login" method="post">
+    <hr class="sep category" data-symbol="Connexion">
+    <div class="all container-fluid">
+        <h1 class="center">Connecter vous :</h1>
+        <form action="index.php?route=login" method="post">
+            <div class="input-field">
+                <input type="email" name="email" id="email" class="validate" value="<?= isset($post) ? htmlspecialchars($post->get('email')): ''; ?>">
+                <label for="email">Ton addresse mail</label>
+            </div>
 
-        <label for="email">Ton addresse mail</label>
-        <input type="email" name="email" id="email">
-
-        <label for="password">Ton mot de passe</label>
-        <input type="password" name="password" id="password">
-
-        <input type="submit" value="Se connecter" name="submit">
-    </form>
-    <h2>Vous n'avez pas de compte ?</h2>
-    <a href="index.php?route=register">Créer un compte</a>
+            <div class="input-field">
+                <input type="password" name="password" id="password" class="validate">
+                <label for="password">Ton mot de passe</label>
+            </div>
+            <div class="iota center">
+                <button class="btn btn-secondary" type="submit" name="submit" value="add">Se connecter</button>
+            </div>
+        </form>
+        <div class="iota center">
+            <h2>Vous n'avez pas de compte ?</h2>
+            <p><a href="index.php?route=register" class="btn btn-primary">S'inscrire</a></p>
+        </div>
+    </div>
 </section>

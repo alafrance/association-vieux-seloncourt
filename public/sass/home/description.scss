@@ -45,5 +45,22 @@ section.description{
     }
     p{
         width: 80%;
+        font-size: 1.5em;
+    }
+
+}
+@media screen and (min-width:1209px){
+    section.description{
+        div a.first{
+            margin-right: 7em;
+        }
+    }
+}
+
+@media screen and (max-width:1208px){
+    section.description{
+        div a.first{
+            margin-bottom: 3em;
+        }
     }
 }

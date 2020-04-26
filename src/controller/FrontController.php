@@ -5,7 +5,6 @@ use App\src\DAO\ArticleDAO;
 use App\src\DAO\CommentDAO;
 use Config\Alexis\View;
 use Config\Alexis\Parameter;
-
 class FrontController extends Controller{
     public function home(){
         $articles = $this->articleDAO->getArticles();
@@ -18,7 +17,15 @@ class FrontController extends Controller{
             'exposition' => $exposition
         ], "home");
     }
-    public function contact(){
+    public function contact(Parameter $post){
+        if ($post->get("submit")){
+            $errors = $this->validation->validate($post, 'Mail');
+            if (!$errors){
+                mail("alexislafrances-laf@outlook.fr", "Mail de" . $post->get('firstName') . ' ' . $post->get('lastName'), $post->get("content") . "\n" . 'Mail :' . $post->get("email"));
+                $this->session->set('send_mail', 'Votre message a bien été envoyé');
+            }
+         return $this->view->render('contact', ['errors' => $errors]);
+        }
         return $this->view->render('contact');
     }
     public function articles(){

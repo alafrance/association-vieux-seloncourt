@@ -5,7 +5,7 @@ $this->css = "administration";
 <section>
     <form method="post" action="../public/index.php?route=addArticle" class="center" enctype="multipart/form-data">
 
-        <div class="titleAndChapter">
+        <div class="titleAndChapter container-fluid">
             <div class="input-field">
                 <input type="text" name="title" id="title" class="validate" value="<?= isset($post) ? htmlspecialchars($post->get('title')): ''; ?>">
                 <label for="title">Titre de l'Article </label>

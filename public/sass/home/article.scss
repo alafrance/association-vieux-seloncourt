@@ -9,7 +9,6 @@ section.articles{
             width: 100%;
         }
         h2{
-            font-family: 'Dancing Script', cursive;
             font-size: 2.3rem;
             margin-top: 30px;
             text-align: center;
@@ -23,7 +22,6 @@ section.articles{
         }
         img{
             position: relative;
-            height: 700px;
         }
         div{
             width: 700px;
@@ -46,6 +44,13 @@ section.articles{
             text-align: center;
             font-size: 1.5rem;
             color: black;
+        }
+    }
+}
+@media screen and (min-width:1200px){
+    section.articles{
+        img{
+            height: 700px;
         }
     }
 }

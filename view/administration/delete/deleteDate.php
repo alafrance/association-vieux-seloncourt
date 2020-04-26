@@ -29,6 +29,4 @@ $this->css = "littlePage";
             <a href="index.php?route=profile" class="btn btn-primary">Retourner à la page de profil</a>
         </div>
     </div>
-
-
 </section>

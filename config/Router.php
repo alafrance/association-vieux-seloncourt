@@ -24,7 +24,7 @@ class Router{
             if ($route != NULL){
                 switch($route){
                     case 'contact':
-                        $this->frontController->contact();
+                        $this->frontController->contact($this->request->getPost());
                         break;
                     case 'login':
                         $this->frontController->login($this->request->getPost());

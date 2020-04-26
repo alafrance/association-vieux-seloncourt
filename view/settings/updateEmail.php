@@ -8,7 +8,7 @@ $this->title = "Changer paramètre";
         <p class="center oldEmail">Votre ancien e-mail : <?= $_SESSION['email']?></p>
         <form action="index.php?route=updateEmail" method="post" class="row">
             <div class="input-field">
-                <input type="text" name="email" id="email" class="validate">
+                <input type="email" name="email" id="email" class="validate">
                 <label for="email">Nouveau mail :</label>
                 <?= isset($errors['email']) ? $errors['email'] : '' ?>
                 <?= isset($errors['alreadyExist']) ? $errors['alreadyExist'] : '' ?>

@@ -12,3 +12,11 @@ section.date{
         font-size: 3rem;
     }
 }
+@media screen and (max-width:576px){
+    section.date{
+        img{
+            width: 100%;
+            height: auto;
+        }
+    }
+}

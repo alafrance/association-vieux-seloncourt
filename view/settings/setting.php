@@ -18,8 +18,10 @@ $this->title = "Paramètre";
         <ul class="iota">
             <li><a href="index.php?route=profile" class="btn btn-secondary">Retourner sur la page de profil</a></li>
         </ul>
-        <ul class="iota">
-            <li><a href="index.php?route=deleteAccount" class="btn btn-tertiary">Supprimer son compte</a></li>
-        </ul>
+        <?php if ($_SESSION['role'] != 'admin'){?>
+            <ul class="iota">
+                <li><a href="index.php?route=deleteAccount" class="btn btn-tertiary">Supprimer son compte</a></li>
+            </ul>
+        <?php }?>
     </div>
 </section>

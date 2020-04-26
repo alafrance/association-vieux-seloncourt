@@ -3,17 +3,24 @@
     $this->title = 'Contact'
 ?>
 <section class="information center container">
+    <?= $this->session->showAlert('send_mail', 'success'); ?>
     <h1>Notre association</h1>
-    <p>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam tenetur et delectus quidem iure, harum quam tempora voluptatum quas facere doloribus atque. Nisi voluptatem, temporibus iusto incidunt placeat vero architecto.
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam tenetur et delectus quidem iure, harum quam tempora voluptatum quas facere doloribus atque. Nisi voluptatem, temporibus iusto incidunt placeat vero architecto.
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam tenetur et delectus quidem iure, harum quam tempora voluptatum quas facere doloribus atque. Nisi voluptatem, temporibus iusto incidunt placeat vero architecto.
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam tenetur et delectus quidem iure, harum quam tempora voluptatum quas facere doloribus atque. Nisi voluptatem, temporibus iusto incidunt placeat vero architecto.
+    <p class="justify">
+        La création de  l’association de sauvegarde du patrimoine historique, culturel et cultuel, « les Amis du vieux Seloncourt » en 1984 est liée à l’histoire de la vieille église de la commune.<br>
+        A cette époque, l’édifice, dont les parties anciennes datent du XIIe siècle, nécessitait des travaux importants, notamment la mise hors d’eau de la toiture et du clocher.<br>
+        Cette restauration ne pouvant être assurée par la paroisse, propriétaire de l'édifice, quelques bénévoles se rassembleèrent pour créer l’association et assurer la renovation de la vieille église de 1985 à 1992.<br><br>
+        10 ans après,  l’association ouvre l’espace « Charles Kieffer » consacré à la sauvegarde des traditions et de l’horlogerie, en hommage à un des membres fondateurs de l’association?<br>
+        Outre la rénovation de la vieille église, l’association a entrepris de nombreuses campagnes de sauvegarde.<br>
+        Citons par exemple la restauration du cimetière des Chevaliers de Cléric (1988) et celle de la vieille fontaine (1990).<br><br>
+        En 1991, les Amis du vieux Seloncourt ont reconstitué une copie du tramway de la vallée d’Hérimoncourt (TVH) qui circula dans de nombreuses manifestations notamment pour commémorer le dernier voyage de ce moyen de transport (1932).<br>
+        Pour signaler les lieux historiques de Seloncourt, l’association appose depuis 1993 de nombreuses plaques : vieille église, église Saint-Laurent, chapelle de tolérance, fonderie Cuvier, centre culturel de la Stauberie, ancienne poste, station du TVH… En 2012, elle a participé à la restauration des orgues du temple de Seloncourt.<br>
     </p>
     <h2>Notre comité</h2>
-    <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda itaque totam cumque, nam aspernatur quos quis omnis harum natus recusandae nihil magni expedita quaerat porro, libero explicabo. Pariatur, reprehenderit consequatur.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda itaque totam cumque, nam aspernatur quos quis omnis harum natus recusandae nihil magni expedita quaerat porro, libero explicabo. Pariatur, reprehenderit consequatur.
+    <p class="comite">
+    <span>Le comité est composé de 31 membres</span><br>
+    <span class="underline">Président :</span> Pierre RERAT<br>
+    <span class="underline">Secrétaire :</span>  Nicole BONNOT<br>
+    <span class="underline">Trésorières :</span> Michelle WALZER et Françoise NATHAN
     </p>
 </section>
 <section class="contact">
@@ -41,30 +48,38 @@
             </address>
         </div>
         <div class="form col-xl-6 col-lg-6 col-sm-12 col-md-12 flex-center">
-            <h2>Ou contacter nous directement ici</h2>
-            <form action='index.php?route=contactMail' method='post' class="formulaire">
+            <h2 class="center">Ou contacter nous directement ici</h2>
+            <form action='index.php?route=contact' method='post' class="formulaire">
 
                 <div class="input-field">
-                    <input type="text" name="prenom" id="prenom" class="validate">
-                    <label for="prenom">Votre prénom</label>
+                    <input type="text" name="firstName" id="firstName" class="validate">
+                    <label for="prefirstNamenom">Votre prénom</label>
+                    <?= isset($errors['firstName']) ? $errors['firstName'] : ''; ?>
+
                 </div>
 
                 <div class="input-field">
-                    <input type="text" name="nom" id="nom">
-                    <label for="nom">Votre nom</label>
+                    <input type="text" name="lastName" id="lastName">
+                    <label for="lastName">Votre nom</label>
+                    <?= isset($errors['lastName']) ? $errors['lastName'] : ''; ?>
+
                 </div>
 
                 <div class="input-field">
                     <input type="email" name="email" id="email">
                     <label for="email">Votre mail</label>
+                    <?= isset($errors['email']) ? $errors['email'] : ''; ?>
+
                 </div>
 
                 <div class="input-field">
-                    <textarea name="message" id="message" class="materialize-textarea"></textarea>
-                    <label for="message">Votre message</label>
+                    <textarea name="content" id="content" class="materialize-textarea"></textarea>
+                    <label for="content">Votre message</label>
+                    <?= isset($errors['content']) ? $errors['content'] : ''; ?>
+
                 </div>
 
-                <button class="btn waves-effect waves-light" type="submit" name="action">
+                <button class="btn waves-effect waves-light" type="submit" name="submit" value="send">
                     Envoyer <i class="fas fa-paper-plane"></i></i>
                 </button>
             </form>

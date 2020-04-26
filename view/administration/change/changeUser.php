@@ -17,13 +17,13 @@
         <form action="index.php?route=rightUser&userId=<?=$userId?>" method="post">
             <p>
                 <label>
-                    <input name="deleteAccount" type="radio" value="no"/>
+                    <input name="changeRight" type="radio" value="no"/>
                     <span>NON, Je ne veux pas passer <?= $user->getName()?> en tant qu'utilisateur</span>
                 </label>
             </p>
             <p>
                 <label>
-                    <input name="deleteAccount" type="radio" value="yes"/>
+                    <input name="changeRight" type="radio" value="yes"/>
                     <span>Oui, je suis CERTAIN et je veux que <?= $user->getName()?> devienne utilisateur</span>
                 </label>
             </p>

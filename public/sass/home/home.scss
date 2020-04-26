@@ -6,17 +6,28 @@
 @import './description.scss';
 @import './article.scss';
 @import './exposition.scss';
-@import './contact.scss';
 @import './date.scss';
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@500&display=swap');
 // GENERAL
-
-
+@media screen and (min-width:1200px){
+    h1{
+        font-size: 6rem;
+    }
+    h1, h2{
+        text-decoration: underline;
+    }
+}
+@media screen and (max-width:576px){
+    h1{
+        font-size: 4rem;
+    }
+}
 h1{
-    font-size: 6rem;
+    font-family: 'Girassol', cursive;
     margin-bottom: 100px;
 }
 p{
-    font-family: 'Baloo Tammudu 2', cursive;
+    font-family: 'Archivo', sans-serif;
 }
 p.explication{
     font-size: 2rem;
@@ -29,3 +40,13 @@ p.explication{
     font-size: 1.6rem;
 }
 
+@media screen and (max-width: 1199px){
+    p.laptop{
+        display: none;
+    }
+}
+@media screen and (min-width: 1200px){
+    p.mobile{
+        display: none;
+    }
+}

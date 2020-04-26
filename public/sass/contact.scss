@@ -4,7 +4,7 @@ h1, h2, p{
     color: rgba(0,0,0,.7);
 }
 h1{
-    font-size: 5rem;
+    font-size: 4rem;
     font-family: 'Assistant', sans-serif;
 
 }
@@ -14,9 +14,12 @@ h2{
 
 section.information{
     h2{
-        font-size: 5rem;
+        font-size: 4rem;
         font-weight: bold;
     }
+}
+p{
+    font-size: 1.2rem;
 }
 .contact{
     .row{
@@ -33,7 +36,6 @@ section.information{
     }
     .info{
         address{
-            margin-left: 50px;
             width: 100%;
             height: 100%;
             p{
@@ -46,6 +48,11 @@ section.information{
                 }
             }
         }
+    }
+}
+@media screen and (min-width: 1200px){
+    address{
+        margin-left: 50px;
     }
 }
 

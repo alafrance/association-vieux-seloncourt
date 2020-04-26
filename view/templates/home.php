@@ -28,6 +28,7 @@
 <body>
     <?= $content ?>
     <?php include '../view/footer.php'; ?>
+    <script src="js/nav.js"></script>
 
 </body>
 </html>

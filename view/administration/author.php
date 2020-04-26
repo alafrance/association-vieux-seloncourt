@@ -9,7 +9,7 @@
     </div>
     <h2 class="titleAllArticleAuthor">Vos articles</h2>
     <?php if($articles == NULL){?>
-        <div>
+        <div class="iota">
             <p>Vous n'avez écrit encore aucun article ! Ecrivez en un : <a href="index.php?route=addArticle" class="btn btn-secondary">Ecrire un article</a></p>
         </div>
     <?php }else{?>

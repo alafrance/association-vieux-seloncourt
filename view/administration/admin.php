@@ -1,9 +1,7 @@
-<hr class="sep article" data-symbol="Articles :">
+<hr class="sep article" data-symbol="Articles:">
 <!-- Articles -->
 <section class="container">
         <div class="linkArticle iota">
-
-
             <div>
                 <h2 class="center">Ajouter :</h2>
                 <div class="buttons">
@@ -27,64 +25,66 @@
 </section>
 <section>
         <h2 class="titleTableArticle center">Tous les articles :</h2>
-        <table data-toggle="table" data-pagination="true" data-search="true" data-locale="fr-FR">
-            <thead>
-				<tr>
-					<th>Titre</th>
-					<th>Contenu</th>
-					<th>Ecrit le</th>
-					<th>Ecrit par :</th>
-					<th>Action</th>
-				</tr>
-			</thead>
-			<tbody>
-            <?php foreach ($articles as $article) { ?>
-                <tr>
-                    <td><?= $article->getTitle() ?></td>
-                    <td><?= substr(strip_tags($article->getContent(), '<br>'), 0, 150); ?>...</td>
-                    <td><?= $article->getDate() ?></td>
-                    <td><?= $article->getAuthor() ?></td>
-                    <td class="action iota">
-                        <a href="index.php?route=article&id=<?= $article->getId(); ?>" class="btn btn-secondary">Y Accéder</a>
-                        <a href="index.php?route=editArticle&id=<?= $article->getId(); ?>" class="btn btn-secondary">Modifier l'article</a>
-                        <a href="index.php?route=editImageArticle&id=<?= $article->getId();?>" class="btn btn-secondary">Modifier l'image</a>
-                        <a href="index.php?route=deleteArticle&id=<?= $article->getId(); ?>" class="btn btn-tertiary">Supprimer</a>
-                    </td>
-                </tr>
-            <?php }
-			?>
-			</tbody>
-        </table>
+        <div class="table-responsive">
+            <table class="table" data-toggle="table" data-pagination="true" data-search="true" data-locale="fr-FR" >
+                <thead>
+                    <tr>
+                        <th>Titre</th>
+                        <th>Contenu</th>
+                        <th>Ecrit le</th>
+                        <th>Ecrit par :</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php foreach ($articles as $article) { ?>
+                    <tr>
+                        <td><?= $article->getTitle() ?></td>
+                        <td><?= substr(strip_tags($article->getContent(), '<br>'), 0, 150); ?>...</td>
+                        <td><?= $article->getDate() ?></td>
+                        <td><?= $article->getAuthor() ?></td>
+                        <td class="action iota">
+                            <a href="index.php?route=article&id=<?= $article->getId(); ?>" class="btn btn-secondary">Y Accéder</a>
+                            <a href="index.php?route=editArticle&id=<?= $article->getId(); ?>" class="btn btn-secondary">Modifier l'article</a>
+                            <a href="index.php?route=editImageArticle&id=<?= $article->getId();?>" class="btn btn-secondary">Modifier l'image</a>
+                            <a href="index.php?route=deleteArticle&id=<?= $article->getId(); ?>" class="btn btn-tertiary">Supprimer</a>
+                        </td>
+                    </tr>
+                <?php }
+                ?>
+                </tbody>
+            </table>
+        </div>
 </section>
 
 <!-- Catégorie -->
-<hr class="sep category" data-symbol="Catégories :">
+<hr class="sep category" data-symbol="Catégories:">
 
 <section class="center category container">
         <div class="row iota">
             <?php foreach($categories as $category){?>
                 <?php if($category->getId() == 1){?>
-                    <p class="col-8"><?= $category->getName(); ?></p>
-                    <p class="col-4">Impossible de le supprimer</p>
+                    <p class="col-xl-8 col-lg-8 col-6"><?= $category->getName(); ?></p>
+                    <p class="col-xl-4 col-lg-4 col-6">Impossible de le supprimer</p>
 
                 <?php }else{ ?>
 
-                <p class="col-8"><?= $category->getName(); ?></p>
-                <p class="col-4"><a href="index.php?route=deleteCategory&categoryId=<?= $category->getId();?>" class="btn btn-tertiary supCategory">Supprimer</a></p>
+                <p class="col-xl-8 col-lg-8 col-6"><?= $category->getName(); ?></p>
+                <p class="col-xl-4 col-lg-4 col-6"><a href="index.php?route=deleteCategory&categoryId=<?= $category->getId();?>" class="btn btn-tertiary supCategory">Supprimer</a></p>
                 <?php }
             } ?>
         </div>
         <form action='index.php?route=addCategory' method="post" class="iota row">
-            <div class="col-8">
+            <div class="col-xl-8 col-lg-8 col-6 col-6">
                 <input type="text" name="category" id="category" class="category">
             </div>
-            <button class="btn btn-secondary col-4" type="submit" name="submit" value="Ajouter">Ajouter</button>
+            <button class="btn btn-secondary col-xl-4 col-lg-4 col-6 col-6" type="submit" name="submit" value="Ajouter">Ajouter</button>
         </form>
 
 </section>
 
 <!-- Commentaires signalés -->
-<hr class="sep commentary" data-symbol="Commentaire(s) :">
+<hr class="sep commentary" data-symbol="Commentaire(s):">
 
 <section class="center flex-center commentary">
     <?php
@@ -92,7 +92,7 @@
             echo '<p>' . 'Aucun commentaire signalé' . '</p>';
         } else {
     ?>
-    <h2>Commentaires signalés :</h2>
+    <h2>Commentaires signalés:</h2>
     <table data-toggle="table" data-pagination="true" data-search="true" data-locale="fr-FR">
 		<thead>
             <tr>
@@ -126,10 +126,11 @@
 </section>
 
 <!-- Utilisateurs-->
-<hr class="sep user" data-symbol="Utilisateurs :">
+<hr class="sep user" data-symbol="Utilisateurs:">
 
 <section class="user">
-    <table data-toggle="table" data-pagination="true" data-search="true" >
+    <div class="table-responsive">
+    <table data-toggle="table" data-pagination="true" data-search="true" class= >
 		<thead>
 			<tr>
 				<th>Nom</th>
@@ -167,15 +168,15 @@
                         <?php }else{?>
                             <a href="index.php?route=rightUser&userId=<?= $user->getId();?>" class="btn btn-secondary">Changer en utilisateur</a>
                         <?php }?>
-                        <a href="index.php?route=deleteUser&userId=<?= $user->getId();?>" class="btn btn-tertiary">Supprimer l'utilisateur</a>
                     </td>
             <?php
                 } else {
-                    echo '<td>Modification ou Suppresion impossible</td>';
+                    echo '<td>Modification impossible</td>';
                 }
             }
             ?>
 			</tr>
 		</tbody>
     </table>
+    </div>
 </section>

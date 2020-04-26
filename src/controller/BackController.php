@@ -146,6 +146,7 @@ class BackController extends Controller{
             ]);
         }
     }
+    // Pour supprimer son propre compte
     public function deleteAccount(Parameter $post){
         if ($this->checkLoggedIn()){
             if ($post->get('submit')){
@@ -161,7 +162,7 @@ class BackController extends Controller{
             ]);
         }
     }
-     /* ------------------------- */
+    /* ------------------------- */
     /* -------- ARTICLES  -------- */
     /* ------------------------- */
     public function addArticle(Parameter $post){
