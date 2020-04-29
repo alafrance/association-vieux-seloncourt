@@ -2,7 +2,7 @@
 section.articles{
     margin-top: 50px;
     div.image{
-        height: 700px;
+        max-height: 700px;
         overflow: hidden;
     }
     article{
@@ -13,7 +13,6 @@ section.articles{
             margin-top: 30px;
             text-align: center;
         }
-        
         img{
             position: relative;
         }
@@ -26,6 +25,9 @@ section.articles{
                 color: #403D39;
             }
 
+        }
+        p{
+            font-size: 1em;
         }
         div.content{
             margin-top: 30px;

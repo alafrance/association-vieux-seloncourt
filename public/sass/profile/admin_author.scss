@@ -23,11 +23,26 @@ hr.sep {
         padding: 0.5em 3em;
         -webkit-transform: translate(-50%, -50%);
         transform: translate(-50%, -50%);
-        font-size: 1.8rem;
         border-left: 1px solid black;
         border-right: 1px solid black;
     }
   }
 div.fixed-table-toolbar{
     text-align: center;
+}
+.btn{
+    font-size: 1.6rem;
+}
+td .btn{
+    font-size: 1rem;
+}
+@media screen and (max-width: 992px){
+    hr:before{
+        font-size: 1.7rem;
+    }
+}
+@media screen and (min-width: 992px){
+    hr:before{
+        font-size: 4rem;
+    }
 }

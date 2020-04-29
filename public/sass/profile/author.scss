@@ -2,14 +2,17 @@
 @import './admin_author.scss';
 // Auteur
 
-h2.titleAllArticleAuthor{
-    margin-top: 30px;
-    margin-bottom: 30px;
+div.linkArticle{
+    h2{
+        margin-bottom: 0;
+    }
+    div.row{
+        margin: 3em;
+        justify-content: center;
+    }
+
 }
-div.iota.buttons.author{
-    margin-top: 50px;
-    margin-bottom: 50px;
-}
+
 table.author{
     display: flex;
     flex-direction: column;

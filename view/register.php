@@ -34,7 +34,7 @@
         </form>
         <div class="iota center">
             <h2>Vous avez déja un compte ?</h2>
-            <p><a href="index.php?route=login" class="btn btn-primary">Se connecter</a></p>
+            <p><a href="index.php?route=login" class="btn btn-secondary">Se connecter</a></p>
         </div>
     </div>
 </section>

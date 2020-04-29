@@ -12,28 +12,38 @@ $this->title = $article->getTitle();
     <p>Catégorie : <?= $article->getCategory();?></p>
 </section>
 
-<section class="container center">
+<section class='commentary'>
+
     <h1>Commentaires</h1>
     <?php if(isset($_SESSION['name'])) {?>
-        <h2>Ajouter un commentaire :</h2>
         <form action="index.php?route=addComment&articleId=<?= $articleId ?>" method="post">
-            <input type="text" name="content">
-            <input type="submit" name="submit" value="Ajouter">
+            <div class="input-field">
+                <input type="text" name="content" id="content" class="validate">
+                <label for="content">Ajouter un commentaire </label>
+                <?= isset($errors['content']) ? $errors['content'] : ''; ?>
+            </div>
+            <div>
+                <button class="btn btn-secondary" type="submit" name="submit" value="add">Ajouter</button>
+            </div>
         </form>
         <?= isset($errors['content']) ? $errors['content'] : '';?>
     <?php } else{ ?>
-        <p>Si vous voulez ajouter un commentaire, veuillez vous <a href="index.php?route=login">connecter</a> ou vous <a href="index.php?route=register">inscrire</a></p>
+        <p>Si vous voulez ajouter un commentaire, veuillez vous <a href="index.php?route=login" class="btn btn-secondary">connecter</a></p>
     <?php  } ?>
+
+
+
     <?php foreach($comments as $comment){ ?>
         <h3><?= $comment->getName(); ?></h3>
         <p><?= $comment->getContent(); ?></p>
-        <p>Ecrit le : <?= $comment->getDate(); ?></p>
+        <p><?= $comment->getDate(); ?></p>
         <p><?php
             if (isset($_SESSION['name']) && ($_SESSION['role'] == 'author' || $_SESSION['role'] == 'admin')){ ?>
-            <a href="index.php?route=flagComment&commentId=<?= $comment->getId();?>">Signaler le commentaire</a>
+            <a href="index.php?route=flagComment&commentId=<?= $comment->getId();?>" class="signale">Signaler le commentaire</a>
         <?php } ?>
         </p>
+            <hr>
     <?php } if (empty($comments)){ ?>
-            <p>Aucun commentaire. Soyer le premier à écrire ! Pour cela, inscrivez vous : <a href="index.php?route=register">S'inscrire</a></p>
+            <p>Aucun commentaire. Soyer le premier à écrire !</a></p>
     <?php }?>
 </section>

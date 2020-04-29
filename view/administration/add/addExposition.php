@@ -12,7 +12,7 @@ $this->css = "administration";
                 <?= isset($errors['title']) ? $errors['title'] : ''; ?>
             </div>
             <div class="file-field input-field">
-                <p class="info">Ajouter l'image principale</p>
+                <p class="info">Ajouter l'image</p>
                 <div>
                     <span class="btn btn-gray">Image</span>
                     <input type="file" name="image">

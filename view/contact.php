@@ -1,9 +1,16 @@
 <?php
     $this->css = 'contact';
-    $this->title = 'Contact'
+    $this->title = 'Contact';
 ?>
 <section class="information center container">
     <?= $this->session->showAlert('send_mail', 'success'); ?>
+    <h2>Notre comité</h2>
+    <p class="comite">
+        Le comité est composé de 31 membres<br>
+        Président : Pierre RERAT<br>
+        Secrétaire : Nicole BONNOT<br>
+        Trésorières : Michelle WALZER et Françoise NATHAN
+    </p>
     <h1>Notre association</h1>
     <p class="justify">
         La création de  l’association de sauvegarde du patrimoine historique, culturel et cultuel, « les Amis du vieux Seloncourt » en 1984 est liée à l’histoire de la vieille église de la commune.<br>
@@ -15,18 +22,13 @@
         En 1991, les Amis du vieux Seloncourt ont reconstitué une copie du tramway de la vallée d’Hérimoncourt (TVH) qui circula dans de nombreuses manifestations notamment pour commémorer le dernier voyage de ce moyen de transport (1932).<br>
         Pour signaler les lieux historiques de Seloncourt, l’association appose depuis 1993 de nombreuses plaques : vieille église, église Saint-Laurent, chapelle de tolérance, fonderie Cuvier, centre culturel de la Stauberie, ancienne poste, station du TVH… En 2012, elle a participé à la restauration des orgues du temple de Seloncourt.<br>
     </p>
-    <h2>Notre comité</h2>
-    <p class="comite">
-    <span>Le comité est composé de 31 membres</span><br>
-    <span class="underline">Président :</span> Pierre RERAT<br>
-    <span class="underline">Secrétaire :</span>  Nicole BONNOT<br>
-    <span class="underline">Trésorières :</span> Michelle WALZER et Françoise NATHAN
-    </p>
+    
 </section>
 <section class="contact">
 <div class="container-fluid contact">
     <div class="row">
         <div class="info center col-xl-6 col-lg-6 col-sm-12 col-md-12">
+            <h1 class="center">Informations</h1>
             <address class="flex-center">
                 <p>
                     <i class="fas fa-search-location"></i> Adresse<br>
@@ -52,7 +54,7 @@
 
                 <div class="input-field">
                     <input type="text" name="firstName" id="firstName" class="validate">
-                    <label for="prefirstNamenom">Votre prénom</label>
+                    <label for="firstName">Votre prénom</label>
                     <?= isset($errors['firstName']) ? $errors['firstName'] : ''; ?>
 
                 </div>
@@ -75,8 +77,15 @@
                     <textarea name="content" id="content" class="materialize-textarea"></textarea>
                     <label for="content">Votre message</label>
                     <?= isset($errors['content']) ? $errors['content'] : ''; ?>
-
                 </div>
+
+                <p>
+                    <label>
+                        <input type="checkbox" class="filled-in" checked="checked" name="rgpd" />
+                        <span>j'ai lu et j'accepte les conditions d'utilisations du site</span>
+                        <?= isset($errors['rgpd']) ? $errors['rgpd'] : ''; ?>
+                    </label>
+                </p>
 
                 <button class="btn waves-effect waves-light" type="submit" name="submit" value="send">
                     Envoyer <i class="fas fa-paper-plane"></i></i>

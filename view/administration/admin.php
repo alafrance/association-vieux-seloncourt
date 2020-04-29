@@ -16,7 +16,7 @@
                 <h2 class="center">Date importante sur la page d'Accueil</h2>
                 <div class="buttons">
                     <a href="index.php?route=addDate" class="btn btn-secondary">Ajouter ou modifier une date</a>
-                    <a href="index.php?route=deleteDate" class="btn btn-tertiary">Supprimer la date</a>
+                    <a href="index.php?route=deleteDate" class="btn btn-danger">Supprimer la date</a>
                 </div>
             </div>
 
@@ -44,10 +44,10 @@
                         <td><?= $article->getDate() ?></td>
                         <td><?= $article->getAuthor() ?></td>
                         <td class="action iota">
-                            <a href="index.php?route=article&id=<?= $article->getId(); ?>" class="btn btn-secondary">Y Accéder</a>
+                            <a href="index.php?route=article&id=<?= $article->getId(); ?>" class="btn btn-primary">Y Accéder</a>
                             <a href="index.php?route=editArticle&id=<?= $article->getId(); ?>" class="btn btn-secondary">Modifier l'article</a>
                             <a href="index.php?route=editImageArticle&id=<?= $article->getId();?>" class="btn btn-secondary">Modifier l'image</a>
-                            <a href="index.php?route=deleteArticle&id=<?= $article->getId(); ?>" class="btn btn-tertiary">Supprimer</a>
+                            <a href="index.php?route=deleteArticle&id=<?= $article->getId(); ?>" class="btn btn-danger">Supprimer</a>
                         </td>
                     </tr>
                 <?php }
@@ -61,26 +61,38 @@
 <hr class="sep category" data-symbol="Catégories:">
 
 <section class="center category container">
-        <div class="row iota">
-            <?php foreach($categories as $category){?>
+    <table class="table" data-toggle="table" data-pagination="true" data-search="true" data-locale="fr-FR" >
+        <thead>
+            <tr>
+                <th>Catégories</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php foreach($categories as $category){?>
+            <tr>
                 <?php if($category->getId() == 1){?>
-                    <p class="col-xl-8 col-lg-8 col-6"><?= $category->getName(); ?></p>
-                    <p class="col-xl-4 col-lg-4 col-6">Impossible de le supprimer</p>
+                    <td><?= $category->getName(); ?></td>
+                    <td>Impossible de le supprimer</td>
 
                 <?php }else{ ?>
 
-                <p class="col-xl-8 col-lg-8 col-6"><?= $category->getName(); ?></p>
-                <p class="col-xl-4 col-lg-4 col-6"><a href="index.php?route=deleteCategory&categoryId=<?= $category->getId();?>" class="btn btn-tertiary supCategory">Supprimer</a></p>
+                    <td><?= $category->getName(); ?></td>
+                    <td><a href="index.php?route=deleteCategory&categoryId=<?= $category->getId();?>" class="btn btn-danger supCategory">Supprimer</a></td>
+            </tr>
                 <?php }
-            } ?>
-        </div>
-        <form action='index.php?route=addCategory' method="post" class="iota row">
-            <div class="col-xl-8 col-lg-8 col-6 col-6">
-                <input type="text" name="category" id="category" class="category">
-            </div>
-            <button class="btn btn-secondary col-xl-4 col-lg-4 col-6 col-6" type="submit" name="submit" value="Ajouter">Ajouter</button>
-        </form>
+        } ?>
+        <tr>
+            <form action='index.php?route=addCategory' method="post" class="iota row">
+                <div class="">
+                    <td><input type="text" name="category" id="category" class="category"></td>
+                </div>
+                <td><button class="btn btn-secondary" type="submit" name="submit" value="Ajouter">Ajouter</button></td>
+            </form>
+        </tr>
 
+        </tbody>
+    </table>
 </section>
 
 <!-- Commentaires signalés -->
@@ -92,7 +104,7 @@
             echo '<p>' . 'Aucun commentaire signalé' . '</p>';
         } else {
     ?>
-    <h2>Commentaires signalés:</h2>
+    <h2 class='commentary'>Commentaires signalés:</h2>
     <table data-toggle="table" data-pagination="true" data-search="true" data-locale="fr-FR">
 		<thead>
             <tr>
@@ -111,8 +123,8 @@
                     <td><?= htmlspecialchars(substr($comment->getContent(), 0, 100)); ?></td>
                     <td><?= htmlspecialchars($comment->getDate()); ?></td>
                     <td class="iota">
-                        <a href='index.php?route=unflagComment&commentId=<?= $comment->getId(); ?>' class="btn btn-secondary">Désignaler ce commentaire</a><br>
-                        <a href='index.php?route=deleteComment&commentId=<?= $comment->getId(); ?>' class="btn btn-tertiary">Supprimer ce commentaire</a>
+                        <a href='index.php?route=unflagComment&commentId=<?= $comment->getId(); ?>' class="btn btn-secondary">Désignaler ce commentaire</a>
+                        <a href='index.php?route=deleteComment&commentId=<?= $comment->getId(); ?>' class="btn btn-danger">Supprimer ce commentaire</a>
                     </td>
                 </tr>
 

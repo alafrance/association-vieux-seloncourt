@@ -5,7 +5,7 @@ $this->title = 'Accueil';
 <?= $this->session->showAlert('logout', 'normal');?>
 <header class="slider flex-center">
     <nav class="navbar">
-        <img src="img/logo.png" alt="logo les Amis du Vieux Seloncourt" class="logo">
+        <a href="index.php"><img src="img/logo.png" alt="logo les Amis du Vieux Seloncourt" class="logo"></a>
         <div class="hamburger">
             <i class="fas fa-bars"></i>
         </div>
@@ -80,7 +80,7 @@ $this->title = 'Accueil';
     <h1 class="center">Derniere Exposition: <?= $exposition->getTitle()?></h1>
     <div class="center expositionContent">
         <p class="content laptop center "><?= substr(strip_tags($exposition->getContent(), '<br>'), 0, 600) ?>...</p>
-        <p class="content mobile center "><?= substr(strip_tags($exposition->getContent(), '<br>'), 0, 300) ?>...</p>
+        <p class="content mobile justify "><?= substr(strip_tags($exposition->getContent(), '<br>'), 0, 300) ?>...</p>
         <img src="img/articles/<?= $exposition->getImage()?>" alt="Image dernière exposition" class="col-xl-8 col-md-12 col-12 center">
     </div>
     <a href="index.php?route=article&id=<?= $exposition->getId();?>" class="button dark">Voir l'exposition en entier</a>
@@ -107,10 +107,7 @@ $this->title = 'Accueil';
                     </a>
                 </div>
                 <div class="content">
-                    <p><?= substr(strip_tags($article->getContent(), '<br>'), 0, 400) ?>...</p>
-                    <div class="center">
-                        <a href="index.php?route=article&id=<?= $article->getId();?>" class="button dark">Lire la suite</a>
-                    </div>
+                    <a href="index.php?rtoue=article&id=<?= $article->getId();?>"><p><?= substr(strip_tags($article->getContent(), '<br>'), 0, 300) ?>...</p></a>
                 </div>
             </article>
 <?php

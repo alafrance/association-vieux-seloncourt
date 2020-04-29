@@ -225,7 +225,7 @@ class BackController extends Controller{
                     $this->session->set('edit_image_article', 'L\'image a bien été modifié');
                     header('Location: ../public/index.php?route=profile');
                 }
-                return $this->view->render('administration/esit/editImageArticle', [
+                return $this->view->render('administration/edit/editImageArticle', [
                     'articleId' => $articleId,
                     'article' => $article,
                     'errors' => $errors

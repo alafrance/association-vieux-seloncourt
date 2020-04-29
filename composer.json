@@ -6,8 +6,5 @@
             "Config\\" : "config",
             "App\\" : "src"
         }
-    },
-    "require": {
-        "phpmailer/phpmailer": "^6.1"
     }
 }

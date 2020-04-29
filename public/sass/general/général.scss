@@ -45,7 +45,27 @@ main{
 }
 
 footer{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
     margin-top: 30px;
+    background-color: #4A525A;
+    div.row{
+        width: 100%;
+        div{
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            h5{
+                margin-bottom: 0;
+            }
+        }
+    }
 }
 .alert.alert-info{
     position: absolute;
@@ -76,12 +96,4 @@ footer{
 .uppercase{
     text-transform: uppercase;
 }
-footer{
-    width: 100%;
-    height: 100px;
-    background-color: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-}
+

@@ -53,6 +53,9 @@ class Router{
                     case 'home':
                         $this->frontController->home();
                         break;
+                    case 'rgpd':
+                        $this->frontController->rgpd();
+                        break;
                     case 'logout':
                         $this->backController->logout();
                         break;

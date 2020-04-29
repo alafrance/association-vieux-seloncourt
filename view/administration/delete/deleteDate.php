@@ -3,7 +3,7 @@ $this->title = "Supprimer  une date";
 $this->css = "littlePage";
 ?>
 <section>
-    <hr class="sep category" data-symbol="Suppresion :">
+    <hr class="sep category" data-symbol="Suppresion">
     <div class="all container-fluid">
         <h1 class="center">Voulez vous vraiment supprimer la date ? Elle ne sera plus disponible</h1>
         <form action="index.php?route=deleteDate" method="post">

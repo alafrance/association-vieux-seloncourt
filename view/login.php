@@ -19,13 +19,13 @@ $this->title = 'Page de connexion';
                 <input type="password" name="password" id="password" class="validate">
                 <label for="password">Ton mot de passe</label>
             </div>
-            <div class="iota center">
+            <div class=" center">
                 <button class="btn btn-secondary" type="submit" name="submit" value="add">Se connecter</button>
             </div>
         </form>
-        <div class="iota center">
+        <div class="center">
             <h2>Vous n'avez pas de compte ?</h2>
-            <p><a href="index.php?route=register" class="btn btn-primary">S'inscrire</a></p>
+            <p><a href="index.php?route=register" class="btn btn-secondary">S'inscrire</a></p>
         </div>
     </div>
 </section>
