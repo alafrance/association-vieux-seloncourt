@@ -34,14 +34,17 @@ $this->title = 'Accueil';
 
 <?php if (!empty($date->getId())){?>
     <section class="date container-fluid">
-        <h1 class="center uppercase">Date à venir:</h1>
-        <img src="img/home/old_book.jpg" alt="Image d'un vieux livre">
-        <p class="center"><?= $date->getTitle()?> : le <?= $date->getDate();?> à <?=$date->getPlace(); ?> </p>
-        <?php if (!empty($date->getContent())){?>
-            <p class='underline'>Informations :</p>
-            <p class="center"><?= strip_tags($date->getContent(), '<br>')?></p>
-        <?php }?>
-
+        <h1 class="center uppercase">Evenements à venir</h1>
+        <div class="row">
+            <div class="col-xl-6 col-lg-6 col-12 flex-center">
+                <p>L'assocation organise un <?= $date->getTitle()?></p>
+                <p>Date : <?= $date->getDate();?> à <?=$date->getPlace(); ?> </p>
+                <?php if (!empty($date->getContent())){?>
+                    <p><?= strip_tags($date->getContent(), '<br>')?></p>
+                <?php }?>
+            </div>
+            <img src="img/date/<?= $date->getImage();?>"" alt="Image Correspondant à l'evenement à venir" class="col-lg-6 col-xl-6 col-12">
+        </div>
     </section>
     <hr class="home">
 <?php }?>
@@ -80,7 +83,7 @@ $this->title = 'Accueil';
         <p class="content mobile center "><?= substr(strip_tags($exposition->getContent(), '<br>'), 0, 300) ?>...</p>
         <img src="img/articles/<?= $exposition->getImage()?>" alt="Image dernière exposition" class="col-xl-8 col-md-12 col-12 center">
     </div>
-    <a href="index.php?route=article&id=<?= $exposition->getId();?>" class="btn btn-gray">Voir l'exposition en entier</a>
+    <a href="index.php?route=article&id=<?= $exposition->getId();?>" class="button dark">Voir l'exposition en entier</a>
 </section>
 <?php }?>
 
@@ -98,21 +101,24 @@ $this->title = 'Accueil';
                 <div class="title">
                     <h2><?= $article->getTitle();?></h2>
                 </div>
-                <a href="index.php?route=article&id=<?= $article->getId();?>">
-                    <img src='img/articles/<?=$article->getImage()?>' alt='Image Article <?= $article->getTitle();?>'>
-                </a>
+                <div class="image flex-center">
+                    <a href="index.php?route=article&id=<?= $article->getId();?>">
+                        <img src='img/articles/<?=$article->getImage()?>' alt='Image Article <?= $article->getTitle();?>'>
+                    </a>
+                </div>
                 <div class="content">
                     <p><?= substr(strip_tags($article->getContent(), '<br>'), 0, 400) ?>...</p>
-                    <a href="index.php?route=article&id=<?= $article->getId();?>" class="btn btn-gray">Lire la suite</a>
+                    <div class="center">
+                        <a href="index.php?route=article&id=<?= $article->getId();?>" class="button dark">Lire la suite</a>
+                    </div>
                 </div>
             </article>
 <?php
     }
 ?>
     </div>
-    <div class="footer">
-        <p>Pour voir tous nos articles: </p>
-        <a href="index.php?route=articles" class="button dark">cliquer ici pour accéder à tous nos articles et expositions</a>
+    <div class="footer center">
+        <a href="index.php?route=articles" class="button dark">Cliquez ici pour accéder à tous nos articles</a>
     </div>
 
 </section>

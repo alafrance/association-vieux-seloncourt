@@ -3,30 +3,10 @@
 h1, h2, p{
     color: rgba(0,0,0,.7);
 }
-h1{
-    font-size: 4rem;
-    font-family: 'Assistant', sans-serif;
 
-}
-h2{
-    font-family: 'Assistant', sans-serif;
-}
-
-section.information{
-    h2{
-        font-size: 4rem;
-        font-weight: bold;
-    }
-}
-p{
-    font-size: 1.2rem;
-}
 .contact{
     .row{
         height: 100%;
-        h2{
-            font-size: 2.5rem;
-        }
     }
     .formulaire{
         display: flex;
@@ -39,13 +19,7 @@ p{
             width: 100%;
             height: 100%;
             p{
-                font-size: 1.7rem;
-                font-family: 'Roboto Condensed', sans-serif;
-                span{
-                    font-size: 1.3rem;
-                    font-family: 'Assistant', sans-serif;
-                    color: black;
-                }
+                color: black;
             }
         }
     }
@@ -55,5 +29,7 @@ p{
         margin-left: 50px;
     }
 }
+
+
 
 

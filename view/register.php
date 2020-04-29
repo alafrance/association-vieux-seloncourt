@@ -25,7 +25,7 @@
             </div>
             <div class="input-field">
                 <input type="password" name="password2" id="password2" class="validate" value="<?= isset($post) ? htmlspecialchars($post->get('password2')): ''; ?>">
-                <label for="password2">Confirmer son mot de passe:</label>
+                <label for="password2">Confirmer du mot de passe:</label>
                 <?= isset($errors['password2']) ? $errors['password2'] : '';?>
             </div>
             <div class="iota center">

@@ -24,7 +24,6 @@
     </p>
 </section>
 <section class="contact">
-    <h1 class="center">Contactez nous !</h1>
 <div class="container-fluid contact">
     <div class="row">
         <div class="info center col-xl-6 col-lg-6 col-sm-12 col-md-12">
@@ -48,7 +47,7 @@
             </address>
         </div>
         <div class="form col-xl-6 col-lg-6 col-sm-12 col-md-12 flex-center">
-            <h2 class="center">Ou contacter nous directement ici</h2>
+            <h1 class="center">Contactez nous</h1>
             <form action='index.php?route=contact' method='post' class="formulaire">
 
                 <div class="input-field">

@@ -1,23 +1,25 @@
 // Général
-@import url('https://fonts.googleapis.com/css2?family=Acme&family=Baloo+Tammudu+2:wght@500&family=Rubik&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Assistant&family=Roboto+Condensed:ital,wght@0,300;1,300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap');
 @import 'buttons.scss';
 @import './variables.scss';
-
+@import url('https://fonts.googleapis.com/css2?family=Assistant&family=Girassol&display=swap');
 // Image date: Photo by Sergiu Vălenaș on Unsplash
+
+h1, h2{
+    font-family: 'Girassol', sans-serif;
+    font-size: 6em;
+    color: #403D39;
+}
 h1{
-    font-family: 'Fira Sans', sans-serif;
     font-weight: bold;
 }
-h2{
-    font-family: 'Roboto Condensed', sans-serif;
-    font-style: italic;
-}
-p{
+p,a, span{
     font-family: 'Assistant', sans-serif;
+    font-size: 1.5em;
+    color: #212227;
+}
+section{
+    padding-top: 3em;
+    padding-bottom: 3em;
 }
 hr.home{
         width: 90%;

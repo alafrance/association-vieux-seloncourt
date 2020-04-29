@@ -1,6 +1,6 @@
 // HEADER
-@import url('https://fonts.googleapis.com/css2?family=Girassol&family=Kalam&display=swap');
 header.slider{
+    
     width: 100%;
     -webkit-box-shadow: 0px 10px 41px -1px rgba(255,255,255,0.99);
     -moz-box-shadow: 0px 10px 41px -1px rgba(255,255,255,0.99);
@@ -21,7 +21,6 @@ header.slider{
         img.logo{
             padding-left: 20px;
             padding-top: 10px;
-            width: 150px;
             height: auto;
         }
 
@@ -29,7 +28,6 @@ header.slider{
             margin-right: 30px;
             font-size: 1.7rem;
             text-decoration: none;
-            font-family: 'Acme', sans-serif;
             &:hover{
                 color: gray;
             }
@@ -39,18 +37,7 @@ header.slider{
         width: 100%;
         text-align: center;
         z-index: 3;
-        a.button{
-            &:hover{
-                color: wheat;
-            }
-        }
-        p{
-            font-family: 'Kalam', cursive;
-        }
-        a{
-            text-decoration: none;
-            font-family: 'Old Standard TT', serif;
-        }
+        
     }
 }
 
@@ -145,12 +132,19 @@ header.slider{
 }
 
 // Slider
+
+// Mobile
 @media screen and (max-width:576px){
     img.fond{
         display: none;
     }
+    a.button.light{
+        color: black;
+        border-color: black;
+    }
 }
-@media screen and (max-width: 900px){
+// Mobile et Tablet
+@media screen and (max-width: 992px){
     header.slider{
         div.top{
             p{
@@ -166,50 +160,68 @@ header.slider{
             }
         }
     }
-    
 }
-@media screen and (max-width:1199px){
+
+//Tablet
+@media screen and (min-width: 577px) and (max-width: 992px){
     div.top{
-        color: black;
-        a.button {
-            color: black;
-            border: 0.16em solid black;
+        h1{
+            margin-top: 0;
         }
         p{
-            font-size: 2.5em;
+            margin-top: 0;
         }
-        h1{
-            font-size: 4em;
+        a.button{
+            margin-top: 0;
+            font-size: 1.2em;
         }
     }
 }
 
+
+// Tablet et Laptop
 @media screen and (min-width: 577px){
+    header.slider{
+        position: relative;
+    }
     div.top{
         position: absolute;
         color: white;
-        top: 20%;
+        top: 0;
         left: 0;
+        height: 100%;
         a.button {
             color: white;
         }
+        p{
+            font-size: 2em;
+        }
+        h1{
+            margin-top: 2em;
+        }
 
     }
-}
-@media screen and (min-width:662px) and (max-width: 900px){
-    div.top{
-        h1{
-            margin-top: 1em;
-        }
-        p{
-            margin-top: 1em;
-        }
-        a.button{
-            margin-top: 1em;
+    header.slider{
+        h1, p, a{
+            color: white;
         }
     }
+    nav li a{
+        color: white;
+    }
 }
-@media screen and (min-width: 800px){
+
+// Laptop
+@media screen and (min-width: 993px){
+    header.slider{
+        h1{
+            margin-bottom: 0;
+        }
+        p{
+            margin-top: .2em;
+            margin-bottom: .2em;
+        }
+    }
     div.top{
         a.button.first{
             margin-top: 50px;
@@ -217,29 +229,14 @@ header.slider{
         }
     }
 }
-@media screen and (min-width: 1200px) and (max-width: 1399px){
-    nav li a{
-        color: white;
-    }
-    div.top{
+
+// Laptop extra large
+
+@media screen and (min-width: 2000px){
+    header.slider{
         h1{
-            font-size: 4em;
-        }
-        p{
-            font-size: 2em;
-        }
-        a.button{
-            font-size: 1em;
-        }
-    }
-}
-@media screen and (min-width: 1400px){
-    nav li a{
-        color: white;
-    }
-    div.top{
-        h1{
-            font-size: 6em;
+            font-size: 8em;
+            margin-top: 0;
         }
         p{
             font-size: 3em;
@@ -247,13 +244,8 @@ header.slider{
         a.button{
             font-size: 2em;
         }
-    }
-}
-@media screen and (min-width: 2000px){
-    div.top{
-        top: 30%;
-    }
-}
 
+    }
+}
 
 

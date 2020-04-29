@@ -6,6 +6,7 @@ class Date{
     private $place;
     private $content;
     private $date;
+    private $image;
     public function getId(){
         return $this->id;
     }
@@ -36,5 +37,11 @@ class Date{
     }
     public function setDate($date) {
         $this->date = $date;
+    }
+    public function getImage(){
+        return $this->image;
+    }
+    public function setImage($image) {
+        $this->image = $image;
     }
 }

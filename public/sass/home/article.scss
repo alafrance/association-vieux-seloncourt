@@ -1,48 +1,44 @@
 // ARTICLES
 section.articles{
     margin-top: 50px;
-    //div.row{
-        //margin-left: 50px;
-    //}
+    div.image{
+        height: 700px;
+        overflow: hidden;
+    }
     article{
         h2, img, p, div.content, div.title{
             width: 100%;
         }
         h2{
-            font-size: 2.3rem;
             margin-top: 30px;
             text-align: center;
         }
-        a.button.dark{
-            margin-top: 20px;
-            margin-bottom: 20px;
+        
+        img{
+            position: relative;
+        }
+        div.title{
+            margin-bottom: 22px;
+            height: 250px;
+            overflow: hidden;
+            h2{
+                font-size: 5em;
+                color: #403D39;
+            }
+
+        }
+        div.content{
+            margin-top: 30px;
         }
         a.linkArticle{
             color: #c0c0c0;
         }
-        img{
-            position: relative;
-        }
-        div{
-            width: 700px;
-            text-align: center;
-        }
-        div.title{
-            margin-bottom: 22px;
-            height: 110px;
-        }
-        div.content{
-            margin-top: 30px;
-            font-weight: bold;
-        }
     }
     div.footer{
         margin-top: 50px;
-        text-align: center;
         p{
             width: 100%;
             text-align: center;
-            font-size: 1.5rem;
             color: black;
         }
     }
@@ -50,7 +46,6 @@ section.articles{
 @media screen and (min-width:1200px){
     section.articles{
         img{
-            height: 700px;
         }
     }
 }

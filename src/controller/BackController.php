@@ -319,24 +319,28 @@ class BackController extends Controller{
         if ($this->checkAdmin()){
             if ($post->get('submit')){
                 $errors = $this->validation->validate($post, 'Date');
+                if($this->validation->validate('image', 'Image')){
+                    $errors['image'] = $this->validation->validate('image', 'Image');
+                }
                 if (!$errors){
+                    $image_name = "image date" + 1 . '.' . preg_split('#/#', $_FILES['image']['type'], -1, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE)[1] ;
+                    move_uploaded_file($_FILES['image']['tmp_name'], 'img/date/' . $image_name);
                     $date = explode('-',$post->get('date'));
                     $year = explode(' ', $date[2])[0];
                     $month = $date[1];
                     $day = $date[0];
                     $time = explode(' ', $date[2])[1];
                     $date = $year . '-' . $month . '-' . $day . ' ' . $time . ':00';
-                    $this->articleDAO->addDate($post, $date);
+                    $this->articleDAO->addDate($post, $date, $image_name);
                     $this->session->set('add_date', 'La date a été ajouté à la page d\'accueil');
                     header('Location: index.php?route=profile');
                 }
-                return $this->view->render('administration/addDate', [
+                return $this->view->render('administration/add/addDate', [
                     'post' => $post,
                     'errors' => $errors,
-                    'date' => $date
+                    'date' => $date,
                 ], 'article');
             }
-
             return $this->view->render('administration/add/addDate', [], 'article');
         }
     }
@@ -344,6 +348,7 @@ class BackController extends Controller{
         if ($this->checkAdmin()){
             if ($post->get('submit')){
                 if($post->get('deleteAccount') == 'yes'){
+                    unlink('img/date/*');
                     $this->articleDAO->deleteDate();
                     $this->session->set('delete_date', 'La date a été supprimé de la page d\'accueil');
                 }

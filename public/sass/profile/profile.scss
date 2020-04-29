@@ -10,26 +10,16 @@ section.allsize{
 }
 h1{
     margin-bottom: 25px;
-    font-size: 3.5rem;
     font-weight: normal;
-    font-family: 'Assistant', sans-serif;
 }
 
 h2{
-    font-size: 2.5rem;
     margin-bottom: 1em;
-    font-style: italic;
-}
-p{
-    font-size: 1.5rem;
 }
 
 
 // profile information
 section.profileInformation{
-    h1.title{
-        font-size: 5em;
-    }
     div.informationsWithText{
         display: flex;
         flex-direction: column;
@@ -39,7 +29,6 @@ section.profileInformation{
             li{
                 margin-bottom: 25px;
                 font-size: 1.4rem;
-                font-family: 'Assistant', sans-serif;
             }
             li a{
                 &:hover{

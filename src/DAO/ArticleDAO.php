@@ -30,13 +30,14 @@ class ArticleDAO extends DAO{
     }
 
     public function buildDate($data){
-        $assembly = new Date();
-        $assembly->setId($data['id']);
-        $assembly->setTitle($data['title']);
-        $assembly->setPlace($data['place']);
-        $assembly->setContent($data['content']);
-        $assembly->setDate($data['date']);
-        return $assembly;
+        $date = new Date();
+        $date->setId($data['id']);
+        $date->setTitle($data['title']);
+        $date->setPlace($data['place']);
+        $date->setContent($data['content']);
+        $date->setDate($data['date']);
+        $date->setImage($data['image_name']);
+        return $date;
     }
     /* -------------------------------- */
     /* ----- RECUPERATION ARTICLE ----- */
@@ -226,14 +227,15 @@ class ArticleDAO extends DAO{
     /* ------------ DATE ------------ */
     /* ------------------------------ */
 
-    public function addDate($post, $date){
+    public function addDate($post, $date, $image){
         $sql = 'DELETE FROM date';
         $this->createQuery($sql);
-        $sql = 'INSERT INTO date(title, place,date,content) VALUES(?, ?, ?, ?)';
+        $sql = 'INSERT INTO date(title, place,date, image_name,content) VALUES(?, ?, ?,?, ?)';
         $this->createQuery($sql, [
             $post->get('title'),
             $post->get('place'),
             $date,
+            $image,
             $post->get('content')
         ]);
     }
@@ -242,7 +244,7 @@ class ArticleDAO extends DAO{
         $this->createQuery($sql);
     }
     public function getDate(){
-        $sql = "SELECT id, title, content, place, DATE_FORMAT(date, '%d/%m/%Y, %k heures %i minutes') AS date FROM date";
+        $sql = "SELECT id, title, content, place, image_name, DATE_FORMAT(date, '%d/%m/%Y, %k heures %i minutes') AS date FROM date";
         $request = $this->createQuery($sql);
         $data = $request->fetch();
         $date = $this->buildDate($data);

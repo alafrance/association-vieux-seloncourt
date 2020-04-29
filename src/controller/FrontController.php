@@ -21,7 +21,7 @@ class FrontController extends Controller{
         if ($post->get("submit")){
             $errors = $this->validation->validate($post, 'Mail');
             if (!$errors){
-                mail("alexislafrances-laf@outlook.fr", "Mail de" . $post->get('firstName') . ' ' . $post->get('lastName'), $post->get("content") . "\n" . 'Mail :' . $post->get("email"));
+                mail("alexislafrances-laf@outlook.fr", "Mail de " . $post->get('firstName') . ' ' . $post->get('lastName'), $post->get("content") . "\n" . 'Mail :' . $post->get("email"));
                 $this->session->set('send_mail', 'Votre message a bien été envoyé');
             }
          return $this->view->render('contact', ['errors' => $errors]);

@@ -39,7 +39,6 @@ hr.sep {
         padding: 0.5em 3em;
         -webkit-transform: translate(-50%, -50%);
         transform: translate(-50%, -50%);
-        font-family: 'Assistant', sans-serif;
         font-size: 2.5rem;
         border-left: 1px solid black;
         border-right: 1px solid black;
@@ -52,9 +51,6 @@ ul{
     align-items: center;
     justify-content: center;
 }
-h1.setting{
-    font-size: 3rem;
-}
 
 form.update{
     input[type="password"]{
@@ -62,9 +58,6 @@ form.update{
     }
 }
 
-p.oldEmail{
-    font-size: 2.5rem;
-}
 // Edit image article
 
 p.newImg{

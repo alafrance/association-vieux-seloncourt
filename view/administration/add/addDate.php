@@ -3,12 +3,24 @@ $this->title = "Nouvel article";
 $this->css = "admin";
 ?>
 <section>
-    <h1 class="center">Vous pouvez ici ajouter une date à la page de l'accueil :</h1>    
+    <h1 class="center">Ajouter une date à la page de l'accueil :</h1>    
     <form method="post" action="../public/index.php?route=addDate" class="container flex-center" enctype="multipart/form-data">
             <div class="input-field">
                 <input type="text" name="title" id="title" class="validate" value="<?= isset($post) ? htmlspecialchars($post->get('title')): ''; ?>">
                 <label for="title">Titre de la date </label>
                 <?= isset($errors['title']) ? $errors['title'] : ''; ?>
+            </div>
+            <div class="file-field input-field">
+                <p>Choisir l'image affiché à la page d'accueil</p>
+                <div>
+                    <span class="btn btn-gray">Images</span>
+                    <input type="file" name="image">
+                </div>
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text">
+                </div>
+                <div id="preview-file"></div>
+                <?= isset($errors['image']) ? $errors['image'] : ''; ?>
             </div>
 
             <div class="input-field">
