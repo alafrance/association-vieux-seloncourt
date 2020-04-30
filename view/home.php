@@ -26,14 +26,15 @@ $this->title = 'Accueil';
         <p>Association de sauvegarde du patrimoine historique, culturel et cultuel de Seloncourt</p>
         <div>
             <a href="#description" class="button light first">Qui sommes nous ?</a>
-            <a href="index.php?route=contact" class="button light">Nous contacter</a>
+            <a href="index.php?route=contact" class="button light first">Nous contacter</a>
+            <a href="#event" class="button light">Evenements à venir</a>
         </div>
     </div>
     <img src="img/home/tvh.jpg" class="fond"></img>
 </header>
 
 <?php if (!empty($date->getId())){?>
-    <section class="date container-fluid">
+    <section class="date container-fluid" id="event">
         <h1 class="center uppercase">Evenements à venir</h1>
         <div class="row">
             <div class="col-xl-6 col-lg-6 col-12 flex-center">

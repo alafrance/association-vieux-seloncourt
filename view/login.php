@@ -8,7 +8,7 @@ $this->title = 'Page de connexion';
     <?= $this->session->showAlert('need_login', 'error'); ?>
     <hr class="sep category" data-symbol="Connexion">
     <div class="all container-fluid">
-        <h1 class="center">Connecter vous :</h1>
+        <h1 class="center">Connectez vous :</h1>
         <form action="index.php?route=login" method="post">
             <div class="input-field">
                 <input type="email" name="email" id="email" class="validate" value="<?= isset($post) ? htmlspecialchars($post->get('email')): ''; ?>">

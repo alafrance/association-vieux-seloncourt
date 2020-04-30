@@ -179,6 +179,7 @@ header.slider{
 }
 
 
+
 // Tablet et Laptop
 @media screen and (min-width: 577px){
     header.slider{
@@ -225,7 +226,33 @@ header.slider{
     div.top{
         a.button.first{
             margin-top: 50px;
-            margin-right: 200px;
+            margin-right: 150px;
+        }
+
+    }
+}
+
+//Little Laptop
+@media screen and (min-width: 992px) and (max-width: 1228px){
+    header.slider{
+        div.top{
+            a.button.first{
+                margin-bottom: 1em;
+            }
+            a.button.first:nth-child(2){
+                margin-right: 0;
+            }
+        }
+    }
+}
+
+// Laptop
+@media screen and (min-width: 1229px) and (max-width: 1999px){
+    header.slider{
+        div.top{
+            a.button.first{
+                margin-right: .5em;
+            }
         }
     }
 }
@@ -243,6 +270,9 @@ header.slider{
         }
         a.button{
             font-size: 2em;
+        }
+        a.button.first{
+            margin-right: 3em;
         }
 
     }
