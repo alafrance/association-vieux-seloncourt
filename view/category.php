@@ -11,7 +11,7 @@ $this->title = $category;
         <article class="center">
             <h2 class="pageCategory"><?= htmlspecialchars($article->getTitle());?></h2>
             <a href="index.php?route=article&id=<?=$article->getId(); ?>">
-                <img src='img/articles/<?= $article->getImage();?>' alt= 'Image correspondant à <?=$article->getTitle() ?>' class="col-xl-7">
+                <img src='img/articles/<?= $article->getImage();?>' alt= 'Image correspondant à <?=$article->getTitle() ?>' class="col-sm-12 col-md-12 col-lg-7 col-xl-9">
             </a>
             <p class="justify"><?= substr(strip_tags($article->getContent(), '<br>'), 0, 300) ?>...</p>
         </article>

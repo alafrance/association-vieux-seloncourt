@@ -14,7 +14,7 @@
                         <div class="img center">
                             <h2 class="titleArticle"><?= $article->getTitle();?></h2>
                             <a href="index.php?route=article&id=<?=$article->getId(); ?>" >
-                                <img src='img/articles/<?= $article->getImage();?>' alt= 'Image correspondant à $article->getTitle()' class="col-12">
+                                <img src='img/articles/<?= $article->getImage();?>' alt= 'Image correspondant à $article->getTitle()' class="col-sm-12 col-md-12 col-lg-7 col-xl-9">
                             </a>
                         </div>
                         <p class="category"><?= $article->getCategory();?></p>

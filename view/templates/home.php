@@ -24,11 +24,15 @@
 
     <!-- Compiled and minified JavaScript -->
     <script src="../config/materialize/js/bin/materialize.js"></script>
+
+    <script src="js/alert.js"></script>
+
 </head>
 <body>
     <?= $content ?>
     <?php include '../view/footer.php'; ?>
     <script src="js/nav.js"></script>
+
 
 </body>
 </html>

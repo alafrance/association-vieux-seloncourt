@@ -47,7 +47,7 @@ class Constraint{
         }
     }
     public function sizeImage($name){
-        if ($_FILES[$name]['size'] >= 1000000){
+        if ($_FILES[$name]['size'] >= 7000000){ // Taille max 7 mo (Php accepte jusqu'a 8 mo)
             return '<p class="alert alert-danger center">L\'image est trop grande. Veuillez réessayer. </p>';
         }
     }

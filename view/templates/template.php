@@ -33,7 +33,7 @@
         <?= $content ?>
     </main>
     <?php include '../view/footer.php'; ?>
-
+    <script src="js/alert.js"></script>
 </body>
 
 </html>
